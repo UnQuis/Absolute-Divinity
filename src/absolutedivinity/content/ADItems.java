@@ -1,13 +1,10 @@
-package fadingrevelations.content;
+package absolutedivinity.content;
 
 import arc.graphics.Color;
 import mindustry.type.Item;
 
-// Автогенерировано из content/items/
-// Используй в FRMod.java: FRItems.load();
-public class FRItems {
+public class ADItems {
 
-    // --- ammo ---
     public static Item
         ammoLevel1,
         ammoLevel2,
@@ -17,26 +14,21 @@ public class FRItems {
         nanoAmmo,
         nuke;
 
-    // --- living-steel ---
     public static Item
         livingSteel,
         livingSteelHard;
 
-    // --- cryogenic-alloy ---
     public static Item
         cryogenicGel,
         igneousAlloy,
         cryogenicAlloy;
 
-    // --- other ---
     public static Item
         fuelRod,
         steelAmalgam,
         gold;
 
     public static void load() {
-
-        // ---- AMMO ----
 
         ammoLevel1 = new Item("ammo-level-1", Color.valueOf("9d7600")) {{
             localizedName = "Copper Ammo";
@@ -102,8 +94,6 @@ public class FRItems {
             radioactivity = 2f;
         }};
 
-        // ---- LIVING STEEL ----
-
         livingSteel = new Item("living-steel", Color.valueOf("88299f")) {{
             localizedName = "Living Steel";
             description = "A living piece of metal. Titanium infused with spores.";
@@ -131,8 +121,6 @@ public class FRItems {
             radioactivity = 0.2f;
         }};
 
-        // ---- CRYOGENIC ALLOY ----
-
         cryogenicGel = new Item("cryogenic-gel", Color.valueOf("4fa4c0")) {{
             localizedName = "Cryogenic Gel";
             description = "A very cold material made from mixing cryofluid and silicon. Used as one of the components to create [cyan]Cryogenic Alloy.";
@@ -151,8 +139,6 @@ public class FRItems {
             charge = 0.55f;
             explosiveness = 0f;
             radioactivity = 0f;
-            // Цвет не задан в оригинале — добавь сам, например:
-            // color.set(Color.valueOf("ваш_цвет"));
         }};
 
         cryogenicAlloy = new Item("cryogenic-alloy", Color.valueOf("2cbcc9")) {{
@@ -165,8 +151,6 @@ public class FRItems {
             radioactivity = 0f;
             cost = 1.4f;
         }};
-
-        // ---- OTHER ----
 
         fuelRod = new Item("fuel-rod", Color.valueOf("22b400")) {{
             localizedName = "Fuel Rod";
