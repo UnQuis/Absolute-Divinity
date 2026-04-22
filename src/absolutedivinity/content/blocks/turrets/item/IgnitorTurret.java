@@ -1,8 +1,8 @@
-package fadingrevelations.content.blocks.turrets.item;
+package absolutedivinity.content.blocks.turrets.item;
 
 import arc.graphics.Color;
 import arc.struct.ObjectMap;
-import fadingrevelations.content.FRItems;
+import absolutedivinity.content.ADItems;
 import mindustry.content.Items;
 import mindustry.entities.bullet.ShrapnelBulletType;
 import mindustry.entities.part.RegionPart;
