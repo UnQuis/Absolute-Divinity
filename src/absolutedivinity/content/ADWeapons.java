@@ -1,6 +1,6 @@
-package fadingrevelations.content;
+package absolutedivinity.content;
 
-import fadingrevelations.content.units.FRMissiles;
+import absolutedivinity.content.units.ADMissiles;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
@@ -33,7 +33,7 @@ public class ADWeapons {
                 reload = 15;
                 recoil = 0;
                 bullet = new BulletType() {{
-                    status = FREffects.powerfulDownraft;
+                    status = ADEffects.powerfulDownraft;
                     statusDuration = 20;
                     instantDisappear = true;
                     splashDamage = 15;
@@ -102,7 +102,7 @@ public class ADWeapons {
                 }};
 
                 bullet = new MissileBulletType(){{
-                    spawnUnit = FRMissiles.tinyMissile4;
+                    spawnUnit = ADMissiles.tinyMissile4;
                     instantDisappear = true;
                     damage = 0;
                 }};

@@ -1,6 +1,6 @@
-package fadingrevelations.content.units.t2;
+package absolutedivinity.content.units.t2;
 
-import fadingrevelations.content.FRWeapons;
+import absolutedivinity.content.ADWeapons;
 import mindustry.gen.PayloadUnit;
 import mindustry.type.UnitType;
 
@@ -22,7 +22,7 @@ public class ArmigerUnit {
             range = 180;
             speed = 1;
             strafePenalty = 1;
-            weapons.add(FRWeapons.culisetaRotor);
+            weapons.add(ADWeapons.culisetaRotor);
         }};
     }}
 }

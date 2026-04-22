@@ -1,7 +1,7 @@
-package fadingrevelations.content.units.mothership;
+package absolutedivinity.content.units.t4;
 
-import fadingrevelations.content.FREffects;
-import fadingrevelations.content.FRWeapons;
+import absolutedivinity.content.ADEffects;
+import absolutedivinity.content.ADWeapons;
 import mindustry.content.UnitTypes;
 import mindustry.entities.abilities.SpawnDeathAbility;
 import mindustry.entities.bullet.BasicBulletType;
@@ -30,8 +30,8 @@ public class CulisetaUnit {
             speed = 1;
             hitSize = 64;
             strafePenalty = 1;
-            weapons.add(FRWeapons.culisetaRotor);
-            weapons.add(FRWeapons.largeOrb);
+            weapons.add(ADWeapons.culisetaRotor);
+            weapons.add(ADWeapons.largeOrb);
 
             abilities.add(new SpawnDeathAbility(UnitTypes.dagger, 8, 45f));
 

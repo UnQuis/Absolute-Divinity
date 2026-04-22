@@ -1,8 +1,8 @@
-package fadingrevelations.content.units;
+package absolutedivinity.content.units;
 
+import absolutedivinity.content.ADEffects;
 import arc.graphics.Color;
 import arc.math.Interp;
-import fadingrevelations.content.FREffects;
 import mindustry.entities.bullet.ExplosionBulletType;
 import mindustry.entities.bullet.FlakBulletType;
 import mindustry.entities.effect.MultiEffect;
@@ -47,7 +47,7 @@ public class ADMissiles {
                         //hitSound = tree.getSound();
                         hitSoundVolume = 6f;
 
-                        status = FREffects.radiated;
+                        status = ADEffects.radiated;
 
                         hitEffect = new MultiEffect(
                             new WaveEffect(){{
