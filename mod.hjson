@@ -1,8 +1,8 @@
 {
-    displayName: Fading Revelations Patched
-    repo: UnQuis/Fading-Revelations
-    name: fadingrevelations
-    main: "fadingrevelations.FRMod"
+    displayName: Absolute Divinity
+    repo: UnQuis/Absolute-Divinity
+    name: absolutedivinity
+    main: "absolutedivinity.ADMod"
 
     author:
         '''
@@ -67,7 +67,7 @@
 
     subtitle: "Bug fixes fork"
     minGameVersion: 154
-    version: "2.3.2"
+    version: "0.0.1"
     java: true
     hidden: false
 }
