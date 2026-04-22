@@ -1,11 +1,11 @@
 package absolutedivinity.content;
 
-import arc.struct.ObjectMap;
 import absolutedivinity.content.blocks.turrets.item.AccelTurret;
 import absolutedivinity.content.blocks.turrets.item.CaatsTurret;
 import absolutedivinity.content.blocks.turrets.item.GattlingTurret;
 import absolutedivinity.content.blocks.turrets.item.HurricaneTurret;
 import absolutedivinity.content.blocks.turrets.item.IgnitorTurret;
+import arc.struct.ObjectMap;
 import mindustry.content.Blocks;
 import mindustry.content.TechTree;
 import mindustry.ctype.UnlockableContent;
@@ -18,16 +18,16 @@ public class ADTechTree {
 
     public static void load() {
         TechTree.TechNode root = TechTree.nodeRoot("canguris", Blocks.coreShard, true, () -> {});
-        FRPlanets.canguris.techTree = root;
+        ADPlanets.canguris.techTree = root;
         
         nodes.put(Blocks.coreShard, root);
 
         
-        addItem(Blocks.coreShard, FRItems.ammoLevel1);
-        addItem(FRItems.ammoLevel1, FRItems.ammoLevel2);
-        addItem(FRItems.ammoLevel2, FRItems.ammoLevel3);
+        addItem(Blocks.coreShard, ADItems.ammoLevel1);
+        addItem(ADItems.ammoLevel1, ADItems.ammoLevel2);
+        addItem(ADItems.ammoLevel2, ADItems.ammoLevel3);
         
-        addItem(Blocks.coreShard, FRItems.steelAmalgam);
+        addItem(Blocks.coreShard, ADItems.steelAmalgam);
 
         addBlock(Blocks.coreShard, AccelTurret.accel, Blocks.salvo); 
         

@@ -1,8 +1,8 @@
 package absolutedivinity.content.blocks.turrets.item;
 
+import absolutedivinity.content.ADItems;
 import arc.graphics.Color;
 import arc.struct.ObjectMap;
-import absolutedivinity.content.ADItems;
 import mindustry.content.Items;
 import mindustry.entities.bullet.ShrapnelBulletType;
 import mindustry.entities.part.RegionPart;
@@ -36,7 +36,7 @@ public class IgnitorTurret {
                 Items.copper, 550,
                 Items.graphite, 400,
                 Items.thorium, 220,
-                FRItems.cryogenicAlloy, 80
+                ADItems.cryogenicAlloy, 80
             ));
             ammoTypes = ObjectMap.of(
                 Items.titanium, new ShrapnelBulletType(){{
@@ -54,7 +54,7 @@ public class IgnitorTurret {
                     toColor = Color.valueOf("f9a3c7");
                 }},
 
-                FRItems.cryogenicAlloy, new ShrapnelBulletType(){{
+                ADItems.cryogenicAlloy, new ShrapnelBulletType(){{
                     length = 130f;
                     damage = 180f;
                     ammoMultiplier = 7f;

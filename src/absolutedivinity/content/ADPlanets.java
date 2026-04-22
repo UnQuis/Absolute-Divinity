@@ -44,7 +44,7 @@ public class ADPlanets {
             atmosphereColor = Color.valueOf("5992af");
             iconColor = Color.valueOf("4b64a9");
 
-            generator = new FRPlanetGenerator(){{
+            generator = new ADPlanetGenerator(){{
             }};
         }};
     }

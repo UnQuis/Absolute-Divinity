@@ -1,4 +1,4 @@
-package fadingrevelations.content.blocks.turrets.item;
+package absolutedivinity.content.blocks.turrets.item;
 
 import arc.struct.ObjectMap;
 import mindustry.content.Items;

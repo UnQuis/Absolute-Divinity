@@ -1,6 +1,6 @@
-package fadingrevelations.content.units.t3;
+package absolutedivinity.content.units.t3;
 
-import fadingrevelations.content.FRWeapons;
+import absolutedivinity.content.ADWeapons;
 import mindustry.gen.PayloadUnit;
 import mindustry.type.UnitType;
 
@@ -22,7 +22,7 @@ public class OnirionUnit {
             range = 240;
             speed = 1;
             strafePenalty = 1;
-            weapons.add(FRWeapons.largeOrb);
+            weapons.add(ADWeapons.largeOrb);
         }};
     }
 
