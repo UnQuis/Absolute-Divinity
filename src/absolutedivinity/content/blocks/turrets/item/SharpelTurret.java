@@ -21,12 +21,12 @@ import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.draw.DrawTurret;
 
-public class AccelTurret {
-    public static ItemTurret accel;
+public class SharpelTurret {
+    public static ItemTurret sharpel;
 
     public static void load(){
-        accel = new ItemTurret("accel"){{
-            localizedName = "Accel";
+        sharpel = new ItemTurret("sharpel"){{
+            localizedName = "Sharpel";
             description = "Marks a path with a damaging high-precision laser before firing an expanding electric round that explodes on impact.";
             size = 4;
             reload = 360f;

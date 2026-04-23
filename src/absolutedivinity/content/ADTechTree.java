@@ -1,10 +1,10 @@
 package absolutedivinity.content;
 
-import absolutedivinity.content.blocks.turrets.item.AccelTurret;
-import absolutedivinity.content.blocks.turrets.item.CaatsTurret;
-import absolutedivinity.content.blocks.turrets.item.GattlingTurret;
-import absolutedivinity.content.blocks.turrets.item.HurricaneTurret;
-import absolutedivinity.content.blocks.turrets.item.IgnitorTurret;
+import absolutedivinity.content.blocks.turrets.item.CylonTurret;
+import absolutedivinity.content.blocks.turrets.item.HeavyTurret;
+import absolutedivinity.content.blocks.turrets.item.RagnitoTurret;
+import absolutedivinity.content.blocks.turrets.item.RipperTurret;
+import absolutedivinity.content.blocks.turrets.item.SharpelTurret;;
 import arc.struct.ObjectMap;
 import mindustry.content.Blocks;
 import mindustry.content.TechTree;
@@ -29,12 +29,12 @@ public class ADTechTree {
         
         addItem(Blocks.coreShard, ADItems.steelAmalgam);
 
-        addBlock(Blocks.coreShard, AccelTurret.accel, Blocks.salvo); 
+        addBlock(Blocks.coreShard, SharpelTurret.sharpel, Blocks.salvo); 
         
-        addBlock(AccelTurret.accel, CaatsTurret.caats);
-        addBlock(AccelTurret.accel, HurricaneTurret.hurricane);
-        addBlock(AccelTurret.accel, GattlingTurret.gattling);
-        addBlock(CaatsTurret.caats, IgnitorTurret.ignitor);
+        addBlock(SharpelTurret.sharpel, RagnitoTurret.ragnito);
+        addBlock(SharpelTurret.sharpel, CylonTurret.cylon);
+        addBlock(SharpelTurret.sharpel, HeavyTurret.HEAVY);
+        addBlock(RagnitoTurret.ragnito, RipperTurret.ripper);
     }
 
     private static void addBlock(UnlockableContent parent, UnlockableContent child, UnlockableContent... requirements) {

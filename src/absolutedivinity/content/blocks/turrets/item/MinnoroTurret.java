@@ -7,13 +7,13 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 
-public class MineLauncherTurret {
+public class MinnoroTurret {
 
-    public static ItemTurret mineLauncher;
+    public static ItemTurret minnoro;
 
     public static void load(){
-        mineLauncher = new ItemTurret("mine-launcher"){{
-            localizedName = "Landmine Launcher";
+        minnoro = new ItemTurret("minnoro"){{
+            localizedName = "Minnoro";
             description = "Deploys landmines that stick to the ground for a short while. Mines explode on contact.";
             size = 3;
             health = 800;

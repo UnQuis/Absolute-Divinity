@@ -9,14 +9,14 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 
-public class GattlingTurret {
+public class HeavyTurret {
     
-    public static ItemTurret gattling;
+    public static ItemTurret HEAVY;
 
     public static void load(){
-        gattling = new ItemTurret("gattling"){{
-            localizedName = "Gattling";
-            description = "Pelts nearby enemies with a storm of bullets. Good luck feeding this.";
+        HEAVY = new ItemTurret("heavy"){{
+            localizedName = "HEAVY";
+            description = "It costs four hundred thousand dollars to fire this weapon… for twelve seconds.";
             size = 4;
             health = 900;
             liquidCapacity = 20f;

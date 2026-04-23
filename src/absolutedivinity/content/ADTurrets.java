@@ -1,18 +1,18 @@
 package absolutedivinity.content;
 
-import absolutedivinity.content.blocks.turrets.item.AccelTurret;
-import absolutedivinity.content.blocks.turrets.item.CaatsTurret;
-import absolutedivinity.content.blocks.turrets.item.GattlingTurret;
-import absolutedivinity.content.blocks.turrets.item.HurricaneTurret;
-import absolutedivinity.content.blocks.turrets.item.IgnitorTurret;
+import absolutedivinity.content.blocks.turrets.item.CylonTurret;
+import absolutedivinity.content.blocks.turrets.item.HeavyTurret;
+import absolutedivinity.content.blocks.turrets.item.RagnitoTurret;
+import absolutedivinity.content.blocks.turrets.item.RipperTurret;
+import absolutedivinity.content.blocks.turrets.item.SharpelTurret;
 
 public class ADTurrets {
     
     public static void load(){
-        AccelTurret.load();
-        CaatsTurret.load();
-        HurricaneTurret.load();
-        GattlingTurret.load();
-        IgnitorTurret.load();
+        SharpelTurret.load();
+        RagnitoTurret.load();
+        CylonTurret.load();
+        HeavyTurret.load();
+        RipperTurret.load();
     }
 }
