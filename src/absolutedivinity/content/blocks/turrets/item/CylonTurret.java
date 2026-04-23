@@ -12,14 +12,14 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 
-public class HurricaneTurret {
+public class CylonTurret {
     
-    public static ItemTurret hurricane;
+    public static ItemTurret cylon;
 
     public static void load() {
-        hurricane = new ItemTurret("hurricane"){{
-            localizedName = "Hurricane";
-            description = "Fires many clumps of explosive flak at enemies, akin to the cyclone.";
+        cylon = new ItemTurret("cylon"){{
+            localizedName = "Cylon";
+            description = "Sounds like Cyclone, but it's not. Fires a burst of flak shells that explode on impact, dealing area damage and hitting air units.";
             size = 3;
             health = 1905;
             reload = 9f;

@@ -12,12 +12,12 @@ import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.draw.DrawTurret;
 
 
-public class IgnitorTurret {
+public class RipperTurret {
     
-    public static ItemTurret ignitor;
+    public static ItemTurret ripper;
 
     public static void load(){
-        ignitor = new ItemTurret("ignitor"){{
+        ripper = new ItemTurret("ripper"){{
             localizedName = "Ignitor";
             description = "Fires many close-range piercing bolts at nearby enemies, akin to the fuse.";
             size = 5;

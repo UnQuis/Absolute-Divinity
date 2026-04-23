@@ -15,13 +15,13 @@ import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.draw.DrawTurret;
 
 
-public class CaatsTurret {
+public class RagnitoTurret {
     
-    public static ItemTurret caats;
+    public static ItemTurret ragnito;
 
     public static void load(){
-        caats = new ItemTurret("caats"){{
-            localizedName = "CAATS";
+        ragnito = new ItemTurret("ragnito"){{
+            localizedName = "Ragnito";
             description = "Even if the name might sound cute, this is Cerbero's proudest anti-air invention: The Cerberian Anti Air Turret System.";
             size = 5;
             category = Category.turret;
