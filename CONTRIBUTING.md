@@ -1,25 +1,20 @@
 # Contributing
 
-How can I contribute to this mod?
+Want to help improve the mod? Here are a few simple ways you can contribute:
 
-  You can contribute to this mod by doing the following:
-    
-    - Leave your suggestion in the Discord
-    - Leave your suggestion in the Issues tab here on Github
-    - Fork this repository and create a pull request
+* Share your ideas and suggestions in Discord
+* Open an issue on GitHub
+* Fork the repository and submit a pull request
 
-What happens if my suggestion makes it into the mod?
-  
-  Depending on the size of your suggestion:
-  
-    - Small suggestion: It will just be added and there will be no credit. 
-      It will just be there.
-      
-    - Large suggestion/help: It will be added and you will get a mention on
-      Discord via something like a role or you will even be mentioned in the 
-      mod.hjson
-      
-To everyone who contributed until now: Thank you very much!
+## What happens to your suggestion?
 
-Every contribution helps to make this mod better and more 
-enjoyable for everyone!
+Every idea is appreciated and considered. How it’s handled depends on its scope:
+
+* **Small suggestions**: These may be implemented directly if they fit well.
+* **Larger contributions**: If you’ve put in significant effort or made something impactful, there’s a chance you’ll be acknowledged in some form.
+
+That said, recognition is reserved for contributions that go above and beyond.
+
+---
+
+Thanks to everyone who takes the time to contribute — even small ideas can make a big difference.
