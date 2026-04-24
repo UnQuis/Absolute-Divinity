@@ -8,6 +8,11 @@ import mindustry.type.Planet;
 public class ADPlanets {
 
     public static Planet
+        verdict,
+        ares,
+        boreas,
+        sator,
+        dionis,
         canguris;
 
     public static void load() {
@@ -43,6 +48,39 @@ public class ADPlanets {
             sectorSeed = 69420;
             atmosphereColor = Color.valueOf("5992af");
             iconColor = Color.valueOf("4b64a9");
+
+            generator = new ADPlanetGenerator(){{
+            }};
+        }};
+
+        verdict = new Planet("verdict", Planets.sun, 1.8f, 3){{
+            accessible = true;
+            alwaysUnlocked = true;
+            visible = true;
+            allowSectorInvasion = true;
+            allowLaunchSchematics = true;
+            allowLaunchLoadout = true;
+            drawOrbit = true;
+            updateLighting = true;
+            bloom = false;
+            hasAtmosphere = true;
+            clearSectorOnLose = false;
+            allowWaves = true;
+            prebuildBase = false;
+            allowLaunchToNumbered = true;
+
+            solarSystem = Planets.sun.solarSystem;
+            defaultCore = Blocks.coreNucleus;
+
+            startSector = 0;
+            orbitSpacing = 3;
+            minZoom = 1.3f;
+            atmosphereRadIn = 0;
+            atmosphereRadOut = 0.6f;
+            orbitRadius = 26;
+            sectorSeed = 33456;
+            atmosphereColor = Color.valueOf("baddf7");
+            iconColor = Color.valueOf("798994");
 
             generator = new ADPlanetGenerator(){{
             }};
