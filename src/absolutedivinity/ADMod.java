@@ -1,6 +1,7 @@
 package absolutedivinity;
 
 import absolutedivinity.content.ADEffects;
+import absolutedivinity.content.ADEnvironment;
 import absolutedivinity.content.ADItems;
 import absolutedivinity.content.ADLiquids;
 import absolutedivinity.content.ADPlanets;
@@ -19,6 +20,7 @@ public class ADMod extends Mod {
         ADWeapons.load();
         ADTurrets.load();
         ADUnits.load();
+        ADEnvironment.load();
         ADWeathers.load();
         ADPlanets.load();
         ADTechTree.load();
