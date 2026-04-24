@@ -15,9 +15,9 @@ public class ADMod extends Mod {
         ADItems.load();
         ADEffects.load();
         ADLiquids.load();
+        ADWeapons.load();
         ADTurrets.load();
         ADUnits.load();
-        ADWeapons.load();
         ADPlanets.load();
         ADTechTree.load();
     }

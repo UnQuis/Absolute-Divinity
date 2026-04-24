@@ -4,7 +4,7 @@ import absolutedivinity.content.blocks.turrets.item.CylonTurret;
 import absolutedivinity.content.blocks.turrets.item.HeavyTurret;
 import absolutedivinity.content.blocks.turrets.item.RagnitoTurret;
 import absolutedivinity.content.blocks.turrets.item.RipperTurret;
-import absolutedivinity.content.blocks.turrets.item.SharpelTurret;;
+import absolutedivinity.content.blocks.turrets.item.SharpelTurret;
 import arc.struct.ObjectMap;
 import mindustry.content.Blocks;
 import mindustry.content.TechTree;

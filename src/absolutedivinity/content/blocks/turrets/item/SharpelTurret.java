@@ -78,7 +78,7 @@ public class SharpelTurret {
                     trailWidth = 8;
                     trailLength = 50;
                     trailChance = -1;
-                    shootEffect = Fx.shootBig2;
+                    //shootEffect = Fx.shootBig2;
                     frontColor = Color.valueOf("ffffff");
                     lightColor = Color.valueOf("f3e979");
                     trailColor = Color.valueOf("f3e979");
