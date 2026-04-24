@@ -8,6 +8,7 @@ import absolutedivinity.content.ADTechTree;
 import absolutedivinity.content.ADTurrets;
 import absolutedivinity.content.ADUnits;
 import absolutedivinity.content.ADWeapons;
+import absolutedivinity.content.ADWeathers;
 import mindustry.mod.Mod;
 
 public class ADMod extends Mod {
@@ -18,6 +19,7 @@ public class ADMod extends Mod {
         ADWeapons.load();
         ADTurrets.load();
         ADUnits.load();
+        ADWeathers.load();
         ADPlanets.load();
         ADTechTree.load();
     }
