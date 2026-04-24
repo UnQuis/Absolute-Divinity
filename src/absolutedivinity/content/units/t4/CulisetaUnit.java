@@ -1,15 +1,10 @@
 package absolutedivinity.content.units.t4;
 
-import absolutedivinity.content.ADEffects;
 import absolutedivinity.content.ADWeapons;
 import mindustry.content.UnitTypes;
 import mindustry.entities.abilities.SpawnDeathAbility;
-import mindustry.entities.bullet.BasicBulletType;
-import mindustry.entities.bullet.BulletType;
-import mindustry.entities.effect.ParticleEffect;
 import mindustry.gen.PayloadUnit;
 import mindustry.type.UnitType;
-import mindustry.type.Weapon;
 
 public class CulisetaUnit {
     public static UnitType culiseta;
@@ -31,7 +26,6 @@ public class CulisetaUnit {
             hitSize = 64;
             strafePenalty = 1;
             weapons.add(ADWeapons.culisetaRotor);
-            weapons.add(ADWeapons.largeOrb);
 
             abilities.add(new SpawnDeathAbility(UnitTypes.dagger, 8, 45f));
 
