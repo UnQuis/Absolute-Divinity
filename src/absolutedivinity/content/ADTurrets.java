@@ -1,8 +1,11 @@
 package absolutedivinity.content;
 
+import absolutedivinity.content.blocks.turrets.StationaryPolyTurret;
+import absolutedivinity.content.blocks.turrets.item.BigScorchTurret;
 import absolutedivinity.content.blocks.turrets.item.CBSTTurret;
 import absolutedivinity.content.blocks.turrets.item.CylonTurret;
 import absolutedivinity.content.blocks.turrets.item.HeavyTurret;
+import absolutedivinity.content.blocks.turrets.item.InfernoTurret;
 import absolutedivinity.content.blocks.turrets.item.ItemSlingerTurret;
 import absolutedivinity.content.blocks.turrets.item.MissileBatteryTurret;
 import absolutedivinity.content.blocks.turrets.item.MortarTurret;
@@ -14,9 +17,12 @@ import absolutedivinity.content.blocks.turrets.power.AirArcTurret;
 import absolutedivinity.content.blocks.turrets.power.CavalryTurret;
 import absolutedivinity.content.blocks.turrets.power.DeracinationTurret;
 import absolutedivinity.content.blocks.turrets.power.DiffractTurret;
+import absolutedivinity.content.blocks.turrets.power.ForkTurret;
 import absolutedivinity.content.blocks.turrets.power.FragmentTurret;
 import absolutedivinity.content.blocks.turrets.power.KugelblitzTurret;
 import absolutedivinity.content.blocks.turrets.power.LightningChaingunTurret;
+import absolutedivinity.content.blocks.turrets.power.OblivionTurret;
+import absolutedivinity.content.blocks.turrets.power.StasisFieldTurret;
 
 public class ADTurrets {
     
@@ -31,6 +37,8 @@ public class ADTurrets {
         ItemSlingerTurret.load();
         MissileBatteryTurret.load();
         MortarTurret.load();
+        BigScorchTurret.load();
+        InfernoTurret.load();
 
         //Power turrets
         AirArcTurret.load();
@@ -41,5 +49,11 @@ public class ADTurrets {
         FragmentTurret.load();
         KugelblitzTurret.load();
         LightningChaingunTurret.load();
+        ForkTurret.load();
+        OblivionTurret.load();
+        StasisFieldTurret.load();
+
+        //IDK
+        StationaryPolyTurret.load();
     }
 }
