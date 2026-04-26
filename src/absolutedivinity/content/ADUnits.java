@@ -1,5 +1,11 @@
 package  absolutedivinity.content;
 
+import absolutedivinity.content.units.idk.EradicatorPrimeUnit;
+import absolutedivinity.content.units.idk.LifedrinkerUnit;
+import absolutedivinity.content.units.idk.MagmaStalkerUnit;
+import absolutedivinity.content.units.idk.SerpentineColossusUnit;
+import absolutedivinity.content.units.idk.SlagspitterUnit;
+import absolutedivinity.content.units.idk.UmbralReaperUnit;
 import absolutedivinity.content.units.t1.AedesUnit;
 import absolutedivinity.content.units.t2.ArmigerUnit;
 import absolutedivinity.content.units.t3.OnirionUnit;
@@ -12,5 +18,11 @@ public class ADUnits {
         OnirionUnit.load();
         AedesUnit.load();
         ArmigerUnit.load();
+        EradicatorPrimeUnit.load();
+        LifedrinkerUnit.load();
+        MagmaStalkerUnit.load();
+        SerpentineColossusUnit.load();
+        SlagspitterUnit.load();
+        UmbralReaperUnit.load();
     }
 }
