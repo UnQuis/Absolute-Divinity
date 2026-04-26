@@ -6,66 +6,38 @@
 
     author:
         '''
-        
-        [maroon]Developers
-        - Json/Hjson : Catser
-        - Balancing : Catser / .Frankie
-        - Bug Fixes : Catser
+        [scarlet]Developers:
+        - Java: UnQuis / A_Kerman
+        - Balancing: UnQuis / ROVO / Scp Ussr
+        - Bug Fixes: UnQuis
+        - Maps: Scp Ussr / ROVO
 
-        [maroon]Translators
-        - English : Catser
-        - German : Catser
-        - Spanish : Catser / HairyNugget
-        - Ukrainian: Prosta4ok_ua
-        - Russian: Timofejamda
-
-        [maroon]Contributors
-        - Schematics: Dragonboi / Zombee
-        - Sprites : Catser / Froomeeth
-        - Lore: iori / Catser
-        - Cryogenic Gel, Igneous Alloy,
-          Multiblock-Crafter base model:
-          Null (Nullevoy)
- 
-        And more people!
-        Check the Discord!
+        [gray]Translators
+        - English: UnQuis
+        - Russian: N/A
         '''
 
     description:
         '''
-        
-        A huge, fun & balanced content extension.
-        
-        Please note that the Serpulo research tree has
-        been moved into it's own tree because it was
-        too large.
-        To get to the Fading Revelations Serpulo 
-        research tree, please switch to it the same way
-        you would switch between the Erekir and Serpulo
-        research trees.
-        On that menu, a new button will be available 
-        that takes you to the Fading Revelations 
-        Serpulo research tree. 
-        
-        Features
-        Two new planets and many blocks, 
-        units, items, liquids, schematics
-        & ammo types.
-        
-        
-        Languages
-        - English
-        - German
-        - Spanish (WIP)
-        - Ukrainian (WIP)
-        - Russian
-        
-        
-        Check Discord / GitHub 
-        for more information!
+        Apocalypse... 
+        War...
+
+        Welcome to the mod, are you ready to traverse "slightly different" planets? If so, kick the door down and jump right in. I hope you enjoy it, if you've got what it takes, that is...
+
+        [scarlet]The mod team: 
+        [purple]AlexanderFonQuasar(UnQuis) - Lead developer, Java coder. 
+        [orange]Scp Ussr - Mapper. 
+        [forest]Leviathan ROVO - Processor coder, mapper. 
+        [gray]Arseniy Kerman - Spriter, Java coder.
+
+        Good luck getting through the mod, and let there be chaos!
+
+        Social media links for the team members:
+
+        Lead developer's Telegram channel: https://t.me/QuasarsDomain
         '''
 
-    subtitle: "Bug fixes fork"
+    subtitle: "Insanity"
     minGameVersion: 154
     version: "0.0.1"
     java: true
