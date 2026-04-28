@@ -1,9 +1,14 @@
 package absolutedivinity.content.blocks;
 
+import absolutedivinity.content.ADUnits;
+import absolutedivinity.content.units.idk.UmbralReaperUnit;
+import absolutedivinity.content.units.t1.BulwarkUnit;
+import arc.util.Time;
+import mindustry.content.Items;
+import mindustry.entities.Units;
 import mindustry.type.Category;
+import mindustry.type.ItemStack;
 import mindustry.world.blocks.storage.CoreBlock;
-
-import java.sql.Time;
 
 public class ADCores {
     public static CoreBlock
@@ -14,6 +19,7 @@ public class ADCores {
         energyCore = new CoreBlock("energy-core"){{
             localizedName = "Energy Core";
             description = "Upgraded core with more storage, health and energy source.";
+            unitType = UmbralReaperUnit.umbralReaper;
             health = 70000;
             size = 6;
             armor = 8f;
@@ -29,11 +35,16 @@ public class ADCores {
             isFirstTier = false;
             squareSprite = false;
             unitCapModifier = 92;
+            requirements(Category.effect, ItemStack.with(
+                Items.copper, 9000,
+                Items.silicon, 8000,
+                Items.titanium, 5000,
+                Items.thorium, 3000
+            ));
             buildType = () -> new CoreBuild(){
                 @Override
-                public void updateTile() {
-                    super.updateTile();
-                    power.graph.addPower(16.67f * Time.delta);
+                public float getPowerProduction(){
+                    return 16.67f;
                 }
             };
         }};
