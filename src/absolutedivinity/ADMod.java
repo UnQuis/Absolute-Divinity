@@ -10,6 +10,7 @@ import absolutedivinity.content.ADTurrets;
 import absolutedivinity.content.ADUnits;
 import absolutedivinity.content.ADWeapons;
 import absolutedivinity.content.ADWeathers;
+import absolutedivinity.content.blocks.ADCores;
 import absolutedivinity.core.ADGameLogic;
 import absolutedivinity.core.ADSettings;
 import arc.Events;
@@ -25,6 +26,7 @@ public class ADMod extends Mod {
         ADWeapons.load();
         ADTurrets.load();
         ADUnits.load();
+        ADCores.load();
         ADEnvironment.load();
         ADWeathers.load();
         ADPlanets.load();
