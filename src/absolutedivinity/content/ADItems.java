@@ -14,6 +14,8 @@ public class ADItems {
         nanoAmmo,
         funnyMetal,
         mythril,
+        celestite,
+        divinite,
         blackMythril;
 
     public static Item
@@ -166,12 +168,25 @@ public class ADItems {
         }};
 
         blackMythril = new Item("black-mythril", Color.valueOf("333a41")){{
+            localizedName = "Black Mythril";
+            description = "Mythril alloy with some additions. Has higher durability.";
             hardness = 4;
             cost = 4;
             flammability = 2f;
             explosiveness = 0.3f;
             radioactivity = 0.8f;
             charge = 1f;
+        }};
+
+        celestite = new Item("celestite", Color.valueOf("c2fffa")){{
+            localizedName = "Celestite";
+            description = "Cheap and common material, found on most of the planets in EON-3 System.";
+            hardness = 1;
+            cost = 0.8f;
+            flammability = 0f;
+            explosiveness = 0f;
+            radioactivity = 0.1f;
+            charge = 0.5f;
         }};
     }
 }
