@@ -153,5 +153,16 @@ public class ADItems {
             charge = Float.MAX_VALUE;
             alwaysUnlocked = false;
         }};
+
+        mythril = new Item("mythril", Color.valueOf("59b4c0")){{
+            localizedName = "Mythril";
+            description = "Light, extremely durable metal, perfect for high-rate projectiles.";
+            hardness = 3;
+            cost = 1.5f;
+            flammability = 0.1f;
+            explosiveness = 0f;
+            radioactivity = 0.3f;
+            charge = 0f;
+        }};
     }
 }
