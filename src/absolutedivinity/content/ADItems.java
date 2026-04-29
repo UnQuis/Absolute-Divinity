@@ -12,7 +12,9 @@ public class ADItems {
         healAmmo,
         homingAmmo,
         nanoAmmo,
-        nuke;
+        funnyMetal,
+        mythril,
+        blackMythril;
 
     public static Item
         livingSteel,
@@ -20,13 +22,11 @@ public class ADItems {
 
     public static Item
         cryogenicGel,
-        igneousAlloy,
         cryogenicAlloy;
 
     public static Item
         fuelRod,
-        steelAmalgam,
-        gold;
+        steelAmalgam;
 
     public static void load() {
 
@@ -85,15 +85,6 @@ public class ADItems {
             explosiveness = 0.1f;
         }};
 
-        nuke = new Item("nuke", Color.valueOf("22b400")) {{
-            localizedName = "Nuke";
-            description = "A nuclear warhead made using graphite and fuel rods.";
-            hardness = 5;
-            flammability = 0.5f;
-            explosiveness = 2f;
-            radioactivity = 2f;
-        }};
-
         livingSteel = new Item("living-steel", Color.valueOf("88299f")) {{
             localizedName = "Living Steel";
             description = "A living piece of metal. Titanium infused with spores.";
@@ -131,16 +122,6 @@ public class ADItems {
             charge = 0f;
         }};
 
-        igneousAlloy = new Item("igneous-alloy") {{
-            localizedName = "Igneous Alloy";
-            description = "A very hot material smelted from surge alloy and titanium using slag. Used as a component needed to create [cyan]Cryogenic Alloy.";
-            hardness = 4;
-            cost = 1.3f;
-            charge = 0.55f;
-            explosiveness = 0f;
-            radioactivity = 0f;
-        }};
-
         cryogenicAlloy = new Item("cryogenic-alloy", Color.valueOf("2cbcc9")) {{
             localizedName = "Cryogenic Alloy";
             description = "A shock-cooled, highly durable metal made from Igneous Alloy, Cryogenic Gel and Neutron Fluid. Useful in advanced electronic components.";
@@ -152,15 +133,6 @@ public class ADItems {
             cost = 1.4f;
         }};
 
-        fuelRod = new Item("fuel-rod", Color.valueOf("22b400")) {{
-            localizedName = "Fuel Rod";
-            description = "A fuel rod constructed from layering thorium on a durable plastanium and lead core.";
-            cost = 2.5f;
-            flammability = 0.1f;
-            explosiveness = 0.2f;
-            radioactivity = 2f;
-        }};
-
         steelAmalgam = new Item("steel-alloy", Color.valueOf("ba6a83")) {{
             localizedName = "Steel Amalgam";
             description = "A compound material made from Copper, Living Steel and Surge Alloy.";
@@ -170,13 +142,16 @@ public class ADItems {
             radioactivity = 0f;
         }};
 
-        gold = new Item("gold", Color.valueOf("FFD700")) {{
-            localizedName = "Gold";
-            description = "A shiny piece of metal! Can be traded to get other resources.";
-            cost = 2.5f;
-            hardness = 3;
-            flammability = 0f;
-            explosiveness = 0f;
+        funnyMetal = new Item("funny-metal", Color.valueOf("7c00e6")){{
+            localizedName = "Funny Metal";
+            description = "It's funny metal. Not for campaign.";
+            hardness = 5;
+            cost = 3;
+            flammability = Float.MAX_VALUE;
+            explosiveness = Float.MAX_VALUE;
+            radioactivity = Float.MAX_VALUE;
+            charge = Float.MAX_VALUE;
+            alwaysUnlocked = false;
         }};
     }
 }
