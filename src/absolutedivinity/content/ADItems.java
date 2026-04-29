@@ -188,5 +188,16 @@ public class ADItems {
             radioactivity = 0.1f;
             charge = 0.5f;
         }};
+
+        divinite = new Item("divinite", Color.valueOf("2f5b87")){{
+            localizedName = "Divinite";
+            description = "Extremely rare material suitable for every type of production: energy, alloys etc.";
+            hardness = 6;
+            cost = 6f;
+            flammability = 0f;
+            explosiveness = 5f;
+            radioactivity = 3f;
+            charge = 10f;
+        }};
     }
 }
