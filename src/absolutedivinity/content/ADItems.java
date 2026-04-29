@@ -164,5 +164,14 @@ public class ADItems {
             radioactivity = 0.3f;
             charge = 0f;
         }};
+
+        blackMythril = new Item("black-mythril", Color.valueOf("333a41")){{
+            hardness = 4;
+            cost = 4;
+            flammability = 2f;
+            explosiveness = 0.3f;
+            radioactivity = 0.8f;
+            charge = 1f;
+        }};
     }
 }
