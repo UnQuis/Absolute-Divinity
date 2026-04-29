@@ -257,41 +257,6 @@ public class ItemSlingerTurret {
                         }}
                     );
                     despawnEffect = Fx.none;
-                }},
-                ADItems.fuelRod, new BasicBulletType(3f, 75f) {{
-                    sprite = "me-rod-bullet";
-                    height = 16f;
-                    despawnHit = true;
-                    lightRadius = 0f;
-                    pierce = true;
-                    pierceCap = 9;
-                    spin = 1f;
-                    width = 16f;
-                    splashDamage = 80f;
-                    splashDamageRadius = 24f;
-                    frontColor = Color.valueOf("31d926");
-                    backColor = Color.valueOf("2cfa1f");
-                    ammoMultiplier = 4;
-                    lifetime = 60f;
-                    lightOpacity = 1f;
-                    hitEffect = new MultiEffect(
-                        new ParticleEffect() {{
-                            particles = 10;
-                            length = 16f;
-                            sizeFrom = 10f;
-                            sizeTo = 0f;
-                            colorFrom = Color.valueOf("2cfa1f");
-                            colorTo = Color.valueOf("31d926");
-                            interp = Interp.pow5Out;
-                        }},
-                        new WaveEffect() {{
-                            sizeFrom = 0f;
-                            sizeTo = 18f;
-                            colorFrom = Color.valueOf("2cfa1f");
-                            colorTo = Color.valueOf("31d926");
-                        }}
-                    );
-                    despawnEffect = Fx.none;
                 }}
             );
         }};

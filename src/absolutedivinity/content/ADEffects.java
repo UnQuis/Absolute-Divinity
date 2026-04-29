@@ -24,7 +24,8 @@ public class ADEffects {
         radiated,
         shockslowed,
         slightDownraft,
-        superHastened;
+        superHastened,
+        funnyEffect;
 
         public static void load() {
 
@@ -154,6 +155,15 @@ public class ADEffects {
                 localizedName = "Super Hastened";
                 reloadMultiplier = 2.2f;
                 alwaysUnlocked = true;
+            }};
+
+            funnyEffect = new StatusEffect("funny-effect"){{
+                localizedName = "Funny Effect";
+                reloadMultiplier = Float.MAX_VALUE;
+                speedMultiplier = 10f;
+                healthMultiplier = Float.MAX_VALUE;
+                buildSpeedMultiplier = Float.MAX_VALUE;
+                permanent = true;
             }};
         }
 }
