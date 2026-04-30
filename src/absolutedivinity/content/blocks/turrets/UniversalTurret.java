@@ -1,10 +1,13 @@
 package absolutedivinity.content.blocks.turrets;
 
+import absolutedivinity.content.entities.bullet.ChainBulletType;
 import mindustry.Vars;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
+import mindustry.type.StatusEffect;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import arc.graphics.Color;
 
@@ -46,7 +49,22 @@ public class UniversalTurret extends ItemTurret {
                 + item.radioactivity * 60f
                 + item.hardness * 4f;
 
+            ChainBulletType bullet = new ChainBulletType(dmg, item.charge, base);
 
+            if (item.radioactivity > 0.8f){
+                bullet.status = StatusEffects.corroded;
+                bullet.statusDuration = 60f * 6;
+            } else if (item.radioactivity > 0.3f) {
+                bullet.status = StatusEffects.corroded;
+                bullet.statusDuration = 60f * 2;
+            }
+
+            if (item.explosiveness > 0.5f){
+                bullet.splashDamage = dmg * 0.4f;
+                bullet.splashDamageRadius = 30f + item.explosiveness * 40f;
+            }
+
+            ammoTypes.put(item, bullet);
         });
     }
 }
