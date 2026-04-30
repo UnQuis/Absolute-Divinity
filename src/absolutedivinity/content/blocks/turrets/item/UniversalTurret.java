@@ -24,6 +24,12 @@ public class UniversalTurret extends ItemTurret {
             Items.lead, 150,
             Items.silicon, 100,
             Items.titanium, 50
+            //too cheap bruh
         ));
+    }
+
+    @Override
+    public void init(){
+
     }
 }
