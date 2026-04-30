@@ -124,7 +124,7 @@ public class MassiveLaserBulletType extends BulletType{
             health = bl.health;
             if(bl.team == Team.derelict && b.time >= 140f){
                 Sounds.explosion.at(bl.x, bl.y);
-                Fx.explosion.at(bl.x, bl.y, bl.hitSize() / 2f);
+                Fx.none.at(bl.x, bl.y, bl.hitSize() / 2f);
                 bl.tile.remove();
             }
         }
@@ -139,7 +139,7 @@ public class MassiveLaserBulletType extends BulletType{
     @Override
     public void init(Bullet b){
         Tmp.v1.trns(b.rotation(), 40f).add(b.x, b.y);
-        Fx.shockwave.at(Tmp.v1.x, Tmp.v1.y, 120f, b.rotation());
+        Fx.none.at(Tmp.v1.x, Tmp.v1.y, 120f, b.rotation());
     }
 
     @SuppressWarnings("unchecked")
@@ -169,11 +169,11 @@ public class MassiveLaserBulletType extends BulletType{
                             float lw = getLaserWidth(dst) * dw * 0.5f;
 
                             if(u.dst(nearest) <= lw + u.hitSize / 2f){
-                                Fx.hitLaser.at(nearest.x, nearest.y, b.angleTo(nearest), u);
-                                Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), u.team.color);
+                                Fx.none.at(nearest.x, nearest.y, b.angleTo(nearest), u);
+                                Fx.none.at(nearest.x, nearest.y, b.rotation(), u.team.color);
                                 if(b.time > 140f){
-                                    Fx.bigShockwave.at(nearest.x, nearest.y, b.rotation(), u);
-                                    Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), u);
+                                    Fx.none.at(nearest.x, nearest.y, b.rotation(), u);
+                                    Fx.none.at(nearest.x, nearest.y, b.rotation(), u);
                                 }
                                 handleDamage(u, b);
                             }
@@ -187,11 +187,11 @@ public class MassiveLaserBulletType extends BulletType{
                             float lw = getLaserWidth(dst) * dw * 0.5f;
 
                             if(bl.dst(nearest) <= lw + bl.hitSize() / 2f){
-                                Fx.hitLaser.at(nearest.x, nearest.y, b.angleTo(nearest), bl);
-                                Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), bl.team.color);
+                                Fx.none.at(nearest.x, nearest.y, b.angleTo(nearest), bl);
+                                Fx.none.at(nearest.x, nearest.y, b.rotation(), bl.team.color);
                                 if(b.time > 140f){
-                                    Fx.bigShockwave.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
-                                    Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
+                                    Fx.none.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
+                                    Fx.none.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
                                 }
                                 handleDamage(bl, b);
                             }
@@ -209,8 +209,8 @@ public class MassiveLaserBulletType extends BulletType{
 
                 if(bl.dst(nearest) <= lw + bl.hitSize / 2f){
                     if(bl.type.speed > 0.001 || Angles.within(bl.angleTo(b), bl.rotation(), 2)){
-                        Fx.hitLaser.at(nearest.x, nearest.y, b.angleTo(nearest), bl);
-                        Fx.dynamicExplosion.at(nearest.x, nearest.y, bl.rotation(), bl.type.hitColor);
+                        Fx.none.at(nearest.x, nearest.y, b.angleTo(nearest), bl);
+                        Fx.none.at(nearest.x, nearest.y, bl.rotation(), bl.type.hitColor);
                         bl.hit = false;
                         bl.remove();
                         bl.type.despawnEffect.at(bl.x, bl.y, bl.rotation(), bl.type.hitColor);
@@ -218,7 +218,7 @@ public class MassiveLaserBulletType extends BulletType{
                 }
             });
 
-            Fx.hitLaser.at(b.x, b.y, b.rotation(), dw);
+            Fx.none.at(b.x, b.y, b.rotation(), dw);
 
             if(b.owner instanceof Healthc && ((Healthc)b.owner).dead() && b.time < lifetime - 80f){
                 b.fdata = 2;
