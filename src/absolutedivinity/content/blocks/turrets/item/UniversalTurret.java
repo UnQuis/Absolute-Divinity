@@ -2,6 +2,7 @@ package absolutedivinity.content.blocks.turrets.item;
 
 import mindustry.Vars;
 import mindustry.content.Items;
+import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -53,6 +54,10 @@ public class UniversalTurret extends ItemTurret {
                 + item.charge * 80f
                 + item.radioactivity * 60f
                 + item.hardness * 4f;
+
+            ammo(item, new BasicBulletType(){{
+                damage = dmg;
+            }});
         });
     }
 }
