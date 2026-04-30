@@ -1,5 +1,6 @@
 package absolutedivinity.content.units.idk;
 
+import absolutedivinity.content.entities.bullet.MassiveLaserBulletType;
 import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.content.StatusEffects;
@@ -104,8 +105,6 @@ public class EradicatorPrimeUnit {
             }});
 
             weapons.add(new Weapon("cerberian-laser-annihilator") {{
-                shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = 700f;
                 x = 0f;
                 y = -40f;
                 shake = 11f;
@@ -118,24 +117,16 @@ public class EradicatorPrimeUnit {
                 continuous = true;
                 //chargeSound = Sounds.hugeLaserCharge;
                 //shootSound = Sounds.laserbig;
-                bullet = new ContinuousLaserBulletType() {{
-                    width = 24f;
-                    length = 460f;
-                    damage = 800f;
+                bullet = new MassiveLaserBulletType() {{
+                    damage = 12000f;
+                    width = 100;
                     shake = 7f;
-                    damageInterval = 20f;
-                    lifetime = 280f;
-                    fadeTime = 110f;
+                    lifetime = 400f;
                     hittable = false;
                     absorbable = false;
                     laserAbsorb = false;
-                    colors = new Color[]{
-                        Color.valueOf("a93e3e"),
-                        Color.valueOf("6f2626"),
-                        Color.valueOf("b34343"),
-                        Color.valueOf("932a2a"),
-                        Color.valueOf("ffffff")
-                    };
+                    collidesAir = true;
+                    collidesGround = true;
                     hitEffect = new MultiEffect(
                         new ParticleEffect() {{
                             sizeFrom = 8f;
@@ -322,7 +313,6 @@ public class EradicatorPrimeUnit {
                 rotate = false;
                 top = false;
                 bullet = new BasicBulletType(1.2f, 60f) {{
-                    sprite = "me-lycosid-bullet";
                     frontColor = Color.valueOf("a93e3e");
                     //hitSound = Sounds.bang;
                     hitShake = 9f;
@@ -411,10 +401,11 @@ public class EradicatorPrimeUnit {
                     shotDelay = 3f;
                     firstShotDelay = 60f;
                 }};
-                bullet = new LaserBulletType() {{
+                bullet = new MassiveLaserBulletType() {{
                     damage = 240f;
                     length = 360f;
                     width = 26f;
+                    lifetime = 100f;
                     collidesAir = true;
                     collidesGround = true;
                     //hitSound = Sounds.spark;
@@ -427,7 +418,6 @@ public class EradicatorPrimeUnit {
                 }};
             }});
 
-            // Shield ability
             abilities.add(new ShieldArcAbility() {{
                 angle = 83f;
                 x = 0f;
