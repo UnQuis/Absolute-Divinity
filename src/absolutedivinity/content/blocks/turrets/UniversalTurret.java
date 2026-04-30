@@ -46,9 +46,7 @@ public class UniversalTurret extends ItemTurret {
                 + item.radioactivity * 60f
                 + item.hardness * 4f;
 
-            ammo(item, new BasicBulletType(){{
-                damage = dmg;
-            }});
+
         });
     }
 }
