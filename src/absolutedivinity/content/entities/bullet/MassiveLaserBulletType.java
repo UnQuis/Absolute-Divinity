@@ -25,6 +25,7 @@ public class MassiveLaserBulletType extends BulletType{
     Interp dwidth = Interp.circleOut;
     public Color[] colors = {Pal.accent.cpy().a(0.4f), Pal.accent, Color.white};
     float[] widths = {1.5f, 1f, 0.8f};
+    public boolean useLaserParticles = true;
 
     TextureRegion hcircle;
 
@@ -150,34 +151,48 @@ public class MassiveLaserBulletType extends BulletType{
             float vy = v.y;
             float dw = timeWidth(b);
 
-            float minX = Math.min(b.x, vx) - dw/2;
-            float maxX = Math.max(b.x, vx) + dw/2;
-            float minY = Math.min(b.y, vy) - dw/2;
-            float maxY = Math.max(b.y, vy) + dw/2;
+            float minX = Math.min(b.x, vx) - dw;
+            float maxX = Math.max(b.x, vx) + dw;
+            float minY = Math.min(b.y, vy) - dw;
+            float maxY = Math.max(b.y, vy) + dw;
             Rect lineRect = Tmp.r1.set(minX, minY, maxX - minX, maxY - minY);
+
+            Fx.trailFade.at(b.x, b.y, b.rotation(), dw * 2f);
 
             for(TeamData data : Vars.state.teams.present){
                 if(data.team != b.team){
+
                     if(data.unitTree != null){
                         data.unitTree.intersect(lineRect, (Unit u) -> {
                             Vec2 nearest = Intersector.nearestSegmentPoint(b.x, b.y, vx, vy, u.x, u.y, Tmp.v3);
                             float dst = b.dst(nearest);
                             float lw = getLaserWidth(dst) * dw * 0.5f;
+
                             if(u.dst(nearest) <= lw + u.hitSize / 2f){
-                                hit(b, nearest.x, nearest.y);
-                                if(b.time > 140f) Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), u);
+                                Fx.hitLaser.at(nearest.x, nearest.y, b.angleTo(nearest), u);
+                                Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), u.team.color);
+                                if(b.time > 140f){
+                                    Fx.bigShockwave.at(nearest.x, nearest.y, b.rotation(), u);
+                                    Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), u);
+                                }
                                 handleDamage(u, b);
                             }
                         });
                     }
+
                     if(data.buildingTree != null){
                         data.buildingTree.intersect(lineRect, (Building bl) -> {
                             Vec2 nearest = Intersector.nearestSegmentPoint(b.x, b.y, vx, vy, bl.x, bl.y, Tmp.v3);
                             float dst = b.dst(nearest);
                             float lw = getLaserWidth(dst) * dw * 0.5f;
+
                             if(bl.dst(nearest) <= lw + bl.hitSize() / 2f){
-                                hit(b, nearest.x, nearest.y);
-                                if(b.time > 140f) Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
+                                Fx.hitLaser.at(nearest.x, nearest.y, b.angleTo(nearest), bl);
+                                Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), bl.team.color);
+                                if(b.time > 140f){
+                                    Fx.bigShockwave.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
+                                    Fx.sparkExplosion.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
+                                }
                                 handleDamage(bl, b);
                             }
                         });
@@ -187,36 +202,48 @@ public class MassiveLaserBulletType extends BulletType{
 
             ((QuadTree<Bullet>)Groups.bullet.tree()).intersect(lineRect, (Bullet bl) -> {
                 if(bl.team == b.team) return;
+
                 Vec2 nearest = Intersector.nearestSegmentPoint(b.x, b.y, vx, vy, bl.x, bl.y, Tmp.v3);
                 float dst = b.dst(nearest);
                 float lw = getLaserWidth(dst) * dw * 0.5f;
+
                 if(bl.dst(nearest) <= lw + bl.hitSize / 2f){
                     if(bl.type.speed > 0.001 || Angles.within(bl.angleTo(b), bl.rotation(), 2)){
+                        Fx.hitLaser.at(nearest.x, nearest.y, b.angleTo(nearest), bl);
+                        Fx.dynamicExplosion.at(nearest.x, nearest.y, bl.rotation(), bl.type.hitColor);
                         bl.hit = false;
                         bl.remove();
                         bl.type.despawnEffect.at(bl.x, bl.y, bl.rotation(), bl.type.hitColor);
                     }
                 }
             });
-        }
-        if(b.owner instanceof Healthc && ((Healthc)b.owner).dead() && b.time < lifetime - 80f){
-            b.fdata = 2;
-            if(b.time > 140f){
-                b.time = lifetime - 80f;
-            }else{
-                b.remove();
-                return;
+
+            Fx.hitLaser.at(b.x, b.y, b.rotation(), dw);
+
+            if(b.owner instanceof Healthc && ((Healthc)b.owner).dead() && b.time < lifetime - 80f){
+                b.fdata = 2;
+                if(b.time > 140f){
+                    b.time = lifetime - 80f;
+                }else{
+                    Fx.trailFade.at(b.x, b.y, b.rotation());
+                    b.remove();
+                    return;
+                }
             }
-        }
-        if(b.fdata < 1 && b.time > 140f){
-            b.fdata = 2;
 
-            Tmp.v1.trns(b.rotation(), 70f).add(b.x, b.y);
-            Fx.shockwave.at(Tmp.v1.x, Tmp.v1.y, 200f, b.rotation());
-            Tmp.v1.trns(b.rotation(), 180f).add(b.x, b.y);
-            Fx.shockwave.at(Tmp.v1.x, Tmp.v1.y, 350f, b.rotation());
+            if(b.fdata < 1 && b.time > 140f){
+                b.fdata = 2;
 
-            Vars.renderer.shake(80f, 90f);
+                Tmp.v1.trns(b.rotation(), 70f).add(b.x, b.y);
+                Fx.none.at(Tmp.v1.x, Tmp.v1.y, 220f, b.rotation());
+
+                Tmp.v1.trns(b.rotation(), 180f).add(b.x, b.y);
+                Fx.none.at(Tmp.v1.x, Tmp.v1.y, 380f, b.rotation());
+
+                Fx.none.at(b.x, b.y, b.rotation());
+
+                Vars.renderer.shake(90f, 110f);
+            }
         }
     }
 
@@ -238,53 +265,89 @@ public class MassiveLaserBulletType extends BulletType{
         Fill.quad(x1, y1, x2, y2, x3, y3, x4, y4);
     }
 
+    void drawEnergyShard(float x, float y, float dw, float dh, float rotation){
+        float len = dh;
+        float w = dw;
+
+        Tmp.v1.trns(rotation, len);
+        Tmp.v2.trns(rotation + 180f, len * 0.3f);
+
+        float x1 = x + Tmp.v1.x;
+        float y1 = y + Tmp.v1.y;
+
+        float x2 = x - Tmp.v1.x * 0.3f + Tmp.v2.x;
+        float y2 = y - Tmp.v1.y * 0.3f + Tmp.v2.y;
+
+        Lines.stroke(w);
+        Lines.line(x1, y1, x2, y2);
+    }
+
     @Override
     public void draw(Bullet b){
         Vec2 v = Tmp.v1.trns(b.rotation(), end).add(b.x, b.y);
         Vec2 v2 = Tmp.v2.trns(b.rotation(), length - end).add(v.x, v.y);
         float w = timeWidth(b);
 
-        for(int i = 0; i < 3; i++){
-            float dw = w * widths[i] * (1 + Mathf.absin(8f, 0.1f));
+        float pulse = Mathf.absin(6f, 0.12f) + Mathf.randomSeed(b.id, 0.03f);
 
-            Draw.color(colors[i]);
+        for(int i = 0; i < 3; i++){
+            float dw = w * widths[i] * (1f + pulse);
+
+            Draw.color(colors[i], 1f - i * 0.25f);
             Lines.stroke(dw);
-            Draw.rect(hcircle, v.x, v.y, end * 2, Lines.getStroke(), b.rotation() + 180f);
+
+            Draw.rect(hcircle, v.x, v.y, end * 2f + dw * 0.2f, Lines.getStroke(), b.rotation() + 180f);
             Lines.lineAngle(v.x, v.y, b.rotation(), length - end, false);
-            Drawf.tri(v2.x, v2.y, Lines.getStroke(), width * 2 + dw, b.rotation());
+
+            Drawf.tri(v2.x, v2.y, Lines.getStroke(), width * 2f + dw * (1f - i * 0.2f), b.rotation());
         }
-        if(b.time > 140f){
-            float scl = Interp.pow2Out.apply(Mathf.clamp((b.time - 140f) / 5)) * Interp.pow3In.apply(Mathf.clamp((lifetime - b.time) / 80f));
-            Rand r = new Rand(), r2 = new Rand();
+
+        if(useLaserParticles && b.time > 140f){
+            float scl = Interp.pow2Out.apply(Mathf.clamp((b.time - 140f) / 5f)) *
+                Interp.pow3In.apply(Mathf.clamp((lifetime - b.time) / 80f));
+
+            Rand r = new Rand();
+            Rand r2 = new Rand();
             r.setSeed(b.id + 1236);
 
             for(int i = 0; i < 75; i++){
-                float d = r.random(20f, 40f);
+                float d = r.random(18f, 42f);
                 float time = (Time.time + r.random(d));
                 float dtime = (time % d) / d;
-                float slope = Interp.pow2Out.apply(Mathf.curve(dtime, 0f, 0.05f) * Mathf.curve(1 - dtime, 0f, 0.05f));
+
+                float envelope = Interp.pow2Out.apply(
+                    Mathf.curve(dtime, 0f, 0.06f) * Mathf.curve(1f - dtime, 0f, 0.06f)
+                );
 
                 int seed = (int)(time / d) + r.nextInt();
-
                 r2.setSeed(seed);
 
-                float dh = r2.random(120f, 220f);
-                float dw = dh * r2.random(0.05f, 0.15f) * scl * slope;
-                float rx = r2.range(Math.max(w - dw, 0f)) / 2f;
-                float arx = Math.abs(rx);
-                float xp = rx * getLaserWidth(dtime * (length - dh) + dh);
-                float yp = dtime * ((length - (end + this.width / 2)) + (w - arx) * 4.5f) + dh;
-                Color rc = r2.chance(0.1f + Interp.pow3In.apply((w - arx) / w) * 0.7f) ? Color.white : Pal.accent;
+                float dh = r2.random(110f, 240f);
+                float dw = dh * r2.random(0.04f, 0.12f) * scl * envelope;
 
-                Draw.color(rc);
-                v.trns(b.rotation(), (yp + end / 1.5f) - (w - arx) * 1.5f, xp).add(b.x, b.y);
-                drawDiamond(v.x, v.y, dw, dh, b.rotation());
+                float offset = r2.range(w) * 0.5f;
+
+                float xOff = offset * getLaserWidth(dtime * (length - dh) + dh);
+                float yOff = dtime * ((length - (end + this.width / 2f)) + w * 4.8f) + dh;
+
+                boolean flash = r2.chance(0.08f + (w - Math.abs(offset)) / w * 0.6f);
+
+                Color rc = flash ? Color.white : colors[i % colors.length];
+
+                Draw.color(rc, 0.9f);
+
+                v.trns(b.rotation(), (yOff + end / 1.5f) - w * 1.2f, xOff).add(b.x, b.y);
+
+                drawEnergyShard(v.x, v.y, dw, dh, b.rotation() + Mathf.sin(Time.time * 0.05f + seed) * 1.5f);
             }
         }
-        Drawf.light(b.x, b.y, v2.x, v2.y, w * 2 + 20f, colors[0], 0.75f);
+
+        float lightPulse = w * 2f + 20f + Mathf.absin(10f, 6f);
+        Drawf.light(b.x, b.y, v2.x, v2.y, lightPulse, colors[0], 0.85f);
     }
 
     @Override
     public void drawLight(Bullet b){
+        }
     }
-}
+

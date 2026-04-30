@@ -404,6 +404,8 @@ public class EradicatorPrimeUnit {
                 bullet = new MassiveLaserBulletType() {{
                     damage = 240f;
                     length = 360f;
+                    shake = 1f;
+                    useLaserParticles = false;
                     width = 11f;
                     lifetime = 400f;
                     collidesAir = true;
