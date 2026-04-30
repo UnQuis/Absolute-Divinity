@@ -47,6 +47,12 @@ public class UniversalTurret extends ItemTurret {
             } else {
                 base = Color.valueOf("a0b8cc");
             }
+
+            float dmg = 45f
+                + item.explosiveness * 180f
+                + item.charge * 80f
+                + item.radioactivity * 60f
+                + item.hardness * 4f;
         });
     }
 }
