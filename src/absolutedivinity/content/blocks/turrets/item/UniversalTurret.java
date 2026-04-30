@@ -1,9 +1,13 @@
 package absolutedivinity.content.blocks.turrets.item;
 
+import mindustry.Vars;
 import mindustry.content.Items;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import arc.graphics.Color;
+
+import java.awt.*;
 
 public class UniversalTurret extends ItemTurret {
     public UniversalTurret(String name){
@@ -30,6 +34,15 @@ public class UniversalTurret extends ItemTurret {
 
     @Override
     public void init(){
+        super.init();
 
+        Vars.content.items().each(item -> {
+            Color base;
+            if (item.flammability > item.charge && item.flammability > item.radioactivity){
+                base = Color.valueOf("ff8c42");
+            } else if (item.charge > item.radioactivity && item.charge > 0.05f){
+                base = Color.valueOf("42c5ff").lerp(Color.valueOf("bf92f9"), item.charge * 0.6f);
+            }
+        });
     }
 }
