@@ -404,8 +404,8 @@ public class EradicatorPrimeUnit {
                 bullet = new MassiveLaserBulletType() {{
                     damage = 240f;
                     length = 360f;
-                    width = 26f;
-                    lifetime = 100f;
+                    width = 11f;
+                    lifetime = 400f;
                     collidesAir = true;
                     collidesGround = true;
                     //hitSound = Sounds.spark;
