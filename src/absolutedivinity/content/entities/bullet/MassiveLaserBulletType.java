@@ -150,7 +150,6 @@ public class MassiveLaserBulletType extends BulletType{
             float vy = v.y;
             float dw = timeWidth(b);
 
-            // Прямоугольник вдоль линии для быстрой выборки
             float minX = Math.min(b.x, vx) - dw/2;
             float maxX = Math.max(b.x, vx) + dw/2;
             float minY = Math.min(b.y, vy) - dw/2;
