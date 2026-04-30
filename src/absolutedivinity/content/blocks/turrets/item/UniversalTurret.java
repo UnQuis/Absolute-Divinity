@@ -42,6 +42,10 @@ public class UniversalTurret extends ItemTurret {
                 base = Color.valueOf("ff8c42");
             } else if (item.charge > item.radioactivity && item.charge > 0.05f){
                 base = Color.valueOf("42c5ff").lerp(Color.valueOf("bf92f9"), item.charge * 0.6f);
+            } else if (item.radioactivity > 0.1f){
+                base = Color.valueOf("7aff42").lerp(Color.valueOf("c8ff80"), item.radioactivity * 0.5f);
+            } else {
+                base = Color.valueOf("a0b8cc");
             }
         });
     }
