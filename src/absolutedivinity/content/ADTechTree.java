@@ -18,7 +18,7 @@ public class ADTechTree {
 
     public static void load() {
         TechTree.TechNode root = TechTree.nodeRoot("canguris", Blocks.coreShard, true, () -> {});
-        ADPlanets.canguris.techTree = root;
+        ADPlanets.elysium.techTree = root;
         
         nodes.put(Blocks.coreShard, root);
 
