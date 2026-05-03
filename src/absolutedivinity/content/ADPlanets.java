@@ -38,30 +38,35 @@ public class ADPlanets {
             prebuildBase = false;
             allowLaunchToNumbered = false;
 
+            //landColor = ADColor.deepRed.cpy().lerp(ADColor.ichor, 0.75f).mul(1.05f);
+            //waterColor = Color.valueOf("2a1e1e");
+
+            landCloudColor = atmosphereColor = Color.valueOf("3a1e1e");
+
             meshLoader = () -> new HexMesh(this, 6);
 
-            //meshLoader = () -> new NHModMesh(
-            //        this, 6, 5, 0.3, 1.7, 1.2, 1.4, 1.1f,
-            //        NHColor.darkEnrColor.cpy().lerp(ammonia, 0.75f).mul(1.05f).lerp(Color.black, 0.2f),
-            //        NHColor.darkEnrColor.cpy().lerp(ammonia, 0.75f).mul(1.05f).lerp(Color.black, 0.2f),
-            //        NHColor.darkEnrColor.cpy().lerp(ammonia, 0.75f).mul(1.05f).lerp(Color.black, 0.2f),
-            //        NHColor.darkEnrColor.cpy().lerp(ammonia, 0.75f),
-            //        NHColor.darkEnrFront.cpy().lerp(ammonia, 0.75f).lerp(Color.white, 0.2f),
+            /*meshLoader = () -> new ADModMesh(
+                    this, 6, 5,
+                ADColor.deepRed.cpy().lerp(ADColor.ichor, 0.75f).mul(1.05f).lerp(Color.black, 0.2f),
+                ADColor.deepRed.cpy().lerp(ADColor.ichor, 0.75f).mul(1.05f).lerp(Color.black, 0.2f),
+                ADColor.deepRed.cpy().lerp(ADColor.ichor, 0.75f).mul(1.05f).lerp(Color.black, 0.2f),
+                ADColor.deepRed.cpy().lerp(ADColor.ichor, 0.75f),
+                ADColor.deepRed.cpy().lerp(ADColor.ichor, 0.75f).lerp(Color.white, 0.2f),
 
-            //        erode.cpy().lerp(Color.black, 0.3f),
-            //        erode.cpy().lerp(Color.black, 0.2f),
-            //        erode.cpy().lerp(Color.black, 0.1f),
-            //        erode.cpy().lerp(Color.white, 0.1f),
-            //        erode.cpy().lerp(Color.white, 0.2f),
+                ADModMesh.shade(Color.black, 0.3f),
+                ADModMesh.shade(Color.black, 0.2f),
+                ADModMesh.shade(Color.black, 0.1f),
+                ADModMesh.shade(Color.black, 0.1f),
+                ADModMesh.shade(Color.black, 0.2f),
 
-            //        snow.cpy().lerp(Color.black, 0.4f),
-            //        snow.cpy().lerp(Color.black, 0.3f),
-            //        snow.cpy().lerp(Color.black, 0.2f)
-            //);
+                ADModMesh.shade(Color.white, 0.4f),
+                ADModMesh.shade(Color.white, 0.3f),
+                ADModMesh.shade(Color.white, 0.2f)
+            );*/
 
             ruleSetter = r -> {
                 r.waves = true;
-                r.waveTeam = Team.blue;
+                r.waveTeam = Team.crux;
                 r.placeRangeCheck = false;
                 r.showSpawns = true;
                 r.waveSpacing = 60 * Time.toSeconds;
@@ -71,9 +76,9 @@ public class ADPlanets {
                 r.loadout = ItemStack.list(Items.titanium, 1000, Items.tungsten, 1000, Items.silicon, 1000, ADItems.mythril, 1000);
 
                 Rules.TeamRule teamRule = r.teams.get(r.defaultTeam);
-                teamRule.rtsAi = false;
+                teamRule.rtsAi = true;
                 teamRule.unitBuildSpeedMultiplier = 5f;
-                teamRule.buildSpeedMultiplier = 3f;
+                teamRule.buildSpeedMultiplier = 1.5f;
             };
 
             generator = new ADPlanetGenerator();
