@@ -1,6 +1,5 @@
-package absolutedivinity.content.ADTurrets;
+package absolutedivinity.content.turrets;
 
-import absolutedivinity.content.blocks.turrets.*;
 import absolutedivinity.content.blocks.turrets.item.UniversalTurrets;
 
 public class ADSpecialTurrets {

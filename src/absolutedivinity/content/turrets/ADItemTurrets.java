@@ -1,4 +1,4 @@
-package absolutedivinity.content.ADTurrets;
+package absolutedivinity.content.turrets;
 
 import absolutedivinity.content.blocks.turrets.item.*;
 
