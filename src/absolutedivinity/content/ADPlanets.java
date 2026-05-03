@@ -2,6 +2,7 @@ package absolutedivinity.content;
 
 import arc.graphics.Color;
 import arc.util.Time;
+import mindustry.content.Blocks;
 import mindustry.content.Items;
 import mindustry.content.Planets;
 import mindustry.game.Rules;
@@ -14,7 +15,9 @@ import mindustry.type.Planet;
 import absolutedivinity.core.map.DysonRingMesh;
 
 public class ADPlanets {
-    public static Planet elysium;
+    public static Planet
+        elysium,
+        verdict;
 
     public static void load() {
         elysium = new Planet("elysium", Planets.sun, 1.2f, 3){{
@@ -89,6 +92,39 @@ public class ADPlanets {
             landCloudColor = atmosphereColor = Color.valueOf("5992af");
             atmosphereRadIn = 0.12f;
             atmosphereRadOut = 0.45f;
+        }};
+
+        verdict = new Planet("verdict", Planets.sun, 1.8f, 3){{
+            accessible = true;
+            alwaysUnlocked = true;
+            visible = true;
+            allowSectorInvasion = true;
+            allowLaunchSchematics = true;
+            allowLaunchLoadout = true;
+            drawOrbit = true;
+            updateLighting = true;
+            bloom = false;
+            hasAtmosphere = true;
+            clearSectorOnLose = false;
+            allowWaves = true;
+            prebuildBase = false;
+            allowLaunchToNumbered = true;
+
+            solarSystem = Planets.sun;
+            defaultCore = Blocks.coreNucleus;
+
+            startSector = 0;
+            orbitSpacing = 3;
+            minZoom = 1.3f;
+            atmosphereRadIn = 0;
+            atmosphereRadOut = 0.6f;
+            orbitRadius = 26;
+            sectorSeed = 33456;
+            atmosphereColor = Color.valueOf("baddf7");
+            iconColor = Color.valueOf("798994");
+
+            generator = new ADPlanetGenerator(){{
+            }};
         }};
     }
 }
