@@ -1,6 +1,6 @@
 package absolutedivinity;
 
-import absolutedivinity.content.ADEffects;
+import absolutedivinity.content.ADStatusEffects;
 import absolutedivinity.content.ADEnvironment;
 import absolutedivinity.content.ADItems;
 import absolutedivinity.content.ADLiquids;
@@ -24,7 +24,7 @@ import mindustry.mod.Mod;
 public class ADMod extends Mod {
     public void loadContent(){
         ADItems.load();
-        ADEffects.load();
+        ADStatusEffects.load();
         ADLiquids.load();
         ADWeapons.load();
         ADItemTurrets.load();

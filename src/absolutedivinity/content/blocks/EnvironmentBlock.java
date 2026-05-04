@@ -4,8 +4,11 @@ import absolutedivinity.content.ADItems;
 import mindustry.world.Block;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
+import mindustry.world.blocks.environment.Prop;
 
 public class EnvironmentBlock {
+
+    public static Prop energyNode;
 
     public static Floor
             dustFloor, metalDebris, ashGround, gravel, crackedStone,
@@ -15,8 +18,7 @@ public class EnvironmentBlock {
     public static Block
             dryBush, fiberPlant, spikeGrass, glowMoss, twistedRoot, crystalShard,
             tallBoulder, splitRock, rockCluster, hollowStone,
-            thickRoot, ichorTree, collapsedFrame, antennaFragment, storageWreck,
-            energyNode, crystalGrowth;
+            thickRoot, ichorTree, collapsedFrame, antennaFragment, storageWreck, crystalGrowth;
 
     public static Block
             oreDivinite, oreCelestite, oreMythril, oreBlackMythril;

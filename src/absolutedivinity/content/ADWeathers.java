@@ -19,7 +19,7 @@ public class ADWeathers {
     public static void load() {
         acidRain = new RainWeather("acid-rain"){{
             localizedName = "Acid Rain";
-            status = ADEffects.acidicBurn;
+            status = ADStatusEffects.acidicBurn;
             //sound = Sounds.rain;
             soundVol = 0.5f;
             density = 1200;
