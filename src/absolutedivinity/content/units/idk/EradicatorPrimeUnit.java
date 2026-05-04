@@ -384,7 +384,7 @@ public class EradicatorPrimeUnit {
             }});
 
             // Laser sweepers
-            weapons.add(new Weapon("cerberian-laser-sweeper") {{
+            /*weapons.add(new Weapon("cerberian-laser-sweeper") {{
                 x = 18f;
                 y = 26f;
                 reload = 240f;
@@ -418,7 +418,7 @@ public class EradicatorPrimeUnit {
                         Color.valueOf("ffffff")
                     };
                 }};
-            }});
+            }});*/
 
             abilities.add(new ShieldArcAbility() {{
                 angle = 83f;

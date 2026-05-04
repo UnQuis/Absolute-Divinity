@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks;
 
 import absolutedivinity.content.ADItems;
+import arc.graphics.Color;
 import mindustry.world.Block;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
@@ -8,7 +9,7 @@ import mindustry.world.blocks.environment.Prop;
 
 public class EnvironmentBlock {
 
-    public static Prop energyNode;
+    public static Block energyNode;
 
     public static Floor
             dustFloor, metalDebris, ashGround, gravel, crackedStone,
@@ -28,5 +29,14 @@ public class EnvironmentBlock {
         oreCelestite = new OreBlock("ore-celestite", ADItems.celestite);
         oreMythril = new OreBlock("ore-mythril", ADItems.mythril);
         oreBlackMythril = new OreBlock("ore-black-mythril", ADItems.blackMythril);
+
+        energyNode = new Block("energy-node"){{
+            size = 1;
+            hasShadow = true;
+
+            emitLight = true;
+            lightRadius = 20f;
+            lightColor = Color.valueOf("7fd4ff");
+        }};
     }
 }
