@@ -56,7 +56,7 @@ public class ADEnvironment {
         acid = new Floor("acid") {{
             localizedName = "Acid";
             description = "A puddle of acid liquid. Beware!";
-            status = ADEffects.acidicBurn;
+            status = ADStatusEffects.acidicBurn;
             statusDuration = 300f;
             speedMultiplier = 0.7f;
             variants = 0;
@@ -74,7 +74,7 @@ public class ADEnvironment {
         deepAcid = new Floor("deep-acid") {{
             localizedName = "Deep Acid";
             description = "A puddle of acid liquid. Beware!";
-            status = ADEffects.acidicBurn;
+            status = ADStatusEffects.acidicBurn;
             statusDuration = 300f;
             speedMultiplier = 0.4f;
             variants = 0;

@@ -1,6 +1,6 @@
 package absolutedivinity.content.blocks.turrets.power;
 
-import absolutedivinity.content.ADEffects;
+import absolutedivinity.content.ADStatusEffects;
 import absolutedivinity.content.ADItems;
 import arc.graphics.Color;
 import mindustry.content.Fx;
@@ -43,7 +43,7 @@ public class StasisFieldTurret {
                 damage = 0f;
                 splashDamage = 2f;
                 splashDamageRadius = 680f;
-                status = ADEffects.shockslowed;
+                status = ADStatusEffects.shockslowed;
                 statusDuration = 70f;
             }};
             shootEffect = new WaveEffect() {{

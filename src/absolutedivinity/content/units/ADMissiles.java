@@ -1,6 +1,6 @@
 package absolutedivinity.content.units;
 
-import absolutedivinity.content.ADEffects;
+import absolutedivinity.content.ADStatusEffects;
 import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.entities.bullet.ExplosionBulletType;
@@ -47,7 +47,7 @@ public class ADMissiles {
                         //hitSound = tree.getSound();
                         hitSoundVolume = 6f;
 
-                        status = ADEffects.radiated;
+                        status = ADStatusEffects.radiated;
 
                         hitEffect = new MultiEffect(
                             new WaveEffect(){{
