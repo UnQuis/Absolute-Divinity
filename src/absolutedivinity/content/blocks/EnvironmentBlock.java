@@ -2,9 +2,21 @@ package absolutedivinity.content.blocks;
 
 import absolutedivinity.content.ADItems;
 import mindustry.world.Block;
+import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
 
 public class EnvironmentBlock {
+
+    public static Floor
+            dustFloor, metalDebris, ashGround, gravel, crackedStone,
+            brokenPanel, oldPipe, cableCluster, scrapPile, rustedPlate,
+            unstableGround, heatVent, chargedStone;
+
+    public static Block
+            dryBush, fiberPlant, spikeGrass, glowMoss, twistedRoot, crystalShard,
+            tallBoulder, splitRock, rockCluster, hollowStone,
+            thickRoot, ichorTree, collapsedFrame, antennaFragment, storageWreck,
+            energyNode, crystalGrowth;
 
     public static Block
             oreDivinite, oreCelestite, oreMythril, oreBlackMythril;
