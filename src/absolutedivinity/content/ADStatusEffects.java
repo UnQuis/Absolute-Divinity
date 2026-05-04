@@ -2,6 +2,7 @@ package absolutedivinity.content;
 
 import arc.graphics.Color;
 import arc.math.Interp;
+import mindustry.Vars;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.effect.ParticleEffect;

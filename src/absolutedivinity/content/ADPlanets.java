@@ -13,6 +13,7 @@ import mindustry.graphics.g3d.MultiMesh;
 import mindustry.type.ItemStack;
 import mindustry.type.Planet;
 import absolutedivinity.core.map.DysonRingMesh;
+import absolutedivinity.core.map.ADPlanetGenerator;
 
 public class ADPlanets {
     public static Planet
@@ -81,7 +82,10 @@ public class ADPlanets {
                 teamRule.buildSpeedMultiplier = 1.5f;
             };
 
-            generator = new ADPlanetGenerator();
+            generator = new ADPlanetGenerator(){{
+                waterColor = Color.valueOf("5992af");
+                landColor = Color.valueOf("4b64a9");
+            }};
 
             cloudMeshLoader = () -> new MultiMesh(
                 //new DysonSphereMesh(this, 0.35f),
@@ -129,6 +133,8 @@ public class ADPlanets {
             iconColor = Color.valueOf("798994");
 
             generator = new ADPlanetGenerator(){{
+                waterColor = Color.valueOf("5992af");
+                landColor = Color.valueOf("4b64a9");
             }};
         }};
     }
