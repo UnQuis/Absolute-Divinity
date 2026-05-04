@@ -20,6 +20,7 @@ import mindustry.world.blocks.defense.turrets.Turret.*;
 public class MassiveLaserBulletType extends BulletType{
     public float width = 180f;
     public float length = 2500f;
+    public float shake = 1f;
 
     float end = 340f;
     Interp dwidth = Interp.circleOut;
