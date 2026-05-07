@@ -18,6 +18,8 @@ import absolutedivinity.core.map.ADPlanetGenerator;
 public class ADPlanets {
     public static Planet
         elysium,
+        nyx,
+        thanatos,
         verdict;
 
     public static void load() {
@@ -92,9 +94,11 @@ public class ADPlanets {
                 new DysonRingMesh(this, 2.300f, 0.28f, 729, Pal.darkMetal, Pal.darkerMetal),
                 new DysonRingMesh(this, 2.500f, 0.28f, 2941, Pal.darkMetal, Pal.darkerMetal),
                 new DysonRingMesh(this, 2.700f, 0.28f, 3834, Pal.darkMetal, Pal.darkerMetal),
+                new DysonRingMesh(this, 2.900f, 0.37f, 4543, Pal.darkMetal, Pal.darkerMetal),
                 new DysonRingMesh(this, 2.305f, 0.19f, 729, ADColor.crimsonRed, ADColor.crimsonRed),
                 new DysonRingMesh(this, 2.505f, 0.19f, 2941, ADColor.crimsonRed, ADColor.crimsonRed),
-                new DysonRingMesh(this, 2.705f, 0.19f, 3834, ADColor.crimsonRed, ADColor.crimsonRed)
+                new DysonRingMesh(this, 2.705f, 0.19f, 3834, ADColor.crimsonRed, ADColor.crimsonRed),
+                new DysonRingMesh(this, 2.905f, 0.19f, 4543, ADColor.crimsonRed, ADColor.crimsonRed)
             );
 
             iconColor = ADColor.crimsonRed;
@@ -135,6 +139,53 @@ public class ADPlanets {
             generator = new ADPlanetGenerator(){{
                 waterColor = Color.valueOf("5992af");
                 landColor = Color.valueOf("4b64a9");
+            }};
+        }};
+
+        thanatos = new Planet("thanatos", Planets.sun, 1.5f, 3) {{
+            localizedName = "Thanatos";
+            description = "A desolate graveyard of a planet, scarred by an ancient catastrophe. Its surface is frozen ash and blackened rock.";
+            accessible = true;
+            alwaysUnlocked = true;
+            visible = true;
+            allowSectorInvasion = true;
+            allowLaunchSchematics = true;
+            allowLaunchLoadout = true;
+            drawOrbit = true;
+            updateLighting = true;
+            bloom = false;
+            hasAtmosphere = true;
+            clearSectorOnLose = true;
+            allowWaves = true;
+            prebuildBase = false;
+            allowLaunchToNumbered = false;
+
+            defaultCore = Blocks.coreShard;
+            parent = Planets.sun;
+            solarSystem = Planets.sun.solarSystem;
+
+            startSector = 0;
+            orbitSpacing = 4;
+            radius = 1.5f;
+            minZoom = 1.8f;
+            atmosphereRadIn = 0;
+            atmosphereRadOut = 0.3f;
+            sectorSeed = 6;
+            atmosphereColor = Color.valueOf("1a1a1a");
+            iconColor = Color.valueOf("3a3c40");
+
+            generator = new ADPlanetGenerator(){{
+                octaves = 3;
+                persistence = 0.8f;
+                scale = 22f;
+                mag = 1.2f;
+                thresh = 1.5f;
+                min = 100f;
+                max = 100f;
+                radMin = 300f;
+                radMax = 700f;
+                waterColor = Color.valueOf("3a3c40");
+                landColor = Color.valueOf("3a3c40");
             }};
         }};
     }

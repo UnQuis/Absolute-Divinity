@@ -12,23 +12,17 @@ public class ADItems {
         healAmmo,
         homingAmmo,
         nanoAmmo,
+        livingSteel,
+        livingSteelHard,
+        cryogenicGel,
+        cryogenicAlloy,
+        fuelRod,
+        steelAmalgam,
         funnyMetal,
         mythril,
         celestite,
         divinite,
         blackMythril;
-
-    public static Item
-        livingSteel,
-        livingSteelHard;
-
-    public static Item
-        cryogenicGel,
-        cryogenicAlloy;
-
-    public static Item
-        fuelRod,
-        steelAmalgam;
 
     public static void load() {
 
