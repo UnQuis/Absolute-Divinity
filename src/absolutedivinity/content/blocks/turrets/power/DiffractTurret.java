@@ -43,7 +43,7 @@ public class DiffractTurret {
                 Items.lead, 700,
                 Items.graphite, 560,
                 Items.titanium, 320,
-                ADItems.cryogenicAlloy, 105
+                ADItems.cryoSteel, 105
             ));
             drawer = new DrawTurret() {{
                 parts.add(new RegionPart() {{
@@ -295,7 +295,7 @@ public class DiffractTurret {
                         }};
                     }};
                 }},
-                ADItems.cryogenicAlloy, new BasicBulletType(3f, 90f) {{
+                ADItems.cryoSteel, new BasicBulletType(3f, 90f) {{
                     ammoMultiplier = 4;
                     despawnShake = 3f;
                     rangeChange = 80f;

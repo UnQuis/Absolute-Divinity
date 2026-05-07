@@ -36,7 +36,7 @@ public class StasisFieldTurret {
                 Items.lead, 250,
                 Items.graphite, 200,
                 Items.silicon, 150,
-                ADItems.livingSteelHard, 100
+                ADItems.hardenedBioAlloy, 100
             ));
             shootType = new BasicBulletType(0f, 0f) {{
                 instantDisappear = true;

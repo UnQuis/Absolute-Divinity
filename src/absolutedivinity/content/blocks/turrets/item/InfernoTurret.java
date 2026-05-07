@@ -112,7 +112,7 @@ public class InfernoTurret {
                     hittable = false;
                     reflectable = false;
                 }},
-                ADItems.livingSteel, new BasicBulletType(6f, 12f) {{
+                ADItems.bioAlloy, new BasicBulletType(6f, 12f) {{
                     pierce = true;
                     pierceBuilding = true;
                     pierceCap = 2;
@@ -139,7 +139,7 @@ public class InfernoTurret {
                     hittable = false;
                     reflectable = false;
                 }},
-                ADItems.steelAmalgam, new BasicBulletType(6f, 16f) {{
+                ADItems.ferroamalgam, new BasicBulletType(6f, 16f) {{
                     pierce = true;
                     pierceBuilding = true;
                     pierceCap = 2;
@@ -178,7 +178,7 @@ public class InfernoTurret {
                 Items.graphite, 2200,
                 Items.titanium, 1600,
                 Items.plastanium, 700,
-                ADItems.steelAmalgam, 450
+                ADItems.ferroamalgam, 450
             ));
         }};
     }

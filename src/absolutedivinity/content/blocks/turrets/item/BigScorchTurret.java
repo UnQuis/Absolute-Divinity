@@ -78,7 +78,7 @@ public class BigScorchTurret {
                         sizeTo = 0.6f;
                     }};
                 }},
-                ADItems.livingSteel, new BasicBulletType(6f, 50f) {{
+                ADItems.bioAlloy, new BasicBulletType(6f, 50f) {{
                     pierce = true;
                     pierceBuilding = true;
                     ammoMultiplier = 8;

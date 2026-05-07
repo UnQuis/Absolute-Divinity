@@ -104,7 +104,7 @@ public class CylonTurret {
                     collidesGround = true;
                 }},
 
-                ADItems.steelAmalgam, new FlakBulletType(4f, 25f){{
+                ADItems.ferroamalgam, new FlakBulletType(4f, 25f){{
                     lifetime = 55f;
                     ammoMultiplier = 5f;
                     //shootEffect = null;

@@ -19,7 +19,7 @@ public class StationaryPolyTurret {
                 Items.copper, 90,
                 Items.silicon, 60,
                 Items.titanium, 150,
-                ADItems.livingSteel, 150
+                ADItems.bioAlloy, 150
             ));
             category = Category.effect;
             size = 3;

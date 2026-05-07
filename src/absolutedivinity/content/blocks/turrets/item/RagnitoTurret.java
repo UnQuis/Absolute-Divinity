@@ -60,7 +60,7 @@ public class RagnitoTurret {
             }};
 
             ammoTypes = ObjectMap.of(
-                ADItems.livingSteel, new MissileBulletType(6f, 1500f){{
+                ADItems.bioAlloy, new MissileBulletType(6f, 1500f){{
                     sprite = "fadingrevelations-aa-missle";
                     height = 40f;
                     width = 20f;

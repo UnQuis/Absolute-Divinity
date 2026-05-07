@@ -78,7 +78,7 @@ public class ADDistribution {
             requirements = ItemStack.with(
                 Items.graphite, 1,
                 Items.silicon, 1,
-                ADItems.steelAmalgam, 1  
+                ADItems.ferroamalgam, 1
             );
             loadEffect = new WaveEffect(){{
                 sizeFrom = 5;

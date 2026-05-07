@@ -10,6 +10,7 @@ import mindustry.game.Team;
 import mindustry.graphics.Pal;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.MultiMesh;
+import mindustry.graphics.g3d.NoiseMesh;
 import mindustry.type.ItemStack;
 import mindustry.type.Planet;
 import absolutedivinity.core.map.DysonRingMesh;
@@ -144,7 +145,7 @@ public class ADPlanets {
             }};
         }};
 
-        thanatos = new Planet("thanatos", Planets.sun, 1.5f, 3) {{
+        thanatos = new Planet("thanatos", Planets.sun, 1.56f, 3) {{
             localizedName = "Thanatos";
             description = "A desolate graveyard of a planet, scarred by an ancient catastrophe. Its surface is frozen ash and blackened rock.";
             accessible = true;
@@ -162,7 +163,22 @@ public class ADPlanets {
             prebuildBase = false;
             allowLaunchToNumbered = false;
 
-            meshLoader = () -> new HexMesh(this, 8);
+            meshLoader = () -> new NoiseMesh(
+                this,
+                6,
+                8,
+                1.5f,
+                1,
+                1f,
+                1f,
+                1f,
+                Color.valueOf("3a3c40"),
+                Color.valueOf("5a5d63"),
+                3,
+                0.45f,
+                0.9f,
+                0.38f
+            );
 
             defaultCore = Blocks.coreShard;
             parent = Planets.sun;
@@ -208,15 +224,31 @@ public class ADPlanets {
             prebuildBase = false;
             allowLaunchToNumbered = false;
 
-            meshLoader = () -> new HexMesh(this, 5);
-
             defaultCore = Blocks.coreShard;
             solarSystem = Planets.sun.solarSystem;
+
+            meshLoader = () -> new NoiseMesh(
+                this,
+                6,
+                8,
+                0.26f,
+                1,
+                1f,
+                1f,
+                1f,
+                Color.valueOf("3a3c40"),
+                Color.valueOf("5a5d63"),
+                3,
+                0.45f,
+                0.9f,
+                0.38f
+            );
 
             startSector = 0;
             orbitSpacing = 12;
             radius = 0.3f;
-            minZoom = 1.8f;
+            minZoom = 3f;
+            maxZoom = 3f;
             atmosphereRadIn = 0;
             atmosphereRadOut = 0.3f;
             sectorSeed = 0;
