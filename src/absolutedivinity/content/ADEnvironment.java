@@ -48,7 +48,7 @@ public class ADEnvironment {
         steelSedimentation = new OreBlock("steel-sedimentation") {{
             localizedName = "Steel Sedimentation";
             description = "A sedimentation of living steel. Can be mined but beware as it damages units walking over it and slows them.";
-            itemDrop = ADItems.livingSteel;
+            itemDrop = ADItems.bioAlloy;
             mapColor = Color.valueOf("8c0291");
             variants = 6;
         }};

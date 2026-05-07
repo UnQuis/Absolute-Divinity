@@ -40,7 +40,7 @@ public class HeavyTurret {
             ));
 
             ammoTypes = ObjectMap.of(
-                ADItems.ammoLevel1, new BasicBulletType(12f, 12f){{
+                ADItems.ferriteCompound, new BasicBulletType(12f, 12f){{
                     splashDamageRadius = 5f;
                     splashDamage = 5f;
                     lifetime = 25f;
@@ -50,7 +50,7 @@ public class HeavyTurret {
                     ammoMultiplier = 10f;
                 }},
 
-                ADItems.ammoLevel2, new BasicBulletType(12f, 18f){{
+                ADItems.reinforcedComposite, new BasicBulletType(12f, 18f){{
                     splashDamageRadius = 10f;
                     splashDamage = 12f;
                     lifetime = 25f;
@@ -61,7 +61,7 @@ public class HeavyTurret {
                     pierce = true;
                 }},
 
-                ADItems.ammoLevel3, new BasicBulletType(12f, 22f){{
+                ADItems.matrix, new BasicBulletType(12f, 22f){{
                     splashDamageRadius = 12f;
                     splashDamage = 25f;
                     lifetime = 25f;
@@ -72,7 +72,7 @@ public class HeavyTurret {
                     pierce = true;
                 }},
 
-                ADItems.homingAmmo, new BasicBulletType(12f, 32f){{
+                ADItems.guidanceCore, new BasicBulletType(12f, 32f){{
                     splashDamageRadius = 14f;
                     splashDamage = 18f;
                     lifetime = 25f;
@@ -86,7 +86,7 @@ public class HeavyTurret {
                     pierce = true;
                 }},
 
-                ADItems.nanoAmmo, new BasicBulletType(12f, 5f){{
+                ADItems.naniteCluster, new BasicBulletType(12f, 5f){{
                     splashDamageRadius = 1f;
                     splashDamage = 1f;
                     lifetime = 25f;
@@ -95,7 +95,7 @@ public class HeavyTurret {
                     status = StatusEffects.burning;
                 }},
 
-                ADItems.livingSteel, new BasicBulletType(12f, 30f){{
+                ADItems.bioAlloy, new BasicBulletType(12f, 30f){{
                     splashDamageRadius = 6f;
                     splashDamage = 10f;
                     lifetime = 25f;
@@ -107,7 +107,7 @@ public class HeavyTurret {
                     status = StatusEffects.slow;
                 }},
 
-                ADItems.steelAmalgam, new BasicBulletType(12f, 9f){{
+                ADItems.ferroamalgam, new BasicBulletType(12f, 9f){{
                     splashDamageRadius = 9f;
                     splashDamage = 16f;
                     lifetime = 25f;

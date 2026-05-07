@@ -148,7 +148,7 @@ public class SharpelTurret {
                     );
                 }},
 
-                ADItems.steelAmalgam, new MissileBulletType(6f, 1100f){{
+                ADItems.ferroamalgam, new MissileBulletType(6f, 1100f){{
                     //hitSound = Sounds.largeCannon;
                     //despawnSound = Sounds.largeCannon;
                     shrinkX = -1;

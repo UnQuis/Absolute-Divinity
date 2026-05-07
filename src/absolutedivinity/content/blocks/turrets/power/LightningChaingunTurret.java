@@ -44,7 +44,7 @@ public class LightningChaingunTurret {
                 Items.copper, 2400,
                 Items.graphite, 1950,
                 Items.silicon, 1800,
-                ADItems.cryogenicAlloy, 500 // placeholder
+                ADItems.cryoSteel, 500 // placeholder
             ));
             shoot = new ShootAlternate() {{
                 shots = 2;

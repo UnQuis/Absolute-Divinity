@@ -23,11 +23,11 @@ public class ADTechTree {
         nodes.put(Blocks.coreShard, root);
 
         
-        addItem(Blocks.coreShard, ADItems.ammoLevel1);
-        addItem(ADItems.ammoLevel1, ADItems.ammoLevel2);
-        addItem(ADItems.ammoLevel2, ADItems.ammoLevel3);
+        addItem(Blocks.coreShard, ADItems.ferriteCompound);
+        addItem(ADItems.ferriteCompound, ADItems.reinforcedComposite);
+        addItem(ADItems.reinforcedComposite, ADItems.matrix);
         
-        addItem(Blocks.coreShard, ADItems.steelAmalgam);
+        addItem(Blocks.coreShard, ADItems.ferroamalgam);
 
         addBlock(Blocks.coreShard, SharpelTurret.sharpel, Blocks.salvo); 
         

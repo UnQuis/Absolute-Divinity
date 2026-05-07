@@ -36,7 +36,7 @@ public class RipperTurret {
                 Items.copper, 550,
                 Items.graphite, 400,
                 Items.thorium, 220,
-                ADItems.cryogenicAlloy, 80
+                ADItems.cryoSteel, 80
             ));
             ammoTypes = ObjectMap.of(
                 Items.titanium, new ShrapnelBulletType(){{
@@ -54,7 +54,7 @@ public class RipperTurret {
                     toColor = Color.valueOf("f9a3c7");
                 }},
 
-                ADItems.cryogenicAlloy, new ShrapnelBulletType(){{
+                ADItems.cryoSteel, new ShrapnelBulletType(){{
                     length = 130f;
                     damage = 180f;
                     ammoMultiplier = 7f;
