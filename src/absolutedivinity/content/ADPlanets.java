@@ -188,5 +188,49 @@ public class ADPlanets {
                 landColor = Color.valueOf("3a3c40");
             }};
         }};
+
+        nyx = new Planet("nyx", verdict, 0.3f, 3) {{
+            localizedName = "Nyx";
+            description = "A shard of darkness that orbits Verdict, born from the cataclysm that shattered Thanatos. Its surface is an eternal night.";
+            accessible = false;
+            alwaysUnlocked = true;
+            visible = true;
+            drawOrbit = true;
+            updateLighting = true;
+            bloom = false;
+            hasAtmosphere = false;
+            clearSectorOnLose = true;
+            allowWaves = true;
+            prebuildBase = false;
+            allowLaunchToNumbered = false;
+
+            defaultCore = Blocks.coreShard;
+            solarSystem = Planets.sun.solarSystem;
+
+            startSector = 0;
+            orbitSpacing = 12;
+            radius = 0.3f;
+            minZoom = 1.8f;
+            atmosphereRadIn = 0;
+            atmosphereRadOut = 0.3f;
+            sectorSeed = 0;
+            atmosphereColor = Color.valueOf("000000");
+            iconColor = Color.valueOf("202025");
+
+            generator = new ADPlanetGenerator(){{
+                octaves = 3;
+                persistence = 0.8f;
+                scale = 22f;
+                mag = 0.721f;
+                thresh = 1.152f;
+                min = 100f;
+                max = 100f;
+                radMin = 420f;
+                radMax = 420f;
+                seed = 69420;
+                waterColor = Color.valueOf("202025");
+                landColor = Color.valueOf("202025");
+            }};
+        }};
     }
 }
