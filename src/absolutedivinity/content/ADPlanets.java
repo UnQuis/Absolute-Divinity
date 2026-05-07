@@ -123,6 +123,8 @@ public class ADPlanets {
             prebuildBase = false;
             allowLaunchToNumbered = true;
 
+            meshLoader = () -> new HexMesh(this, 7);
+
             solarSystem = Planets.sun;
             defaultCore = Blocks.coreNucleus;
 
@@ -159,6 +161,8 @@ public class ADPlanets {
             allowWaves = true;
             prebuildBase = false;
             allowLaunchToNumbered = false;
+
+            meshLoader = () -> new HexMesh(this, 8);
 
             defaultCore = Blocks.coreShard;
             parent = Planets.sun;
@@ -204,6 +208,8 @@ public class ADPlanets {
             prebuildBase = false;
             allowLaunchToNumbered = false;
 
+            meshLoader = () -> new HexMesh(this, 5);
+
             defaultCore = Blocks.coreShard;
             solarSystem = Planets.sun.solarSystem;
 
@@ -216,6 +222,22 @@ public class ADPlanets {
             sectorSeed = 0;
             atmosphereColor = Color.valueOf("000000");
             iconColor = Color.valueOf("202025");
+
+            ruleSetter = r -> {
+                r.waves = true;
+                r.waveTeam = Team.crux;
+                r.placeRangeCheck = false;
+                r.showSpawns = true;
+                r.waveSpacing = 60 * Time.toSeconds;
+                r.initialWaveSpacing = 8f * Time.toMinutes;
+                r.hideBannedBlocks = true;
+                r.loadout = ItemStack.list(Items.titanium, 1000, Items.tungsten, 1000, Items.silicon, 1000, ADItems.mythril, 1000, ADItems.blackMythril, 200);
+
+                Rules.TeamRule teamRule = r.teams.get(r.defaultTeam);
+                teamRule.rtsAi = true;
+                teamRule.unitBuildSpeedMultiplier = 5f;
+                teamRule.buildSpeedMultiplier = 1.5f;
+            };
 
             generator = new ADPlanetGenerator(){{
                 octaves = 3;
