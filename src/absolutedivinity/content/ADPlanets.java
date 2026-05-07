@@ -163,21 +163,40 @@ public class ADPlanets {
             prebuildBase = false;
             allowLaunchToNumbered = false;
 
-            meshLoader = () -> new NoiseMesh(
-                this,
-                6,
-                8,
-                1.5f,
-                1,
-                1f,
-                1f,
-                1f,
-                Color.valueOf("3a3c40"),
-                Color.valueOf("5a5d63"),
-                3,
-                0.45f,
-                0.9f,
-                0.38f
+            meshLoader = () -> new MultiMesh(
+                new NoiseMesh(
+                    this,
+                    6,
+                    8,
+                    1.5f,
+                    5,
+                    0.9f,
+                    1f,
+                    1f,
+                    Color.valueOf("3a3c40"),
+                    Color.valueOf("5a5d63"),
+                    5,
+                    0.6f,
+                    0.9f,
+                    0.38f
+                ),
+
+                new NoiseMesh(
+                    this,
+                    6,
+                    3,
+                    0.4f,
+                    10,
+                    2.8f,
+                    0.25f,
+                    0.7f,
+                    Color.valueOf("6a7078"),
+                    Color.valueOf("8b929c"),
+                    2,
+                    0.3f,
+                    3f,
+                    0.82f
+                )
             );
 
             defaultCore = Blocks.coreShard;
