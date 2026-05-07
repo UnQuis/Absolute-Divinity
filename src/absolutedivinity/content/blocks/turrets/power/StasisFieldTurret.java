@@ -43,7 +43,7 @@ public class StasisFieldTurret {
                 damage = 0f;
                 splashDamage = 2f;
                 splashDamageRadius = 680f;
-                status = ADStatusEffects.shockslowed;
+                status = ADStatusEffects.neuroShock;
                 statusDuration = 70f;
             }};
             shootEffect = new WaveEffect() {{

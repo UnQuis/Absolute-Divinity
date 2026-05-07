@@ -2,7 +2,6 @@ package absolutedivinity.content;
 
 import arc.graphics.Color;
 import arc.math.Interp;
-import mindustry.Vars;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.effect.ParticleEffect;
@@ -11,54 +10,48 @@ import mindustry.type.StatusEffect;
 public class ADStatusEffects {
 
     public static StatusEffect
-        efficiencyDrop,
-        acidicBurn,
-        emp,
-        hastened,
-        highEnergyBurn,
-        japonicaWeakened,
-        mediumDownraft,
-        minimalDownraft,
-        neutronFrozen,
-        polymorphousBuilding,
-        powerfulDownraft,
-        radiated,
-        shockslowed,
-        slightDownraft,
-        superHastened,
+        powerLeak,
+        corrosiveMeltdown,
+        circuitNull,
+        overclocked,
+        plasmaScorch,
+        fracturedCore,
+        gravityShear,
+        gravityDisturbance,
+        zeroKelvinLock,
+        adaptiveReconstruction,
+        gravitationalCollapse,
+        irradiatedCore,
+        neuroShock,
+        gravityRipple,
+        hyperOverclock,
         funnyEffect;
 
         public static void load() {
 
-            efficiencyDrop = new StatusEffect("efficiency-drop"){{
-                localizedName = "Efficiency Drop";
+            powerLeak = new StatusEffect("power-leak"){{
+                localizedName = "Power Leak";
                 buildSpeedMultiplier = 0.8f;
                 speedMultiplier = 0.8f;
             }};
 
-            acidicBurn = new StatusEffect("acidic-burn"){{
-                localizedName = "Acidic Burn";
+            corrosiveMeltdown = new StatusEffect("corrosive-meltdown"){{
+                localizedName = "Corrosive Meltdown";
                 speedMultiplier = 0.8f;
                 damageMultiplier = 0.8f;
                 effect = Fx.none;
             }};
 
-            emp = new StatusEffect("emp"){{
-                localizedName = "Emp";
+            circuitNull = new StatusEffect("circuit-null"){{
+                localizedName = "Circuit NULL";
                 speedMultiplier = 0.4f;
                 damageMultiplier = 0.6f;
                 healthMultiplier = 0.8f;
                 reloadMultiplier = 0.7f;
             }};
 
-            hastened = new StatusEffect("hastened"){{
-                localizedName = "Hastened";
-                reloadMultiplier = 1.6f;
-                alwaysUnlocked = true;
-            }};
-
-            highEnergyBurn = new StatusEffect("high-energy-burn"){{
-                localizedName = "High Energy Burn";
+            plasmaScorch = new StatusEffect("plasma-scorch"){{
+                localizedName = "Plasma Scorch";
                 alwaysUnlocked = true;
                 damage = 0.4f;
                 reloadMultiplier = 0.85f;
@@ -80,8 +73,8 @@ public class ADStatusEffects {
                 }};
             }};
 
-            japonicaWeakened = new StatusEffect("japonica-weakened"){{
-                localizedName = "Japonica Weakened";
+            fracturedCore = new StatusEffect("fractured-core"){{
+                localizedName = "Fractured Core";
                 buildSpeedMultiplier = 0.8f;
                 damageMultiplier = 0.8f;
                 reloadMultiplier = 0.8f;
@@ -89,42 +82,42 @@ public class ADStatusEffects {
                 speedMultiplier = 0.8f;
             }};
 
-            mediumDownraft = new StatusEffect("medium-downraft"){{
-                localizedName = "Medium Downraft";
+            gravityShear = new StatusEffect("gravity-shear"){{
+                localizedName = "Gravity Shear";
                 speedMultiplier = 0.7f;
                 alwaysUnlocked = true;
                 effect = Fx.none;
             }};
 
-            minimalDownraft = new StatusEffect("minimal-downraft"){{
-                localizedName = "Minimal Downraft";
+            gravityDisturbance = new StatusEffect("gravity-disturbance"){{
+                localizedName = "Gravity Disturbance";
                 speedMultiplier = 0.9f;
                 alwaysUnlocked = true;
                 effect = Fx.none;
             }};
 
-            neutronFrozen = new StatusEffect("neutron-frozen"){{
-                localizedName = "Neutron Frozen";
+            zeroKelvinLock = new StatusEffect("zero-kelvin-lock"){{
+                localizedName = "Zero Kelvin Lock";
                 alwaysUnlocked = true;
                 speedMultiplier = 0.4f;
                 reloadMultiplier = 0.7f;
                 damage = 0.1f;
             }};
 
-            polymorphousBuilding = new StatusEffect("polymorphous-building"){{
-                localizedName = "Polymorphous Building";
+            adaptiveReconstruction = new StatusEffect("adaptive-reconstruction"){{
+                localizedName = "Adaptive Reconstruction";
                 buildSpeedMultiplier = 1.2f;
             }};
 
-            powerfulDownraft = new StatusEffect("powerful-downraft"){{
-                localizedName = "Powerful Downraft";
+            gravitationalCollapse = new StatusEffect("gravitational-collapse"){{
+                localizedName = "Gravitational Collapse";
                 speedMultiplier = 0.6f;
                 alwaysUnlocked = true;
                 effect = Fx.none;
             }};
 
-            radiated = new StatusEffect("radiated"){{
-                localizedName = "Radiated";
+            irradiatedCore = new StatusEffect("irradiated-core"){{
+                localizedName = "Irradiated Core";
                 damage = 0.125f;
                 permanent = true;
                 alwaysUnlocked = true;
@@ -139,22 +132,30 @@ public class ADStatusEffects {
                 }};
             }};
 
-            shockslowed = new StatusEffect("shockslowed"){{
-                localizedName = "Shock-Slowed";
+            neuroShock = new StatusEffect("neuro-shock"){{
+                localizedName = "Neuro Shock";
                 speedMultiplier = 0.3f;
                 alwaysUnlocked = true;
             }};
 
-            slightDownraft = new StatusEffect("slight-downraft"){{
-                localizedName = "Slight Downraft";
+            gravityRipple = new StatusEffect("gravity-ripple"){{
+                localizedName = "Gravity Ripple";
                 speedMultiplier = 0.8f;
                 alwaysUnlocked = true;
                 effect = Fx.none;
             }};
 
-            superHastened = new StatusEffect("super-hastened"){{
-                localizedName = "Super Hastened";
+            overclocked = new StatusEffect("overclocked"){{
+                localizedName = "Overclocked";
                 reloadMultiplier = 2.2f;
+                speedMultiplier = 1.8f;
+                alwaysUnlocked = true;
+            }};
+
+            hyperOverclock = new StatusEffect("hyper-overclock"){{
+                localizedName = "Hyper Overclock";
+                reloadMultiplier = 4.3f;
+                speedMultiplier = 2.1f;
                 alwaysUnlocked = true;
             }};
 
