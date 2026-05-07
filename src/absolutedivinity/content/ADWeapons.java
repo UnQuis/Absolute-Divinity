@@ -33,7 +33,7 @@ public class ADWeapons {
                 reload = 15;
                 recoil = 0;
                 bullet = new BulletType() {{
-                    status = ADStatusEffects.powerfulDownraft;
+                    status = ADStatusEffects.gravitationalCollapse;
                     statusDuration = 20;
                     instantDisappear = true;
                     splashDamage = 15;

@@ -47,7 +47,7 @@ public class ADMissiles {
                         //hitSound = tree.getSound();
                         hitSoundVolume = 6f;
 
-                        status = ADStatusEffects.radiated;
+                        status = ADStatusEffects.irradiatedCore;
 
                         hitEffect = new MultiEffect(
                             new WaveEffect(){{
