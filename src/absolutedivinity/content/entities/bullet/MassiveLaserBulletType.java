@@ -9,6 +9,7 @@ import arc.struct.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.content.*;
+import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.units.*;
 import mindustry.game.*;
@@ -17,7 +18,7 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.blocks.defense.turrets.Turret.*;
 
-public class MassiveLaserBulletType extends BulletType{
+public class MassiveLaserBulletType extends BulletType {
     public float width = 180f;
     public float length = 2500f;
     public float shake = 1f;
@@ -30,7 +31,11 @@ public class MassiveLaserBulletType extends BulletType{
 
     TextureRegion hcircle;
 
-    public MassiveLaserBulletType(){
+    public Effect massiveBlast;
+    public Effect chargeEffect;
+    public Effect beamHit;
+
+    public MassiveLaserBulletType() {
         speed = 0f;
         collides = collidesTiles = false;
         absorbable = false;
@@ -55,34 +60,67 @@ public class MassiveLaserBulletType extends BulletType{
         damage = 12000f;
 
         drawSize = length * 2.1f;
-
         knockback = 60f;
-
         layer = (Layer.bullet + Layer.effect) / 2;
+
+        chargeEffect = new Effect(140f, 800f, e -> {
+            Draw.color(colors[0], colors[1], e.fin());
+            Lines.stroke(e.fin() * 12f);
+            Lines.circle(e.x, e.y, e.fout() * 400f);
+
+            Angles.randLenVectors(e.id, 60, e.fout() * 400f, (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, e.fin() * 15f);
+            });
+        });
+
+        massiveBlast = new Effect(150f, 2000f, e -> {
+            Draw.color(colors[1], colors[2], e.fin());
+            Lines.stroke(e.fout() * 30f);
+            Lines.circle(e.x, e.y, e.fin() * 600f);
+
+            Draw.color(colors[1]);
+            for(int i = 0; i < 4; i++){
+                Drawf.tri(e.x, e.y, 60f * e.fout(), 800f * e.fout(), e.rotation + 90f * i + e.fin() * 45f);
+            }
+
+            Angles.randLenVectors(e.id, 100, 50f + e.fin() * 800f, (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, e.fout() * 40f);
+            });
+        });
+
+        beamHit = new Effect(40f, 300f, e -> {
+            Draw.color(Color.white, colors[1], e.fin());
+            Lines.stroke(e.fout() * 8f);
+            Angles.randLenVectors(e.id, 15, e.fin() * 150f, e.rotation, 60f, (x, y) -> {
+                Lines.lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fout() * 30f);
+            });
+            Fill.circle(e.x, e.y, e.fout() * 20f);
+        });
     }
 
     @Override
-    public void load(){
+    public void load() {
         hcircle = Core.atlas.find("hcircle");
     }
 
-    float getLaserWidth(float dst){
+    float getLaserWidth(float dst) {
         return dwidth.apply(Mathf.clamp(dst / end));
     }
-    float timeWidth(Bullet b){
+
+    float timeWidth(Bullet b) {
         float w1 = 5f;
         return (w1 * Mathf.clamp(b.time / 60f) + (width - w1) * Interp.pow2Out.apply(Mathf.clamp((b.time - 140f) / 5))) * Interp.pow3In.apply(Mathf.clamp((lifetime - b.time) / 80f));
     }
 
-    void handleDamage(Healthc e, Bullet b){
+    void handleDamage(Healthc e, Bullet b) {
         float mul;
         if(e instanceof Unit){
             Unit u = (Unit) e;
             mul = Math.max(1, u.healthMultiplier);
-        }else if(e instanceof Building){
+        } else if(e instanceof Building){
             Building bl = (Building) e;
             mul = damage / Math.min(damage, bl.handleDamage(damage));
-        }else{
+        } else {
             mul = 1f;
         }
 
@@ -96,11 +134,14 @@ public class MassiveLaserBulletType extends BulletType{
 
             if(b.time < 140f){
                 u.apply(StatusEffects.freezing, 8f);
-            }else{
+            } else {
                 u.impulse(Tmp.v3);
                 u.vel.add(Tmp.v3.scl(1 / (80f * 100)));
                 u.vel.limit(Mathf.pow(24f, 1 + u.drag));
-                if(Float.isNaN(u.health) || Float.isNaN(u.shield)) u.destroy();
+                if(Float.isNaN(u.health) || Float.isNaN(u.shield)) {
+                    Fx.massiveExplosion.at(u.x, u.y, 0, colors[1]);
+                    u.destroy();
+                }
             }
 
             u.clearStatuses();
@@ -112,6 +153,7 @@ public class MassiveLaserBulletType extends BulletType{
             }
             health = u.health;
         }
+
         if(e instanceof Building){
             Building bl = (Building) e;
             bl.applyHealSuppression(120f);
@@ -125,7 +167,7 @@ public class MassiveLaserBulletType extends BulletType{
             health = bl.health;
             if(bl.team == Team.derelict && b.time >= 140f){
                 Sounds.explosion.at(bl.x, bl.y);
-                Fx.none.at(bl.x, bl.y, bl.hitSize() / 2f);
+                Fx.instBomb.at(bl.x, bl.y, bl.hitSize() * 2f, colors[1]);
                 bl.tile.remove();
             }
         }
@@ -138,14 +180,14 @@ public class MassiveLaserBulletType extends BulletType{
     }
 
     @Override
-    public void init(Bullet b){
+    public void init(Bullet b) {
         Tmp.v1.trns(b.rotation(), 40f).add(b.x, b.y);
-        Fx.none.at(Tmp.v1.x, Tmp.v1.y, 120f, b.rotation());
+        chargeEffect.at(Tmp.v1.x, Tmp.v1.y, b.rotation(), colors[1]);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public void update(Bullet b){
+    public void update(Bullet b) {
         if(b.timer(0, 5f)){
             Vec2 v = Tmp.v2.trns(b.rotation(), length).add(b.x, b.y);
             float vx = v.x;
@@ -170,11 +212,9 @@ public class MassiveLaserBulletType extends BulletType{
                             float lw = getLaserWidth(dst) * dw * 0.5f;
 
                             if(u.dst(nearest) <= lw + u.hitSize / 2f){
-                                Fx.none.at(nearest.x, nearest.y, b.angleTo(nearest), u);
-                                Fx.none.at(nearest.x, nearest.y, b.rotation(), u.team.color);
-                                if(b.time > 140f){
-                                    Fx.none.at(nearest.x, nearest.y, b.rotation(), u);
-                                    Fx.none.at(nearest.x, nearest.y, b.rotation(), u);
+                                if(Mathf.chanceDelta(0.4f)) beamHit.at(nearest.x, nearest.y, b.angleTo(nearest), colors[1]);
+                                if(b.time > 140f && Mathf.chanceDelta(0.2f)){
+                                    Fx.hitMeltdown.at(nearest.x, nearest.y, b.rotation(), colors[1]);
                                 }
                                 handleDamage(u, b);
                             }
@@ -188,11 +228,9 @@ public class MassiveLaserBulletType extends BulletType{
                             float lw = getLaserWidth(dst) * dw * 0.5f;
 
                             if(bl.dst(nearest) <= lw + bl.hitSize() / 2f){
-                                Fx.none.at(nearest.x, nearest.y, b.angleTo(nearest), bl);
-                                Fx.none.at(nearest.x, nearest.y, b.rotation(), bl.team.color);
-                                if(b.time > 140f){
-                                    Fx.none.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
-                                    Fx.none.at(nearest.x, nearest.y, b.rotation(), bl.hitSize());
+                                if(Mathf.chanceDelta(0.4f)) beamHit.at(nearest.x, nearest.y, b.angleTo(nearest), colors[1]);
+                                if(b.time > 140f && Mathf.chanceDelta(0.3f)){
+                                    Fx.hitMeltdown.at(nearest.x, nearest.y, b.rotation(), colors[2]);
                                 }
                                 handleDamage(bl, b);
                             }
@@ -210,8 +248,7 @@ public class MassiveLaserBulletType extends BulletType{
 
                 if(bl.dst(nearest) <= lw + bl.hitSize / 2f){
                     if(bl.type.speed > 0.001 || Angles.within(bl.angleTo(b), bl.rotation(), 2)){
-                        Fx.none.at(nearest.x, nearest.y, b.angleTo(nearest), bl);
-                        Fx.none.at(nearest.x, nearest.y, bl.rotation(), bl.type.hitColor);
+                        Fx.shootBig.at(nearest.x, nearest.y, b.angleTo(nearest), bl.type.hitColor);
                         bl.hit = false;
                         bl.remove();
                         bl.type.despawnEffect.at(bl.x, bl.y, bl.rotation(), bl.type.hitColor);
@@ -219,13 +256,16 @@ public class MassiveLaserBulletType extends BulletType{
                 }
             });
 
-            Fx.none.at(b.x, b.y, b.rotation(), dw);
+            if(b.time > 140f && Mathf.chanceDelta(0.3f)){
+                Tmp.v1.trns(b.rotation(), Mathf.random(length)).add(b.x, b.y);
+                Fx.smokeCloud.at(Tmp.v1.x, Tmp.v1.y, b.rotation(), colors[0]);
+            }
 
             if(b.owner instanceof Healthc && ((Healthc)b.owner).dead() && b.time < lifetime - 80f){
                 b.fdata = 2;
                 if(b.time > 140f){
                     b.time = lifetime - 80f;
-                }else{
+                } else {
                     Fx.trailFade.at(b.x, b.y, b.rotation());
                     b.remove();
                     return;
@@ -236,14 +276,13 @@ public class MassiveLaserBulletType extends BulletType{
                 b.fdata = 2;
 
                 Tmp.v1.trns(b.rotation(), 70f).add(b.x, b.y);
-                Fx.none.at(Tmp.v1.x, Tmp.v1.y, 220f, b.rotation());
+                massiveBlast.at(Tmp.v1.x, Tmp.v1.y, b.rotation(), colors[1]);
 
-                Tmp.v1.trns(b.rotation(), 180f).add(b.x, b.y);
-                Fx.none.at(Tmp.v1.x, Tmp.v1.y, 380f, b.rotation());
+                // Доп. эффект взрыва дальше по лучу для масштаба
+                Tmp.v1.trns(b.rotation(), 500f).add(b.x, b.y);
+                Fx.massiveExplosion.at(Tmp.v1.x, Tmp.v1.y, b.rotation(), colors[1]);
 
-                Fx.none.at(b.x, b.y, b.rotation());
-
-                Vars.renderer.shake(90f, 110f);
+                Vars.renderer.shake(150f, 110f); // Усиленная тряска
             }
         }
     }
@@ -303,6 +342,17 @@ public class MassiveLaserBulletType extends BulletType{
             Drawf.tri(v2.x, v2.y, Lines.getStroke(), width * 2f + dw * (1f - i * 0.2f), b.rotation());
         }
 
+        if(b.time > 140f){
+            float flareScl = Interp.pow2Out.apply(Mathf.clamp((b.time - 140f) / 10f)) * Interp.pow3In.apply(Mathf.clamp((lifetime - b.time) / 80f));
+            float pulseFlare = Mathf.absin(10f, 0.3f) + 1f;
+
+            Draw.color(colors[1], Color.white, 0.5f);
+            for(int i : Mathf.signs){
+                Drawf.tri(b.x, b.y, 60f * flareScl * pulseFlare, 400f * flareScl, b.rotation() + 90f * i);
+                Drawf.tri(b.x, b.y, 30f * flareScl * pulseFlare, 800f * flareScl, b.rotation() + 90f * i);
+            }
+        }
+
         if(useLaserParticles && b.time > 140f){
             float scl = Interp.pow2Out.apply(Mathf.clamp((b.time - 140f) / 5f)) *
                 Interp.pow3In.apply(Mathf.clamp((lifetime - b.time) / 80f));
@@ -349,6 +399,5 @@ public class MassiveLaserBulletType extends BulletType{
 
     @Override
     public void drawLight(Bullet b){
-        }
     }
-
+}
