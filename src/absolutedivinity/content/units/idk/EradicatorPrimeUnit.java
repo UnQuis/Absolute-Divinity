@@ -1,8 +1,10 @@
 package absolutedivinity.content.units.idk;
 
+import absolutedivinity.content.ADColor;
 import absolutedivinity.content.entities.bullet.MassiveLaserBulletType;
 import arc.graphics.Color;
 import arc.math.Interp;
+import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.abilities.ShieldArcAbility;
 import mindustry.entities.bullet.ArtilleryBulletType;
@@ -29,7 +31,8 @@ public class EradicatorPrimeUnit {
         eradicatorPrime = new UnitType("eradicator-prime") {{
             constructor = LegsUnit::create;
             localizedName = "Eradicator Prime";
-            description = "Unet with big ahh laser";
+            description = "A supreme walking fortress of absolute devastation. Leaves nothing but scorched earth in its wake with its array of plasma artillery, sweeping beams, and a world-cracking central laser.";
+
             legMoveSpace = 0.8f;
             legPairOffset = 3f;
             legLength = 160f;
@@ -56,12 +59,21 @@ public class EradicatorPrimeUnit {
                 shake = 1f;
                 reload = 50f;
                 mirror = true;
-                //shootSound = Sounds.artillery;
+                //shootSound = Sounds.shootBig;
                 bullet = new FlakBulletType(4f, 10f) {{
+                    sprite = "circle-bullet";
                     height = 12f;
-                    width = 8f;
-                    frontColor = Color.valueOf("a93e3e");
-                    backColor = Color.valueOf("6f2626");
+                    width = 12f;
+                    frontColor = Color.white;
+                    backColor = Color.valueOf("a93e3e");
+                    trailColor = Color.valueOf("a93e3e");
+                    trailLength = 12;
+                    trailWidth = 3f;
+                    shootEffect = Fx.shootBigColor;
+                    smokeEffect = Fx.shootSmokeSquareSparse;
+                    hitEffect = Fx.flakExplosion;
+                    despawnEffect = Fx.flakExplosion;
+                    hitColor = Color.valueOf("a93e3e");
                     damage = 10f;
                     pierce = true;
                     pierceCap = 3;
@@ -84,14 +96,21 @@ public class EradicatorPrimeUnit {
                 rotateSpeed = 4f;
                 reload = 30f;
                 mirror = true;
-                //shootSound = Sounds.artillery;
+                //shootSound = Sounds.shootBig;
                 bullet = new FlakBulletType(4f, 8f) {{
+                    sprite = "circle-bullet";
                     damage = 8f;
                     pierce = true;
-                    width = 12f;
-                    height = 8f;
-                    frontColor = Color.valueOf("a93e3e");
-                    backColor = Color.valueOf("6f2626");
+                    width = 10f;
+                    height = 10f;
+                    frontColor = Color.white;
+                    backColor = Color.valueOf("a93e3e");
+                    trailColor = Color.valueOf("a93e3e");
+                    trailLength = 10;
+                    trailWidth = 2.5f;
+                    shootEffect = Fx.shootBigColor;
+                    hitEffect = Fx.flakExplosion;
+                    hitColor = Color.valueOf("a93e3e");
                     pierceCap = 3;
                     homingPower = 0.09f;
                     speed = 4f;
@@ -168,17 +187,26 @@ public class EradicatorPrimeUnit {
                 rotate = false;
                 top = false;
                 bullet = new BasicBulletType(1.2f, 60f) {{
-                    frontColor = Color.valueOf("a93e3e");
-                    //hitSound = Sounds.bang;
-                    hitShake = 9f;
-                    //hitEffect = Fx.instHit;
+                    sprite = "large-orb";
+                    frontColor = Color.white;
                     backColor = Color.valueOf("6f2626");
-                    width = 42f;
-                    height = 42f;
+                    trailColor = Color.valueOf("a93e3e");
+                    trailLength = 25;
+                    trailWidth = 8f;
+                    trailEffect = Fx.missileTrail;
+                    trailInterval = 3f;
+                    shootEffect = Fx.shootTitan;
+                    smokeEffect = Fx.shootSmokeTitan;
+                    hitEffect = Fx.massiveExplosion;
+                    despawnEffect = Fx.massiveExplosion;
+                    //hitSound = Sounds.plasmaboom;
+                    hitShake = 9f;
+                    width = 24f;
+                    height = 24f;
                     speed = 1.2f;
                     lifetime = 360f;
                     scaleLife = true;
-                    spin = 1.6f;
+                    spin = 2f;
                     pierce = true;
                     pierceBuilding = true;
                     buildingDamageMultiplier = 0.75f;
@@ -188,14 +216,20 @@ public class EradicatorPrimeUnit {
                     lightningDamage = 15f;
                     fragBullets = 6;
                     fragBullet = new ArtilleryBulletType() {{
+                        sprite = "circle-bullet";
+                        trailColor = Color.valueOf("a93e3e");
+                        trailLength = 15;
+                        trailWidth = 4f;
+                        trailEffect = Fx.artilleryTrail;
+                        trailInterval = 4f;
                         hitShake = 6f;
-                        //hitEffect = Fx.hitMeltdown;
+                        hitEffect = Fx.blastExplosion;
+                        despawnEffect = Fx.blastExplosion;
                         hitSound = Sounds.explosion;
-                        sprite = "me-lycosid-bullet";
-                        frontColor = Color.valueOf("a93e3e");
-                        backColor = Color.valueOf("6f2626");
-                        width = 38f;
-                        height = 38f;
+                        frontColor = Color.white;
+                        backColor = Color.valueOf("a93e3e");
+                        width = 16f;
+                        height = 16f;
                         speed = 1f;
                         lifetime = 60f;
                         damage = 35f;
@@ -204,31 +238,47 @@ public class EradicatorPrimeUnit {
                         lightningDamage = 12f;
                         fragBullets = 12;
                         fragBullet = new BombBulletType() {{
+                            sprite = "circle";
+                            trailColor = Color.valueOf("a93e3e");
+                            trailLength = 6;
+                            trailWidth = 2f;
                             hitShake = 3f;
                             splashDamageRadius = 70f;
-                            sprite = "me-lml-mine";
                             hitSound = Sounds.explosion;
-                            width = 12f;
-                            height = 12f;
+                            width = 10f;
+                            height = 10f;
+                            frontColor = Color.white;
+                            backColor = Color.valueOf("a93e3e");
                             hitEffect = new WaveEffect() {{
                                 sizeFrom = 0f;
-                                sizeTo = 18f;
+                                sizeTo = 30f;
                                 colorFrom = Color.valueOf("a93e3e");
                                 colorTo = Color.valueOf("6f2626");
+                                strokeFrom = 4f;
+                                strokeTo = 0f;
                             }};
                             splashDamage = 30f;
                             speed = 0.5f;
                             lifetime = 60f;
                             fragBullets = 1;
                             fragBullet = new MissileBulletType(1.5f, 25f) {{
+                                sprite = "missile";
+                                trailColor = Color.valueOf("a93e3e");
+                                trailLength = 10;
+                                trailWidth = 2f;
+                                frontColor = Color.white;
+                                backColor = Color.valueOf("a93e3e");
                                 hitShake = 1f;
                                 lifetime = 40f;
                                 height = 16f;
                                 width = 10f;
                                 homingPower = 0.09f;
                                 homingRange = 160f;
-                                homingDelay = 60f;
-                                //hitEffect = Fx.blastExplosion;
+                                homingDelay = 10f;
+                                weaveMag = 3f;
+                                weaveScale = 4f;
+                                hitEffect = Fx.blastExplosion;
+                                despawnEffect = Fx.blastExplosion;
                                 lightning = 2;
                                 lightningLength = 6;
                                 lightningDamage = 4f;
@@ -238,8 +288,7 @@ public class EradicatorPrimeUnit {
                 }};
             }});
 
-            // Laser sweepers
-            /*weapons.add(new Weapon("cerberian-laser-sweeper") {{
+            weapons.add(new Weapon("cerberian-laser-sweeper") {{
                 x = 18f;
                 y = 26f;
                 reload = 240f;
@@ -247,33 +296,31 @@ public class EradicatorPrimeUnit {
                 shake = 1f;
                 shootCone = 180f;
                 alternate = true;
-                //shootSound = Sounds.spark;
+                //shootSound = Sounds.laserblast;
                 ignoreRotation = true;
                 //chargeSound = Sounds.lasercharge2;
                 shoot = new ShootSpread() {{
                     shots = 12;
-                    spread = 2f;
+                    spread = 4f;
                     shotDelay = 3f;
                     firstShotDelay = 60f;
                 }};
-                bullet = new MassiveLaserBulletType() {{
-                    damage = 240f;
+                bullet = new LaserBulletType(240f) {{
                     length = 360f;
-                    shake = 1f;
-                    useLaserParticles = false;
-                    width = 11f;
-                    lifetime = 400f;
+                    width = 28f;
+                    lifetime = 45f;
+                    hitEffect = Fx.hitLancer;
+                    hitColor = Color.valueOf("a93e3e");
                     collidesAir = true;
                     collidesGround = true;
-                    //hitSound = Sounds.spark;
-                    //hitEffect = Fx.instHit;
-                    colors = new Color[]{
-                        Color.valueOf("a93e3e"),
-                        Color.valueOf("6f2626"),
-                        Color.valueOf("ffffff")
-                    };
+                    lightningSpacing = 30f;
+                    lightningLength = 5;
+                    lightningDelay = 1f;
+                    lightningDamage = 30f;
+                    lightningAngleRand = 40f;
+                    lightningColor = Color.valueOf("a93e3e");
                 }};
-            }});*/
+            }});
 
             abilities.add(new ShieldArcAbility() {{
                 angle = 83f;
