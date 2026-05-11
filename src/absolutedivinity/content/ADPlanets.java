@@ -11,6 +11,7 @@ import mindustry.graphics.Pal;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.MultiMesh;
 import mindustry.graphics.g3d.NoiseMesh;
+import mindustry.maps.planet.SerpuloPlanetGenerator;
 import mindustry.type.ItemStack;
 import mindustry.type.Planet;
 import absolutedivinity.core.map.DysonRingMesh;
@@ -86,8 +87,8 @@ public class ADPlanets {
             };
 
             generator = new ADPlanetGenerator(){{
-                waterColor = Color.valueOf("5992af");
-                landColor = Color.valueOf("4b64a9");
+                //waterColor = Color.valueOf("5992af");
+                //landColor = Color.valueOf("4b64a9");
             }};
 
             cloudMeshLoader = () -> new MultiMesh(
@@ -139,10 +140,8 @@ public class ADPlanets {
             atmosphereColor = Color.valueOf("baddf7");
             iconColor = Color.valueOf("798994");
 
-            generator = new ADPlanetGenerator(){{
-                waterColor = Color.valueOf("5992af");
-                landColor = Color.valueOf("4b64a9");
-            }};
+            generator = new ADPlanetGenerator();
+
         }};
 
         thanatos = new Planet("thanatos", Planets.sun, 1.56f, 3) {{
@@ -223,8 +222,8 @@ public class ADPlanets {
                 max = 100f;
                 radMin = 300f;
                 radMax = 700f;
-                waterColor = Color.valueOf("3a3c40");
-                landColor = Color.valueOf("3a3c40");
+                //waterColor = Color.valueOf("3a3c40");
+                //landColor = Color.valueOf("3a3c40");
             }};
         }};
 
@@ -301,8 +300,8 @@ public class ADPlanets {
                 radMin = 420f;
                 radMax = 420f;
                 seed = 69420;
-                waterColor = Color.valueOf("202025");
-                landColor = Color.valueOf("202025");
+                //waterColor = Color.valueOf("202025");
+                //landColor = Color.valueOf("202025");
             }};
         }};
     }
