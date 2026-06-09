@@ -6,6 +6,7 @@ import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.LaserBulletType;
+import mindustry.entities.pattern.ShootPattern;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
@@ -25,7 +26,10 @@ public class VoidTurret5 {
             shootCone = 2f;
             targetAir = true;
             targetGround = true;
-            shootEffect = ADEffects.voidCharge;
+            shoot = new ShootPattern() {{
+                firstShotDelay = 40f;
+            }};
+            shootEffect = Fx.shootBig;
             heatColor = Color.white;
             consumePower(8f);
             consumeCoolant(0.4f);
@@ -36,9 +40,10 @@ public class VoidTurret5 {
                 lifetime = 60f;
                 pierce = true;
                 pierceCap = 5;
+                chargeEffect = ADEffects.voidCharge;
                 hitEffect = ADEffects.voidLaserHit;
                 despawnEffect = ADEffects.voidDespawn;
-                shootEffect = ADEffects.voidCharge;
+                shootEffect = Fx.none;
                 status = StatusEffects.melting;
                 statusDuration = 60f;
                 colors = new Color[]{

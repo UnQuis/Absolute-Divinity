@@ -20,13 +20,21 @@ public class ADEffects {
         voidHitSmall, voidHit, voidHitBig, voidDespawn, voidLightningHit,
         voidCharge, voidChargeBig, voidTrail, voidWave, voidBlast,
         voidFragmentExplosion, voidLaserHit, voidSingularityPulse,
-        voidStormSpark, voidAnnihilateCharge, voidAnnihilateBlast;
+        voidStormSpark, voidAnnihilateCharge, voidAnnihilateBlast,
+        orderShootSmall, orderShoot, orderShootBig,
+        orderHitSmall, orderHit, orderHitBig, orderDespawn, orderTrail,
+        orderCharge, orderChargeBig, orderBlast, orderLaserHit,
+        orderLightningHit, orderFragment;
 
     public static Color voidWhite = Color.valueOf("f0f0ff"),
         voidSilver = Color.valueOf("d0d4e8"),
         voidGlow = Color.valueOf("a8b8ff"),
         voidLight = Color.valueOf("c8d0ff"),
-        voidDark = Color.valueOf("18182a");
+        voidDark = Color.valueOf("18182a"),
+        orderWhite = Color.valueOf("ffffff"),
+        orderLight = Color.valueOf("f0f0f0"),
+        orderGlow = Color.valueOf("ffffff"),
+        orderDark = Color.valueOf("d0d0d0");
 
     public static void load() {
         energySpark = new Effect(20f, e -> {
@@ -238,6 +246,155 @@ public class ADEffects {
                 Drawf.tri(e.x, e.y, 12f * e.fout(), 200f * e.fin(), e.rotation + 30f * i);
             }
             Drawf.light(e.x, e.y, 500f, Color.white, 1f);
+        });
+
+        orderShootSmall = new Effect(14f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 4, 8f * e.fout(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 1.2f * e.fout());
+            });
+            Lines.stroke(0.6f * e.fout());
+            Lines.circle(e.x, e.y, 4f * e.fout());
+        });
+
+        orderShoot = new Effect(20f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 8, 14f * e.fout(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 2f * e.fout());
+            });
+            Lines.stroke(1.2f * e.fout());
+            Lines.circle(e.x, e.y, 6f * e.fout());
+            Drawf.light(e.x, e.y, 30f, Color.white, 0.5f);
+        });
+
+        orderShootBig = new Effect(28f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 16, 24f * e.fout(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 3.5f * e.fout());
+            });
+            Lines.stroke(2f * e.fout());
+            Lines.circle(e.x, e.y, 10f * e.fout());
+            for(int i = 0; i < 4; i++){
+                Drawf.tri(e.x, e.y, 4f * e.fout(), 20f * e.fout(), e.rotation + 90f * i);
+            }
+            Drawf.light(e.x, e.y, 50f, Color.white, 0.7f);
+        });
+
+        orderHitSmall = new Effect(16f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 6, 10f * e.fout(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 1.4f * e.fout());
+            });
+            Lines.stroke(0.8f * e.fout());
+            Lines.circle(e.x, e.y, 5f * e.fout());
+        });
+
+        orderHit = new Effect(22f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 12, 18f * e.fout(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 2.5f * e.fout());
+            });
+            Lines.stroke(1.5f * e.fout());
+            Lines.circle(e.x, e.y, 8f * e.fout());
+            Drawf.light(e.x, e.y, 35f, Color.white, 0.6f);
+        });
+
+        orderHitBig = new Effect(35f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 24, 35f * e.fout(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 4f * e.fout());
+            });
+            Lines.stroke(2.5f * e.fout());
+            Lines.circle(e.x, e.y, 15f * e.fout());
+            for(int i = 0; i < 6; i++){
+                Drawf.tri(e.x, e.y, 6f * e.fout(), 30f * e.fout(), e.rotation + 60f * i + e.fin() * 30f);
+            }
+            Drawf.light(e.x, e.y, 70f, Color.white, 0.8f);
+        });
+
+        orderDespawn = new Effect(18f, e -> {
+            Draw.color(Color.white, orderLight, 1f - e.fin());
+            float s = 3f + 6f * e.fout();
+            Fill.circle(e.x, e.y, s);
+            Lines.stroke(1f * e.fout());
+            for(int i = 0; i < 3; i++){
+                float a = e.fin() * 360f + i * 120f;
+                Lines.lineAngle(e.x + Mathf.cosDeg(a) * s, e.y + Mathf.sinDeg(a) * s, a, 8f * e.fout());
+            }
+        });
+
+        orderTrail = new Effect(12f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Fill.circle(e.x, e.y, 1.5f * e.fout());
+            Drawf.light(e.x, e.y, 15f, Color.white, 0.3f * e.fout());
+        });
+
+        orderCharge = new Effect(45f, e -> {
+            Draw.color(orderLight, Color.white, e.fin());
+            Lines.stroke(e.fin() * 3f);
+            Lines.circle(e.x, e.y, 4f + e.fout() * 25f);
+            Angles.randLenVectors(e.id, 12, e.fout() * 28f, (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, e.fin() * 2.5f);
+            });
+            Drawf.light(e.x, e.y, 40f, Color.white, 0.6f * e.fin());
+        });
+
+        orderChargeBig = new Effect(80f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Lines.stroke(e.fin() * 6f);
+            Lines.circle(e.x, e.y, 8f + e.fout() * 60f);
+            Angles.randLenVectors(e.id, 20, e.fout() * 65f, (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, e.fin() * 4f);
+            });
+            for(int i = 0; i < 6; i++){
+                Drawf.tri(e.x, e.y, 4f * e.fin(), 35f * e.fout(), e.rotation + 60f * i + e.fin() * 30f);
+            }
+            Drawf.light(e.x, e.y, 80f, Color.white, 0.8f * e.fin());
+        });
+
+        orderBlast = new Effect(50f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Lines.stroke(3f * e.fout());
+            Lines.circle(e.x, e.y, 10f + 40f * e.fin());
+            Angles.randLenVectors(e.id, 30, 50f * e.fin(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 3f * e.fout());
+            });
+            for(int i = 0; i < 6; i++){
+                Drawf.tri(e.x, e.y, 8f * e.fout(), 50f * e.fin(), e.rotation + 60f * i);
+            }
+            Drawf.light(e.x, e.y, 80f, Color.white, 0.8f);
+        });
+
+        orderLaserHit = new Effect(18f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Fill.circle(e.x, e.y, 3f * e.fout());
+            Lines.stroke(1.5f * e.fout());
+            Angles.randLenVectors(e.id, 8, e.fin() * 25f, e.rotation, 50f, (x, y) -> {
+                Lines.lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 8f * e.fout());
+            });
+        });
+
+        orderLightningHit = new Effect(25f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 20, 25f * e.fout(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 1.8f * e.fout());
+            });
+            Lines.stroke(1.8f * e.fout());
+            Lines.circle(e.x, e.y, 10f * e.fout());
+            for(int i = 0; i < 8; i++){
+                float a = Mathf.random(360f);
+                Lines.lineAngle(e.x, e.y, a, Mathf.random(6f, 20f) * e.fout());
+            }
+            Drawf.light(e.x, e.y, 40f, Color.white, 0.7f);
+        });
+
+        orderFragment = new Effect(30f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 15, 30f * e.fin(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 1.5f + 3f * e.fout());
+            });
+            Lines.stroke(2f * e.fout());
+            Lines.circle(e.x, e.y, 5f + 15f * e.fin());
         });
     }
 }

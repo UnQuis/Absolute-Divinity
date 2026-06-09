@@ -25,7 +25,7 @@ public class VoidTurret9 {
     public static void load() {{
         voidTurret9 = new PowerTurret("void-9") {{
             localizedName = "Void Singularity";
-            description = "Creates a miniature singularity that pulls enemies inward before detonating in a cataclysmic silver blast.";
+            description = "Launches a singularity core that pulls enemies inward before detonating in a cataclysmic silver blast.";
             size = 6;
             health = 11000;
             range = 340f;
@@ -41,8 +41,8 @@ public class VoidTurret9 {
             shootType = new BulletType() {
                 {
                     damage = 0f;
-                    speed = 0f;
-                    lifetime = 160f;
+                    speed = 3f;
+                    lifetime = 120f;
                     hitEffect = Fx.none;
                     despawnEffect = Fx.none;
                     shootEffect = Fx.none;
@@ -57,32 +57,33 @@ public class VoidTurret9 {
                 public void update(Bullet b) {
                     super.update(b);
                     float phase = b.fin();
-                    if (phase < 0.7f) {
-                        float pullRange = 80f + phase * 120f;
-                        float pullStr = 0.06f + phase * 0.08f;
+                    if (phase < 0.5f) {
+                        float pullRange = 60f + phase * 100f;
+                        float pullStr = 0.05f + phase * 0.06f;
                         Units.nearby(b.team, b.x, b.y, pullRange, u -> {
                             if (u.dead() || u.team == b.team) return;
                             float dst = u.dst(b);
                             if (dst < 2f) return;
                             Vec2 vec = new Vec2(b.x - u.x, b.y - u.y).setLength(pullStr * (1f - dst / pullRange));
                             u.vel.add(vec);
-                            u.apply(StatusEffects.unmoving, 8f);
-                            if (dst < 30f) {
-                                u.damagePierce(3f);
+                            u.apply(StatusEffects.unmoving, 6f);
+                            if (dst < 20f) {
+                                u.damagePierce(5f);
                             }
                         });
                         if (b.timer(0, 15f)) {
                             ADEffects.voidSingularityPulse.at(b.x, b.y);
                         }
                     } else {
-                        float expPhase = (phase - 0.7f) / 0.3f;
-                        if (b.timer(1, 3f) && expPhase < 0.5f) {
-                            Units.nearby(b.team, b.x, b.y, 200f * expPhase, u -> {
+                        b.vel.set(0f, 0f);
+                        float expPhase = (phase - 0.5f) / 0.5f;
+                        if (b.timer(1, 3f) && expPhase < 0.4f) {
+                            Units.nearby(b.team, b.x, b.y, 180f * expPhase, u -> {
                                 if (u.dead() || u.team == b.team) return;
-                                u.damagePierce(30f);
+                                u.damagePierce(40f);
                                 u.apply(StatusEffects.shocked, 60f);
                             });
-                            ADEffects.voidBlast.at(b.x, b.y, 200f * expPhase);
+                            ADEffects.voidBlast.at(b.x, b.y, 180f * expPhase);
                         }
                         if (expPhase >= 1f) {
                             ADEffects.voidSingularityPulse.at(b.x, b.y);
@@ -103,15 +104,15 @@ public class VoidTurret9 {
                     float phase = b.fin();
                     float rad, innerRad;
                     Color c1, c2;
-                    if (phase < 0.7f) {
-                        float p = phase / 0.7f;
-                        rad = 14f + p * 40f;
+                    if (phase < 0.5f) {
+                        float p = phase / 0.5f;
+                        rad = 14f + p * 30f;
                         innerRad = rad * 0.3f;
                         c1 = ADEffects.voidGlow;
                         c2 = ADEffects.voidSilver;
                     } else {
-                        float p = (phase - 0.7f) / 0.3f;
-                        rad = 54f + p * 200f;
+                        float p = (phase - 0.5f) / 0.5f;
+                        rad = 44f + p * 200f;
                         innerRad = rad * 0.4f;
                         c1 = Color.white;
                         c2 = ADEffects.voidGlow;

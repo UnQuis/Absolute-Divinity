@@ -8,7 +8,6 @@ import arc.math.Mathf;
 import arc.util.Time;
 import mindustry.content.Fx;
 import mindustry.content.Items;
-import mindustry.content.StatusEffects;
 import mindustry.entities.Lightning;
 import mindustry.entities.bullet.BulletType;
 import mindustry.gen.Bullet;
@@ -23,7 +22,7 @@ public class VoidTurret7 {
     public static void load() {{
         voidTurret7 = new PowerTurret("void-7") {{
             localizedName = "Void Storm";
-            description = "Generates a roiling storm of void energy that lashes out with silver lightning.";
+            description = "Generates a roiling storm of void energy that lashes out with silver lightning and explodes on contact.";
             size = 4;
             health = 3200;
             range = 280f;
@@ -32,30 +31,35 @@ public class VoidTurret7 {
             shootCone = 30f;
             targetAir = true;
             targetGround = true;
-            shootEffect = ADEffects.voidChargeBig;
+            shootEffect = ADEffects.voidShootBig;
             heatColor = Color.white;
             consumePower(12f);
             consumeCoolant(0.6f);
             shootType = new BulletType() {
                 {
-                    damage = 25f;
-                    speed = 3f;
-                    lifetime = 90f;
-                    hitEffect = Fx.none;
+                    damage = 60f;
+                    speed = 3.5f;
+                    lifetime = 80f;
+                    splashDamage = 140f;
+                    splashDamageRadius = 65f;
+                    hitEffect = ADEffects.voidBlast;
                     despawnEffect = ADEffects.voidBlast;
                     shootEffect = Fx.none;
                     smokeEffect = Fx.none;
                     hittable = false;
-                    collides = false;
+                    collides = true;
+                    collidesGround = true;
+                    collidesAir = true;
+                    collidesTiles = true;
                     keepVelocity = false;
-                    drawSize = 120f;
+                    drawSize = 160f;
                 }
 
                 @Override
                 public void update(Bullet b) {
                     super.update(b);
-                    if (b.timer(0, 6f)) {
-                        Lightning.create(b.team, Color.valueOf("e0e8ff"), 12f, b.x, b.y, Mathf.random(360f), 15 + Mathf.random(10));
+                    if (b.timer(0, 5f)) {
+                        Lightning.create(b.team, Color.valueOf("e0e8ff"), 15f, b.x, b.y, Mathf.random(360f), 18 + Mathf.random(12));
                         ADEffects.voidStormSpark.at(b.x + Mathf.range(30f), b.y + Mathf.range(30f));
                     }
                 }
