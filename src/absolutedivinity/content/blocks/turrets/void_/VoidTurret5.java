@@ -1,22 +1,56 @@
 package absolutedivinity.content.blocks.turrets.void_;
 
+import absolutedivinity.content.ADEffects;
+import arc.graphics.Color;
+import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.content.StatusEffects;
+import mindustry.entities.bullet.LaserBulletType;
 import mindustry.type.Category;
-import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.type.ItemStack;
+import mindustry.world.blocks.defense.turrets.PowerTurret;
 
 public class VoidTurret5 {
-    public static ItemTurret voidTurret5;
+    public static PowerTurret voidTurret5;
 
     public static void load() {{
-        voidTurret5 = new ItemTurret("void-5") {{
-            localizedName = "Void Turret 5";
-            description = "[orange]Void faction[] turret. Not yet implemented.";
-            size = 2;
-            health = 500;
-            reload = 30f;
-            range = 200f;
-            rotateSpeed = 5f;
+        voidTurret5 = new PowerTurret("void-5") {{
+            localizedName = "Void Lance";
+            description = "Projects a continuous beam of concentrated void energy. Melts through armor over time.";
+            size = 3;
+            health = 1600;
+            range = 270f;
+            reload = 70f;
+            rotateSpeed = 4f;
+            shootCone = 2f;
             targetAir = true;
             targetGround = true;
+            shootEffect = ADEffects.voidCharge;
+            heatColor = Color.white;
+            consumePower(8f);
+            consumeCoolant(0.4f);
+            shootType = new LaserBulletType() {{
+                damage = 180f;
+                length = 280f;
+                width = 24f;
+                lifetime = 60f;
+                pierce = true;
+                pierceCap = 5;
+                hitEffect = ADEffects.voidLaserHit;
+                despawnEffect = ADEffects.voidDespawn;
+                shootEffect = ADEffects.voidCharge;
+                status = StatusEffects.melting;
+                statusDuration = 60f;
+                colors = new Color[]{
+                    Color.valueOf("8088aa").a(0.3f),
+                    Color.valueOf("c8d0ff"),
+                    Color.white
+                };
+                lightColor = Color.white;
+                lightOpacity = 0.5f;
+                drawSize = 300f;
+            }};
+            requirements(Category.turret, ItemStack.with(Items.copper, 1));
             category = Category.turret;
         }};
     }}

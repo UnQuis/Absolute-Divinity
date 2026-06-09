@@ -1,22 +1,47 @@
 package absolutedivinity.content.blocks.turrets.void_;
 
+import absolutedivinity.content.ADEffects;
+import arc.graphics.Color;
+import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.entities.bullet.LightningBulletType;
 import mindustry.type.Category;
-import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.type.ItemStack;
+import mindustry.world.blocks.defense.turrets.PowerTurret;
 
 public class VoidTurret2 {
-    public static ItemTurret voidTurret2;
+    public static PowerTurret voidTurret2;
 
     public static void load() {{
-        voidTurret2 = new ItemTurret("void-2") {{
-            localizedName = "Void Turret 2";
-            description = "[orange]Void faction[] turret. Not yet implemented.";
-            size = 2;
-            health = 500;
-            reload = 30f;
-            range = 200f;
-            rotateSpeed = 5f;
+        voidTurret2 = new PowerTurret("void-2") {{
+            localizedName = "Void Arc";
+            description = "Emits arcing bolts of silver lightning at airborne targets.";
+            size = 1;
+            health = 400;
+            range = 130f;
+            reload = 20f;
+            rotateSpeed = 12f;
+            shootCone = 15f;
             targetAir = true;
             targetGround = true;
+            shootEffect = ADEffects.voidLightningHit;
+            heatColor = Color.white;
+            consumePower(2.5f);
+            consumeCoolant(0.1f);
+            shootType = new LightningBulletType() {{
+                damage = 18f;
+                lightningLength = 12;
+                lightningColor = Color.white;
+                hitEffect = ADEffects.voidLightningHit;
+                shootEffect = ADEffects.voidLightningHit;
+                smokeEffect = Fx.none;
+                ammoMultiplier = 1f;
+                collidesAir = true;
+                collidesGround = true;
+                lightColor = Color.white;
+                lightOpacity = 0.6f;
+            }};
+            requirements(Category.turret, ItemStack.with(Items.copper, 1));
             category = Category.turret;
         }};
     }}
