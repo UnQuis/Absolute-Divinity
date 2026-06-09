@@ -31,9 +31,10 @@ public class EnvironmentBlock {
         oreBlackMythril = new OreBlock("ore-black-mythril", ADItems.blackMythril);
 
         energyNode = new Block("energy-node"){{
+            localizedName = "Energy Node";
+            description = "A crystalline formation that radiates ambient energy.";
             size = 1;
             hasShadow = true;
-
             emitLight = true;
             lightRadius = 20f;
             lightColor = Color.valueOf("7fd4ff");

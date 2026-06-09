@@ -1,9 +1,6 @@
 package absolutedivinity.content.blocks.distribution;
 
-import absolutedivinity.content.ADItems;
 import arc.graphics.Color;
-import mindustry.content.Items;
-import mindustry.entities.effect.WaveEffect;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.distribution.Conveyor;
@@ -13,45 +10,41 @@ import mindustry.world.blocks.distribution.MassDriver;
 import mindustry.world.blocks.distribution.Router;
 import mindustry.world.blocks.distribution.StackConveyor;
 import mindustry.world.blocks.storage.StorageBlock;
+import mindustry.content.Items;
+import absolutedivinity.content.ADItems;
+import mindustry.entities.effect.WaveEffect;
 
 public class ADDistribution {
-    public static Conveyor 
-        sAConveyor;
+    public static Conveyor entropyConduit;
 
-    public static Junction
-        tJunction;
+    public static Junction nullNode;
 
-    public static Router
-        tDistributor,
-        tRouter;
+    public static Router orderHub,
+        gridRouter;
 
-    public static ItemBridge
-        tBridge,
-        sABridge;
+    public static ItemBridge nexusBridge,
+        aeonBridge;
 
-    public static MassDriver
-        tinyMD,
-        mAccelerator;
+    public static MassDriver voidCaster,
+        chronoCannon;
 
-    public static StorageBlock
-        depository;
+    public static StorageBlock abyssHold;
 
-    public static StackConveyor
-        aMConveyor;
+    public static StackConveyor riftStacker;
 
     public static void load(){{
-        sAConveyor = new Conveyor("surge-alloy-conveyor"){{
-            description = "Transports items forward. Faster than a titanium conveyor.";
-            details = "You hear a faint Speeeeeeedwagggoooooooon in the distance.";
-            localizedName = "Surge Alloy Conveyor";
+        entropyConduit = new Conveyor("entropy-conduit"){{
+            localizedName = "Entropy Conduit";
+            description = "Transports items forward. Unstable yet swift.";
+            details = "The fabric of order weakens with every item that passes through.";
             speed = 0.2f;
             health = 350;
             displayedSpeed = 22;
         }};
 
-        depository = new StorageBlock("depository"){{
-            localizedName = "Depository";
-            description = "Stores a gigantic amount of items of each type, akin to a vault. Expands storage when placed next to a core. Contents can be retrieved with an unloader.";
+        abyssHold = new StorageBlock("abyss-hold"){{
+            localizedName = "Abyss Hold";
+            description = "A deep storage reservoir that warps space to contain vast quantities of supplies.";
             size = 4;
             hasItems = true;
             itemCapacity = 4000;
@@ -65,10 +58,10 @@ public class ADDistribution {
             );
         }};
 
-        aMConveyor = new StackConveyor("amalgam-conveyor"){{
-            localizedName = "Amalgam Conveyor";
-            description = "Quickly transports items forward in larger batches, akin to the plastanium conveyor. Identical functionality.";
-            details = "Something's wrong with my copy of Factorio...";
+        riftStacker = new StackConveyor("rift-stacker"){{
+            localizedName = "Rift Stacker";
+            description = "Teleports items forward in compressed batches through localized rifts.";
+            details = "The air around it hums with displaced potential.";
             category = Category.distribution;
             health = 110;
             speed = 0.09f;
@@ -94,9 +87,9 @@ public class ADDistribution {
             }};
         }};
 
-        mAccelerator = new MassDriver("mass-accelerator"){{
-            localizedName = "Mass Accelerator";
-            description = "Long-range item transport structure. Collects large batches of items and shoots them to other mass accelerators.";
+        chronoCannon = new MassDriver("chrono-cannon"){{
+            localizedName = "Chrono Cannon";
+            description = "Long-range item transport. Warps time to accelerate payloads across vast distances.";
             range = 600f;
             reload = 120f;
             itemCapacity = 300;
@@ -113,9 +106,9 @@ public class ADDistribution {
             );
         }};
 
-        sABridge = new ItemBridge("surge-bridge-conveyor"){{
-            localizedName = "Alloy Bridge Conveyor";
-            description = "Transports items over terrain or buildings. Faster than the titanium bridge conveyor.";
+        nexusBridge = new ItemBridge("nexus-bridge"){{
+            localizedName = "Nexus Bridge";
+            description = "Projects a stable transfer conduit over any obstacle.";
             health = 250;
             range = 6;
             transportTime = 2f;
@@ -124,13 +117,13 @@ public class ADDistribution {
             requirements = ItemStack.with(
                 Items.copper, 6,
                 Items.lead, 6,
-                Items.surgeAlloy, 4  
+                Items.surgeAlloy, 4
             );
         }};
 
-        tinyMD = new MassDriver("tiny-md"){{
-            localizedName = "Tiny Mass Driver";
-            description = "Short range item transport structure. Collects small batches of items and shoots them to other tiny mass drivers.";
+        voidCaster = new MassDriver("void-caster"){{
+            localizedName = "Void Caster";
+            description = "Short-range matter displacement engine. Folds space to deliver small payloads.";
             health = 60;
             itemCapacity = 20;
             reload = 10f;
@@ -145,9 +138,9 @@ public class ADDistribution {
             );
         }};
 
-        tBridge = new ItemBridge("titanium-bridge-conveyor"){{
-            localizedName = "Titanium Bridge Conveyor";
-            description = "Transports items over terrain or buildings. Faster than the regular bridge conveyor.";
+        aeonBridge = new ItemBridge("aeon-bridge"){{
+            localizedName = "Aeon Bridge";
+            description = "An enduring transfer bridge that spans gaps with reinforced phase matter.";
             health = 250;
             range = 6;
             transportTime = 4;
@@ -156,15 +149,14 @@ public class ADDistribution {
             requirements = ItemStack.with(
                 Items.copper, 8,
                 Items.lead, 8,
-                Items.titanium, 8  
+                Items.titanium, 8
             );
         }};
 
-        tDistributor = new Router("titanium-distributor"){{
-            localizedName = "Titanium Distributor";
-            description = "Distributes input items to 7 output directions equally. Faster than the regular distributor.";
+        orderHub = new Router("order-hub"){{
+            localizedName = "Order Hub";
+            description = "Distributes input to seven outputs with calculated precision.";
             speed = 0.1f;
-            //dumpTime = 1;
             health = 220;
             itemCapacity = 20;
             size = 2;
@@ -176,23 +168,22 @@ public class ADDistribution {
             );
         }};
 
-        tJunction = new Junction("titanium-junction"){{
-            localizedName = "Titanium Junction";
-            description = "Acts as a bridge for two crossing titanium conveyor belts.";
+        nullNode = new Junction("null-node"){{
+            localizedName = "Null Node";
+            description = "A crossing point where two conduits intersect without interference.";
             speed = 18;
             health = 45;
             size = 1;
             category = Category.distribution;
             requirements = ItemStack.with(
                 Items.copper, 6,
-                Items.titanium, 4  
+                Items.titanium, 4
             );
         }};
 
-        tRouter = new Router("titanium-router"){{
-            localizedName = "Titanium Router";
-            description = "Distributes items to 3 output directions equally. Faster than the regular router.";
-            //dumpTime = 1;
+        gridRouter = new Router("grid-router"){{
+            localizedName = "Grid Router";
+            description = "Routes items evenly to three adjacent paths. Encoded with predictive logic.";
             speed = 0.1f;
             health = 75;
             itemCapacity = 20;
@@ -200,7 +191,7 @@ public class ADDistribution {
             category = Category.distribution;
             requirements = ItemStack.with(
                 Items.copper, 5,
-                Items.titanium, 2  
+                Items.titanium, 2
             );
         }};
     }};

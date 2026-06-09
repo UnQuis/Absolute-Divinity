@@ -26,36 +26,36 @@ public class ADEnvironment {
 
     public static void load() {
         charredTree = new TreeBlock("charred-tree") {{
-            localizedName = "Charred Tree";
-            description = "A tree that has endured high heat and lots of fire. The wood is charred.";
+            localizedName = "Scorched Remnant";
+            description = "A husk of what was once alive, petrified by heat and time.";
         }};
 
         gnarledTree = new TreeBlock("gnarled-tree") {{
-            localizedName = "Gnarled Tree";
-            description = "A gnarly tree that has lost all of its leafs but the wood is still standing.";
+            localizedName = "Twisted Relic";
+            description = "Ancient wood contorted by centuries of exposure. Bare but unyielding.";
         }};
 
         livingSteelWall = new StaticWall("living-steel-wall") {{
-            localizedName = "Living Steel Wall";
+            localizedName = "Living Alloy Wall";
             attributes.set(Attribute.spores, 0.3f);
         }};
 
         petrifiedSteelWall = new StaticWall("petrified-steel-wall") {{
-            localizedName = "Petrified Steel Wall";
+            localizedName = "Fossilized Alloy Wall";
             attributes.set(Attribute.spores, 0.3f);
         }};
 
         steelSedimentation = new OreBlock("steel-sedimentation") {{
-            localizedName = "Steel Sedimentation";
-            description = "A sedimentation of living steel. Can be mined but beware as it damages units walking over it and slows them.";
+            localizedName = "Alloy Sediment";
+            description = "Crystallized metallic residue. Dangerous to traverse but rich in rare compounds.";
             itemDrop = ADItems.bioAlloy;
             mapColor = Color.valueOf("8c0291");
             variants = 6;
         }};
 
         acid = new Floor("acid") {{
-            localizedName = "Acid";
-            description = "A puddle of acid liquid. Beware!";
+            localizedName = "Caustic Pool";
+            description = "A pool of corrosive liquid. Exposure is lethal.";
             status = ADStatusEffects.corrosiveMeltdown;
             statusDuration = 300f;
             speedMultiplier = 0.7f;
@@ -72,8 +72,8 @@ public class ADEnvironment {
         }};
 
         deepAcid = new Floor("deep-acid") {{
-            localizedName = "Deep Acid";
-            description = "A puddle of acid liquid. Beware!";
+            localizedName = "Deep Caustic Pool";
+            description = "A deep reservoir of acid. Impassable to ground units.";
             status = ADStatusEffects.corrosiveMeltdown;
             statusDuration = 300f;
             speedMultiplier = 0.4f;

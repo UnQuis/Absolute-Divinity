@@ -87,6 +87,11 @@ public class ADPlanets {
             };
 
             generator = new ADPlanetGenerator(){{
+                radMin = 0.9f;
+                radMax = 1.1f;
+                mag = 2f;
+                waterOffset = 0.4f;
+
                 //waterColor = Color.valueOf("5992af");
                 //landColor = Color.valueOf("4b64a9");
             }};

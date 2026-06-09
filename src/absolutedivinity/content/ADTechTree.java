@@ -1,10 +1,5 @@
 package absolutedivinity.content;
 
-import absolutedivinity.content.blocks.turrets.item.CylonTurret;
-import absolutedivinity.content.blocks.turrets.item.HeavyTurret;
-import absolutedivinity.content.blocks.turrets.item.RagnitoTurret;
-import absolutedivinity.content.blocks.turrets.item.RipperTurret;
-import absolutedivinity.content.blocks.turrets.item.SharpelTurret;
 import arc.struct.ObjectMap;
 import mindustry.content.Blocks;
 import mindustry.content.TechTree;
@@ -28,13 +23,6 @@ public class ADTechTree {
         addItem(ADItems.reinforcedComposite, ADItems.matrix);
         
         addItem(Blocks.coreShard, ADItems.ferroamalgam);
-
-        addBlock(Blocks.coreShard, SharpelTurret.sharpel, Blocks.salvo); 
-        
-        addBlock(SharpelTurret.sharpel, RagnitoTurret.ragnito);
-        addBlock(SharpelTurret.sharpel, CylonTurret.cylon);
-        addBlock(SharpelTurret.sharpel, HeavyTurret.HEAVY);
-        addBlock(RagnitoTurret.ragnito, RipperTurret.ripper);
     }
 
     private static void addBlock(UnlockableContent parent, UnlockableContent child, UnlockableContent... requirements) {

@@ -1,24 +1,21 @@
 package absolutedivinity.content.blocks;
 
-import absolutedivinity.content.ADUnits;
 import absolutedivinity.content.units.idk.UmbralReaperUnit;
-import absolutedivinity.content.units.t1.BulwarkUnit;
-import arc.util.Time;
+import arc.graphics.Color;
 import mindustry.content.Items;
-import mindustry.entities.Units;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.storage.CoreBlock;
 
 public class ADCores {
     public static CoreBlock
-        energyCore,
+        primordialCore,
         ascensionCore;
 
     public static void load(){
-        energyCore = new CoreBlock("energy-core"){{
-            localizedName = "Energy Core";
-            description = "Upgraded core with more storage, health and energy source.";
+        primordialCore = new CoreBlock("primordial-core"){{
+            localizedName = "Primordial Core";
+            description = "An ancient core of untold power. Generates energy from the fabric of reality itself.";
             unitType = UmbralReaperUnit.umbralReaper;
             health = 70000;
             size = 6;
