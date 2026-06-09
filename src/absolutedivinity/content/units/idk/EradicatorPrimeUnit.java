@@ -137,6 +137,7 @@ public class EradicatorPrimeUnit {
                 //chargeSound = Sounds.hugeLaserCharge;
                 //shootSound = Sounds.laserbig;
                 bullet = new MassiveLaserBulletType() {{
+                    rangeOverride = 2500f;
                     damage = 12000f;
                     width = 100;
                     shake = 7f;
