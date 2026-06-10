@@ -10,11 +10,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret2 {
-    public static PowerTurret orderTurret2;
+public class OrderFlak {
+    public static PowerTurret orderFlak;
 
     public static void load() {{
-        orderTurret2 = new PowerTurret("order-2") {{
+        orderFlak = new PowerTurret("order-2") {{
             localizedName = "Order Flak";
             description = "Burst-fires white shrapnel shells. Fills the air with splinters.";
             size = 2;

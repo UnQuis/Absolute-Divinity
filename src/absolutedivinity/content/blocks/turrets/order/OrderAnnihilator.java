@@ -13,11 +13,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret10 {
-    public static PowerTurret orderTurret10;
+public class OrderAnnihilator {
+    public static PowerTurret orderAnnihilator;
 
     public static void load() {{
-        orderTurret10 = new PowerTurret("order-10") {{
+        orderAnnihilator = new PowerTurret("order-10") {{
             localizedName = "Order Annihilator";
             description = "The ultimate weapon of Order. Fires a colossal white energy orb that annihilates everything.";
             size = 8;

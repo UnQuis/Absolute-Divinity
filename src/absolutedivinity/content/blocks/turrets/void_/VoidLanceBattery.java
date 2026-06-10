@@ -11,11 +11,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret8 {
-    public static PowerTurret voidTurret8;
+public class VoidLanceBattery {
+    public static PowerTurret voidLanceBattery;
 
     public static void load() {{
-        voidTurret8 = new PowerTurret("void-8") {{
+        voidLanceBattery = new PowerTurret("void-8") {{
             localizedName = "Void Lance Battery";
             description = "Fires three searing silver lances simultaneously. Overwhelms heavy targets with concentrated void energy.";
             size = 5;

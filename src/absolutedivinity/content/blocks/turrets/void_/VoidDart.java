@@ -9,11 +9,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret1 {
-    public static PowerTurret voidTurret1;
+public class VoidDart {
+    public static PowerTurret voidDart;
 
     public static void load() {{
-        voidTurret1 = new PowerTurret("void-1") {{
+        voidDart = new PowerTurret("void-1") {{
             localizedName = "Void Dart";
             description = "Rapid-fires small silver energy darts. Excels at picking off weak targets.";
             size = 1;

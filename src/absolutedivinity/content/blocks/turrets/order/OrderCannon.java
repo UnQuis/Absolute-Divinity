@@ -9,11 +9,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret6 {
-    public static PowerTurret orderTurret6;
+public class OrderCannon {
+    public static PowerTurret orderCannon;
 
     public static void load() {{
-        orderTurret6 = new PowerTurret("order-6") {{
+        orderCannon = new PowerTurret("order-6") {{
             localizedName = "Order Cannon";
             description = "Heavy cannon firing dense white energy orbs. Devastates groups.";
             size = 4;

@@ -8,11 +8,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret3 {
-    public static PowerTurret voidTurret3;
+public class VoidReaper {
+    public static PowerTurret voidReaper;
 
     public static void load() {{
-        voidTurret3 = new PowerTurret("void-3") {{
+        voidReaper = new PowerTurret("void-3") {{
             localizedName = "Void Reaper";
             description = "Fires a helix-shaped bolt of void energy that chains between enemies.";
             size = 2;

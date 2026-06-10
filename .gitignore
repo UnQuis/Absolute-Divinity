@@ -9,3 +9,4 @@ Thumbs.db
 
 *.log
 bin/
+gradle/wrapper/gradle-8.5-bin.zip

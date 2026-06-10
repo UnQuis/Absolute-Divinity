@@ -20,11 +20,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret9 {
-    public static PowerTurret orderTurret9;
+public class OrderSingularity {
+    public static PowerTurret orderSingularity;
 
     public static void load() {{
-        orderTurret9 = new PowerTurret("order-9") {{
+        orderSingularity = new PowerTurret("order-9") {{
             localizedName = "Order Singularity";
             description = "Generates a collapsing white gravity well that pulls enemies in before imploding.";
             size = 7;

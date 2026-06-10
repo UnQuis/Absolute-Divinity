@@ -10,34 +10,33 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret7 {
-    public static PowerTurret orderTurret7;
+public class OrderLance {
+    public static PowerTurret orderLance;
 
     public static void load() {{
-        orderTurret7 = new PowerTurret("order-7") {{
-            localizedName = "Order Beam";
-            description = "Generates a searing beam of pure white light. Melts through anything.";
-            size = 5;
-            health = 4800;
-            range = 500f;
-            reload = 100f;
-            rotateSpeed = 2.5f;
-            shootCone = 3f;
+        orderLance = new PowerTurret("order-3") {{
+            localizedName = "Order Lance";
+            description = "Fires a piercing beam of pure white light. Cuts clean through targets.";
+            size = 2;
+            health = 960;
+            range = 250f;
+            reload = 60f;
+            rotateSpeed = 7f;
+            shootCone = 4f;
             targetAir = true;
             targetGround = true;
             shoot = new ShootPattern() {{
-                firstShotDelay = 80f;
+                firstShotDelay = 45f;
             }};
             shootEffect = Fx.none;
             heatColor = Color.white;
-            consumePower(30f);
-            consumeCoolant(0.5f);
-            shootType = new LaserBulletType(180f) {{
-                length = 510f;
-                width = 22f;
-                lifetime = 30f;
-                pierceCap = 8;
-                chargeEffect = ADEffects.orderChargeBig;
+            consumePower(6f);
+            shootType = new LaserBulletType(50f) {{
+                length = 260f;
+                width = 12f;
+                lifetime = 25f;
+                pierceCap = 4;
+                chargeEffect = ADEffects.orderCharge;
                 hitEffect = ADEffects.orderLaserHit;
                 shootEffect = Fx.none;
                 smokeEffect = Fx.none;
@@ -47,11 +46,11 @@ public class OrderTurret7 {
                     Color.white,
                     Color.white
                 };
-                lightningSpacing = 25f;
-                lightningLength = 6;
-                lightningDelay = 1f;
-                lightningDamage = 25f;
-                lightningAngleRand = 25f;
+                lightningSpacing = 35f;
+                lightningLength = 4;
+                lightningDelay = 1.5f;
+                lightningDamage = 10f;
+                lightningAngleRand = 30f;
                 lightningColor = Color.white;
             }};
             requirements(Category.turret, ItemStack.with(Items.copper, 1));

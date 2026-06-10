@@ -1,27 +1,27 @@
 package absolutedivinity.content.turrets;
 
-import absolutedivinity.content.blocks.turrets.order.OrderTurret1;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret2;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret3;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret4;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret5;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret6;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret7;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret8;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret9;
-import absolutedivinity.content.blocks.turrets.order.OrderTurret10;
+import absolutedivinity.content.blocks.turrets.order.OrderAnnihilator;
+import absolutedivinity.content.blocks.turrets.order.OrderBeam;
+import absolutedivinity.content.blocks.turrets.order.OrderCannon;
+import absolutedivinity.content.blocks.turrets.order.OrderCataclysm;
+import absolutedivinity.content.blocks.turrets.order.OrderFlak;
+import absolutedivinity.content.blocks.turrets.order.OrderLance;
+import absolutedivinity.content.blocks.turrets.order.OrderMortar;
+import absolutedivinity.content.blocks.turrets.order.OrderSingularity;
+import absolutedivinity.content.blocks.turrets.order.OrderSpark;
+import absolutedivinity.content.blocks.turrets.order.OrderStorm;
 
 public class ADOrderTurrets {
     public static void load(){
-        OrderTurret1.load();
-        OrderTurret2.load();
-        OrderTurret3.load();
-        OrderTurret4.load();
-        OrderTurret5.load();
-        OrderTurret6.load();
-        OrderTurret7.load();
-        OrderTurret8.load();
-        OrderTurret9.load();
-        OrderTurret10.load();
+        OrderSpark.load();
+        OrderFlak.load();
+        OrderLance.load();
+        OrderMortar.load();
+        OrderStorm.load();
+        OrderCannon.load();
+        OrderBeam.load();
+        OrderCataclysm.load();
+        OrderSingularity.load();
+        OrderAnnihilator.load();
     }
 }

@@ -11,11 +11,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret5 {
-    public static PowerTurret voidTurret5;
+public class VoidLance {
+    public static PowerTurret voidLance;
 
     public static void load() {{
-        voidTurret5 = new PowerTurret("void-5") {{
+        voidLance = new PowerTurret("void-5") {{
             localizedName = "Void Lance";
             description = "Projects a continuous beam of concentrated void energy. Melts through armor over time.";
             size = 3;

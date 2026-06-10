@@ -16,11 +16,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret7 {
-    public static PowerTurret voidTurret7;
+public class VoidStorm {
+    public static PowerTurret voidStorm;
 
     public static void load() {{
-        voidTurret7 = new PowerTurret("void-7") {{
+        voidStorm = new PowerTurret("void-7") {{
             localizedName = "Void Storm";
             description = "Generates a roiling storm of void energy that lashes out with silver lightning and explodes on contact.";
             size = 4;

@@ -9,11 +9,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret5 {
-    public static PowerTurret orderTurret5;
+public class OrderStorm {
+    public static PowerTurret orderStorm;
 
     public static void load() {{
-        orderTurret5 = new PowerTurret("order-5") {{
+        orderStorm = new PowerTurret("order-5") {{
             localizedName = "Order Storm";
             description = "Conjures white lightning storms. Chains between targets with precision.";
             size = 3;

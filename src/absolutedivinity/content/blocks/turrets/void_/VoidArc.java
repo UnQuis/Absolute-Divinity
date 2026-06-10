@@ -9,11 +9,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret2 {
-    public static PowerTurret voidTurret2;
+public class VoidArc {
+    public static PowerTurret voidArc;
 
     public static void load() {{
-        voidTurret2 = new PowerTurret("void-2") {{
+        voidArc = new PowerTurret("void-2") {{
             localizedName = "Void Arc";
             description = "Emits arcing bolts of silver lightning at airborne targets.";
             size = 1;

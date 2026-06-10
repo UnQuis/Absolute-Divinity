@@ -10,11 +10,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret8 {
-    public static PowerTurret orderTurret8;
+public class OrderCataclysm {
+    public static PowerTurret orderCataclysm;
 
     public static void load() {{
-        orderTurret8 = new PowerTurret("order-8") {{
+        orderCataclysm = new PowerTurret("order-8") {{
             localizedName = "Order Cataclysm";
             description = "Launches cluster shells that split into dozens of white fragments.";
             size = 6;

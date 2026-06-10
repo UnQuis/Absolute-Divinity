@@ -10,11 +10,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret10 {
-    public static PowerTurret voidTurret10;
+public class VoidAnnihilator {
+    public static PowerTurret voidAnnihilator;
 
     public static void load() {{
-        voidTurret10 = new PowerTurret("void-10") {{
+        voidAnnihilator = new PowerTurret("void-10") {{
             localizedName = "Void Annihilator";
             description = "The ultimate weapon of the Void faction. Channels reality-tearing energy into a beam of pure annihilation.";
             size = 8;

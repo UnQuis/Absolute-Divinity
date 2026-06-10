@@ -9,11 +9,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret4 {
-    public static PowerTurret orderTurret4;
+public class OrderMortar {
+    public static PowerTurret orderMortar;
 
     public static void load() {{
-        orderTurret4 = new PowerTurret("order-4") {{
+        orderMortar = new PowerTurret("order-4") {{
             localizedName = "Order Mortar";
             description = "Lobs white energy spheres over obstacles. Cleanses fortified positions.";
             size = 3;

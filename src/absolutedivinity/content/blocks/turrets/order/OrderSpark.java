@@ -9,11 +9,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class OrderTurret1 {
-    public static PowerTurret orderTurret1;
+public class OrderSpark {
+    public static PowerTurret orderSpark;
 
     public static void load() {{
-        orderTurret1 = new PowerTurret("order-1") {{
+        orderSpark = new PowerTurret("order-1") {{
             localizedName = "Order Spark";
             description = "Rapid-fires pure white energy bolts. Clean point defense.";
             size = 1;

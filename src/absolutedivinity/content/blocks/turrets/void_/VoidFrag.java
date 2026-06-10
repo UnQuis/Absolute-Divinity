@@ -12,11 +12,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret4 {
-    public static PowerTurret voidTurret4;
+public class VoidFrag {
+    public static PowerTurret voidFrag;
 
     public static void load() {{
-        voidTurret4 = new PowerTurret("void-4") {{
+        voidFrag = new PowerTurret("void-4") {{
             localizedName = "Void Frag";
             description = "Launches explosive silver shells that shatter into deadly fragments.";
             size = 2;

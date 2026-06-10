@@ -19,11 +19,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 
-public class VoidTurret9 {
-    public static PowerTurret voidTurret9;
+public class VoidSingularity {
+    public static PowerTurret voidSingularity;
 
     public static void load() {{
-        voidTurret9 = new PowerTurret("void-9") {{
+        voidSingularity = new PowerTurret("void-9") {{
             localizedName = "Void Singularity";
             description = "Launches a singularity core that pulls enemies inward before detonating in a cataclysmic silver blast.";
             size = 6;
