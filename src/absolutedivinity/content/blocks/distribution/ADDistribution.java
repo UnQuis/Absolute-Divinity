@@ -33,6 +33,7 @@ public class ADDistribution {
     public static StackConveyor riftStacker;
 
     public static void load(){{
+        VoidConduit.registerBlock();
         entropyConduit = new Conveyor("entropy-conduit"){{
             localizedName = "Entropy Conduit";
             description = "Transports items forward. Unstable yet swift.";
