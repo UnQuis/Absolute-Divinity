@@ -8,6 +8,7 @@ import absolutedivinity.content.ADLiquids;
 import absolutedivinity.content.ADPlanets;
 import absolutedivinity.content.ADTechTree;
 import absolutedivinity.content.blocks.distribution.ADDistribution;
+import absolutedivinity.content.blocks.effects.ADEffectBlocks;
 import absolutedivinity.content.turrets.ADVoidTurrets;
 import absolutedivinity.content.turrets.ADAbyssTurrets;
 import absolutedivinity.content.turrets.ADChaosTurrets;
@@ -39,6 +40,7 @@ public class ADMod extends Mod {
         ADInfoTurrets.load();
         ADOrderTurrets.load();
         ADDistribution.load();
+        ADEffectBlocks.load();
         ADUnits.load();
         ADCores.load();
         ADEnvironment.load();
