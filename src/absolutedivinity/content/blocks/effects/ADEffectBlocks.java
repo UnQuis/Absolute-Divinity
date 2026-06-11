@@ -5,11 +5,11 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 
 public class ADEffectBlocks {
-    public static WallBreaker wallBreaker2, wallBreaker3;
+    public static Disruptor disruptor2, disruptor3;
 
     public static void load() {
-        wallBreaker2 = new WallBreaker("wall-breaker-2") {{
-            localizedName = "Wall Breaker II";
+        disruptor2 = new Disruptor("disruptor-2") {{
+            localizedName = "Disruptor";
             description = "Destroys solid unbreakable walls in front of it. Afterwards it is destroyed as well.";
             size = 2;
             timerBreak = 480f;
@@ -23,8 +23,8 @@ public class ADEffectBlocks {
             ));
         }};
 
-        wallBreaker3 = new WallBreaker("wall-breaker-3") {{
-            localizedName = "Wall Breaker III";
+        disruptor3 = new Disruptor("disruptor-3") {{
+            localizedName = "Disruptor III";
             description = "Destroys solid unbreakable walls in front of it. Larger version with extended range.";
             size = 3;
             timerBreak = 720f;
