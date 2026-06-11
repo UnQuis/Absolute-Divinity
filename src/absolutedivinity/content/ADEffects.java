@@ -24,7 +24,8 @@ public class ADEffects {
         orderShootSmall, orderShoot, orderShootBig,
         orderHitSmall, orderHit, orderHitBig, orderDespawn, orderTrail,
         orderCharge, orderChargeBig, orderBlast, orderLaserHit,
-        orderLightningHit, orderFragment;
+        orderLightningHit, orderFragment,
+        orderAnnihilateBlast, orderAnnihilateHit;
 
     public static Color voidWhite = Color.valueOf("f0f0ff"),
         voidSilver = Color.valueOf("d0d4e8"),
@@ -395,6 +396,45 @@ public class ADEffects {
             });
             Lines.stroke(2f * e.fout());
             Lines.circle(e.x, e.y, 5f + 15f * e.fin());
+        });
+
+        orderAnnihilateHit = new Effect(45f, 250f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            Angles.randLenVectors(e.id, 30, 80f * e.fin(), (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 2f + 3f * e.fout());
+            });
+            Lines.stroke(2f * e.fout());
+            Lines.circle(e.x, e.y, 15f + 50f * e.fin());
+            for(int i = 0; i < 6; i++){
+                float a = e.rotation + 60f * i;
+                float len = e.fin() * 100f;
+                Lines.stroke(1.5f * e.fout());
+                Lines.lineAngle(e.x, e.y, a, len);
+            }
+            Drawf.light(e.x, e.y, 160f, Color.white, 0.8f);
+        });
+
+        orderAnnihilateBlast = new Effect(80f, 600f, e -> {
+            Draw.color(Color.white, orderLight, e.fin());
+            for(int i = 0; i < 8; i++){
+                float a = e.rotation + 45f * i + e.fin() * 5f;
+                float len = e.fin() * 400f;
+                Lines.stroke(3f * e.fout());
+                Lines.lineAngle(e.x, e.y, a, len);
+                Drawf.tri(e.x + Mathf.cosDeg(a) * len, e.y + Mathf.sinDeg(a) * len,
+                    5f * e.fout(), 10f * e.fout(), a);
+            }
+            Lines.stroke(4f * e.fout());
+            Lines.circle(e.x, e.y, 15f + 60f * e.fin());
+            Lines.stroke(2f * e.fout());
+            Lines.circle(e.x, e.y, 40f + 180f * e.fin());
+            Lines.stroke(1f * e.fout());
+            Lines.circle(e.x, e.y, 70f + 260f * e.fin());
+            Angles.randLenVectors(e.id, 60, 120f + e.fin() * 320f, (x, y) -> {
+                Fill.circle(e.x + x, e.y + y, 1.5f + 3f * e.fout());
+            });
+            Fill.circle(e.x, e.y, 8f + 20f * e.fout());
+            Drawf.light(e.x, e.y, 500f, Color.white, 1f);
         });
     }
 }

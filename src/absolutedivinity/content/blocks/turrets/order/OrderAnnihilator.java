@@ -91,73 +91,49 @@ public class OrderAnnihilator {
                 lightningCone = 360f;
                 lightningColor = Color.white;
                 hitEffect = new MultiEffect(
-                    ADEffects.orderBlast,
+                    ADEffects.orderAnnihilateHit,
                     new WaveEffect() {{
                         sizeFrom = 0f;
-                        sizeTo = 300f;
+                        sizeTo = 180f;
                         colorFrom = Color.white;
                         colorTo = Color.valueOf("e0e0e0");
-                        strokeFrom = 10f;
+                        strokeFrom = 6f;
                         strokeTo = 0f;
                         interp = Interp.pow5Out;
                     }},
                     new ParticleEffect() {{
-                        sizeFrom = 15f;
-                        sizeTo = 3f;
+                        sizeFrom = 8f;
+                        sizeTo = 2f;
                         colorFrom = Color.white;
                         colorTo = Color.valueOf("e0e0e0");
-                        length = -300f;
-                        baseLength = 300f;
-                        lifetime = 120f;
-                        particles = 60;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 15f;
-                        sizeTo = 3f;
-                        colorFrom = Color.white;
-                        colorTo = Color.valueOf("e0e0e0");
-                        length = 300f;
-                        baseLength = -300f;
-                        lifetime = 120f;
-                        particles = 60;
+                        length = 0f;
+                        baseLength = 0f;
+                        lifetime = 60f;
+                        particles = 40;
                         interp = Interp.exp5;
                         sizeInterp = Interp.pow5Out;
                     }}
                 );
                 despawnEffect = new MultiEffect(
-                    ADEffects.orderBlast,
+                    ADEffects.orderAnnihilateBlast,
                     new WaveEffect() {{
                         sizeFrom = 0f;
-                        sizeTo = 300f;
+                        sizeTo = 350f;
                         colorFrom = Color.white;
                         colorTo = Color.valueOf("e0e0e0");
-                        strokeFrom = 10f;
+                        strokeFrom = 12f;
                         strokeTo = 0f;
                         interp = Interp.pow5Out;
                     }},
                     new ParticleEffect() {{
-                        sizeFrom = 15f;
+                        sizeFrom = 12f;
                         sizeTo = 3f;
                         colorFrom = Color.white;
                         colorTo = Color.valueOf("e0e0e0");
-                        length = -300f;
-                        baseLength = 300f;
-                        lifetime = 120f;
-                        particles = 60;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 15f;
-                        sizeTo = 3f;
-                        colorFrom = Color.white;
-                        colorTo = Color.valueOf("e0e0e0");
-                        length = 300f;
-                        baseLength = -300f;
-                        lifetime = 120f;
-                        particles = 60;
+                        length = 0f;
+                        baseLength = 0f;
+                        lifetime = 80f;
+                        particles = 80;
                         interp = Interp.exp5;
                         sizeInterp = Interp.pow5Out;
                     }}
@@ -183,8 +159,8 @@ public class OrderAnnihilator {
                     splashDamage = 300f;
                     splashDamageRadius = 70f;
                     hitShake = 15f;
-                    hitEffect = ADEffects.orderBlast;
-                    despawnEffect = ADEffects.orderBlast;
+                    hitEffect = ADEffects.orderHit;
+                    despawnEffect = ADEffects.orderHit;
                     trailEffect = ADEffects.orderTrail;
                     trailChance = 0.9f;
                     trailLength = 12;
