@@ -15,7 +15,7 @@ public class TimeTurret6 {
     public static void load() {{
         timeTurret6 = new ItemTurret("time-6") {{
             localizedName = "Chrono Arc";
-            description = "Fires temporal lightning that stuns targets.";
+            description = "Temporal lightning that stuns and slows.";
             size = 3;
             health = 1700;
             range = 230f;

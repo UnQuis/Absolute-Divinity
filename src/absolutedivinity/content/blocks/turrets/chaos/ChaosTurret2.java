@@ -15,11 +15,11 @@ public class ChaosTurret2 {
     public static void load() {{
         chaosTurret2 = new ItemTurret("chaos-2") {{
             localizedName = "Chaos Flare";
-            description = "Fires unstable projectiles that ignite on impact.";
+            description = "Fires incendiary bolts that ignite targets.";
             size = 1;
             health = 370;
             range = 160f;
-            reload = 28f;
+            reload = 30f;
             rotateSpeed = 9f;
             targetAir = true;
             targetGround = true;
@@ -31,18 +31,17 @@ public class ChaosTurret2 {
                 Items.lead, 35
             ));
             category = Category.turret;
-            ammo(Items.pyratite, new BasicBulletType(5f, 14f) {{
+            ammo(Items.pyratite, new BasicBulletType(5f, 12f) {{
                 width = 6f;
                 height = 6f;
                 lifetime = 33f;
                 hitEffect = ADTurretEffects.hitSmall(ADColor.chaosMain);
                 despawnEffect = ADTurretEffects.hitSmall(ADColor.chaosLight);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.chaosDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.chaosMain);
                 trailChance = 0.3f;
                 frontColor = ADColor.chaosLight;
                 backColor = ADColor.chaosMain;
-                knockback = 0.5f;
+                knockback = 0.4f;
                 status = StatusEffects.burning;
                 statusDuration = 90f;
             }});

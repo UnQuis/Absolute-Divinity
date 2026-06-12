@@ -3,7 +3,7 @@ package absolutedivinity.content.blocks.turrets.info;
 import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
-import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.ContinuousFlameBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -14,7 +14,7 @@ public class InfoTurret9 {
     public static void load() {{
         infoTurret9 = new ItemTurret("info-9") {{
             localizedName = "Info Beam";
-            description = "Fires a devastating precision beam.";
+            description = "Continuous precision beam.";
             size = 4;
             health = 5000;
             range = 270f;
@@ -35,21 +35,17 @@ public class InfoTurret9 {
                 Items.surgeAlloy, 70
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(0f, 50f) {{
-                speed = 0f;
-                lifetime = 7f;
+            ammo(Items.surgeAlloy, new ContinuousFlameBulletType() {{
+                damage = 42f;
+                length = 250f;
                 hitEffect = ADTurretEffects.hitMedium(ADColor.infoMain);
-                despawnEffect = ADTurretEffects.trailEffect(ADColor.infoDark);
                 smokeEffect = ADTurretEffects.trailEffect(ADColor.infoDark);
                 shootEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
-                frontColor = ADColor.infoLight;
-                backColor = ADColor.infoMain;
                 pierce = true;
                 pierceCap = -1;
                 hittable = false;
                 collides = false;
                 keepVelocity = false;
-                damage = 50f;
             }});
         }};
     }}

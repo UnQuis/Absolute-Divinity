@@ -13,7 +13,7 @@ public class InfoTurret5 {
 
     public static void load() {{
         infoTurret5 = new ItemTurret("info-5") {{
-            localizedName = "Info Lance";
+            localizedName = "Info Railgun";
             description = "Fires precise piercing bolts.";
             size = 3;
             health = 1550;
@@ -33,12 +33,11 @@ public class InfoTurret5 {
             ));
             category = Category.turret;
             ammo(Items.silicon, new BasicBulletType(11f, 40f) {{
-                width = 6f;
-                height = 13f;
+                width = 5f;
+                height = 11f;
                 lifetime = 21f;
                 hitEffect = ADTurretEffects.hitMedium(ADColor.infoMain);
                 despawnEffect = ADTurretEffects.hitBig(ADColor.infoMain);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.infoDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
                 trailChance = 0.5f;
                 frontColor = ADColor.infoLight;

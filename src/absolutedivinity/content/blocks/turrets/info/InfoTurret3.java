@@ -14,7 +14,7 @@ public class InfoTurret3 {
     public static void load() {{
         infoTurret3 = new ItemTurret("info-3") {{
             localizedName = "Info Mortar";
-            description = "Launches precision shells.";
+            description = "Precision artillery with targeted strikes.";
             size = 2;
             health = 760;
             range = 270f;

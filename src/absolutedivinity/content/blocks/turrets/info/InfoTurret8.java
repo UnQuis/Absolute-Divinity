@@ -14,7 +14,7 @@ public class InfoTurret8 {
     public static void load() {{
         infoTurret8 = new ItemTurret("info-8") {{
             localizedName = "Info Cannon";
-            description = "Heavy precision cannon.";
+            description = "Heavy precision cannon with piercing shots.";
             size = 4;
             health = 3600;
             range = 290f;
@@ -35,12 +35,11 @@ public class InfoTurret8 {
             ));
             category = Category.turret;
             ammo(Items.thorium, new BasicBulletType(9f, 180f) {{
-                width = 10f;
-                height = 16f;
+                width = 8f;
+                height = 14f;
                 lifetime = 33f;
                 hitEffect = ADTurretEffects.blastEffect(ADColor.infoMain, 50f);
                 despawnEffect = ADTurretEffects.blastEffect(ADColor.infoLight, 50f);
-                smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
                 trailChance = 0.8f;
                 frontColor = ADColor.infoLight;

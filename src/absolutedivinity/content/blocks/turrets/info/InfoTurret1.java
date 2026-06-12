@@ -14,7 +14,7 @@ public class InfoTurret1 {
     public static void load() {{
         infoTurret1 = new ItemTurret("info-1") {{
             localizedName = "Info Scanner";
-            description = "Fires precision data bolts.";
+            description = "Precision data bolts with homing capability.";
             size = 1;
             health = 330;
             range = 160f;
@@ -36,12 +36,13 @@ public class InfoTurret1 {
                 lifetime = 33f;
                 hitEffect = ADTurretEffects.hitSmall(ADColor.infoMain);
                 despawnEffect = ADTurretEffects.hitSmall(ADColor.infoLight);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.infoDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
                 trailChance = 0.3f;
                 frontColor = ADColor.infoLight;
                 backColor = ADColor.infoMain;
                 knockback = 0.2f;
+                homingPower = 0.03f;
+                homingRange = 60f;
             }});
         }};
     }}

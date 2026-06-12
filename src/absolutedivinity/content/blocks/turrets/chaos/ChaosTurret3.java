@@ -15,7 +15,7 @@ public class ChaosTurret3 {
     public static void load() {{
         chaosTurret3 = new ItemTurret("chaos-3") {{
             localizedName = "Chaos Mortar";
-            description = "Launches volatile shells that explode unpredictably.";
+            description = "Launches volatile shells that explode on impact.";
             size = 2;
             health = 700;
             range = 250f;

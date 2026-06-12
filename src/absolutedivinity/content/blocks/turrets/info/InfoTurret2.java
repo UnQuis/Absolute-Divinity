@@ -13,8 +13,8 @@ public class InfoTurret2 {
 
     public static void load() {{
         infoTurret2 = new ItemTurret("info-2") {{
-            localizedName = "Info Dart";
-            description = "Fires homing data darts.";
+            localizedName = "Info Tracker";
+            description = "Fires homing data darts with strong tracking.";
             size = 1;
             health = 400;
             range = 175f;
@@ -30,20 +30,20 @@ public class InfoTurret2 {
                 Items.lead, 32
             ));
             category = Category.turret;
-            ammo(Items.graphite, new BasicBulletType(5f, 16f) {{
+            ammo(Items.graphite, new BasicBulletType(5f, 14f) {{
                 width = 5f;
                 height = 7f;
                 lifetime = 36f;
                 hitEffect = ADTurretEffects.hitSmall(ADColor.infoMain);
                 despawnEffect = ADTurretEffects.hitSmall(ADColor.infoLight);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.infoDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
                 trailChance = 0.3f;
                 frontColor = ADColor.infoLight;
                 backColor = ADColor.infoMain;
                 knockback = 0.3f;
-                homingPower = 0.04f;
-                homingRange = 80f;
+                homingPower = 0.08f;
+                homingRange = 100f;
+                homingDelay = 5f;
             }});
         }};
     }}

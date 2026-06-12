@@ -15,7 +15,7 @@ public class ChaosTurret8 {
     public static void load() {{
         chaosTurret8 = new ItemTurret("chaos-8") {{
             localizedName = "Chaos Repeater";
-            description = "Rapid-fire siege platform.";
+            description = "Rapid-fire siege platform with fire shells.";
             size = 4;
             health = 3500;
             range = 300f;
@@ -35,16 +35,16 @@ public class ChaosTurret8 {
                 Items.pyratite, 60
             ));
             category = Category.turret;
-            ammo(Items.pyratite, new ArtilleryBulletType(5f, 60f, "shell") {{
-                hitEffect = ADTurretEffects.blastEffect(ADColor.chaosMain, 60f);
-                despawnEffect = ADTurretEffects.blastEffect(ADColor.chaosLight, 60f);
+            ammo(Items.pyratite, new ArtilleryBulletType(5f, 55f, "shell") {{
+                hitEffect = ADTurretEffects.blastEffect(ADColor.chaosMain, 50f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.chaosLight, 50f);
                 width = 12f;
                 height = 12f;
                 lifetime = 65f;
                 hitShake = 6f;
                 splashDamageRadius = 45f;
-                splashDamage = 50f;
-                knockback = 3.5f;
+                splashDamage = 45f;
+                knockback = 3f;
                 frontColor = ADColor.chaosLight;
                 backColor = ADColor.chaosMain;
                 status = StatusEffects.burning;

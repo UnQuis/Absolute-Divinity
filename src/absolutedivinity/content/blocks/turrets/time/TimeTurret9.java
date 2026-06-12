@@ -4,7 +4,7 @@ import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
-import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.ContinuousFlameBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -14,8 +14,8 @@ public class TimeTurret9 {
 
     public static void load() {{
         timeTurret9 = new ItemTurret("time-9") {{
-            localizedName = "Chrono Beam";
-            description = "Fires a continuous temporal beam.";
+            localizedName = "Chrono Freeze Ray";
+            description = "Continuous temporal beam that freezes everything.";
             size = 4;
             health = 4800;
             range = 260f;
@@ -36,23 +36,19 @@ public class TimeTurret9 {
                 Items.surgeAlloy, 60
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(0f, 40f) {{
-                speed = 0f;
-                lifetime = 8f;
+            ammo(Items.surgeAlloy, new ContinuousFlameBulletType() {{
+                damage = 38f;
+                length = 240f;
                 hitEffect = ADTurretEffects.hitMedium(ADColor.timeMain);
-                despawnEffect = ADTurretEffects.trailEffect(ADColor.timeDark);
                 smokeEffect = ADTurretEffects.trailEffect(ADColor.timeDark);
                 shootEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
-                frontColor = ADColor.timeLight;
-                backColor = ADColor.timeMain;
                 pierce = true;
                 pierceCap = -1;
                 hittable = false;
                 collides = false;
                 keepVelocity = false;
-                damage = 40f;
                 status = StatusEffects.freezing;
-                statusDuration = 60f;
+                statusDuration = 90f;
             }});
         }};
     }}

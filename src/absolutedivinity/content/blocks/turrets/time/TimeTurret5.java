@@ -4,7 +4,7 @@ import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
-import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.ContinuousFlameBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -14,12 +14,12 @@ public class TimeTurret5 {
 
     public static void load() {{
         timeTurret5 = new ItemTurret("time-5") {{
-            localizedName = "Chrono Lance";
-            description = "Charged temporal beam that freezes targets.";
+            localizedName = "Chrono Beam";
+            description = "Continuous temporal beam that freezes targets.";
             size = 3;
             health = 1500;
-            range = 220f;
-            reload = 50f;
+            range = 200f;
+            reload = 8f;
             rotateSpeed = 6f;
             targetAir = true;
             targetGround = true;
@@ -33,22 +33,19 @@ public class TimeTurret5 {
                 Items.silicon, 40
             ));
             category = Category.turret;
-            ammo(Items.silicon, new BasicBulletType(10f, 35f) {{
-                width = 6f;
-                height = 12f;
-                lifetime = 23f;
+            ammo(Items.silicon, new ContinuousFlameBulletType() {{
+                damage = 30f;
+                length = 180f;
                 hitEffect = ADTurretEffects.hitMedium(ADColor.timeMain);
-                despawnEffect = ADTurretEffects.hitBig(ADColor.timeMain);
                 smokeEffect = ADTurretEffects.trailEffect(ADColor.timeDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
-                trailChance = 0.5f;
-                frontColor = ADColor.timeLight;
-                backColor = ADColor.timeMain;
+                shootEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
                 pierce = true;
-                pierceCap = 3;
-                knockback = 1.5f;
+                pierceCap = -1;
+                hittable = false;
+                collides = false;
+                keepVelocity = false;
                 status = StatusEffects.freezing;
-                statusDuration = 90f;
+                statusDuration = 60f;
             }});
         }};
     }}

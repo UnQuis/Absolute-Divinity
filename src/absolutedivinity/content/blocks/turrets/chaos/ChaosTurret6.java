@@ -3,6 +3,7 @@ package absolutedivinity.content.blocks.turrets.chaos;
 import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.LightningBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -41,6 +42,8 @@ public class ChaosTurret6 {
                 smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
                 lightColor = ADColor.chaosGlow;
                 lightOpacity = 0.6f;
+                status = StatusEffects.shocked;
+                statusDuration = 60f;
             }});
         }};
     }}

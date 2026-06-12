@@ -13,8 +13,8 @@ public class InfoTurret6 {
 
     public static void load() {{
         infoTurret6 = new ItemTurret("info-6") {{
-            localizedName = "Info Tracker";
-            description = "Launches homing missiles.";
+            localizedName = "Info Missile";
+            description = "Launches precision homing missiles.";
             size = 3;
             health = 1750;
             range = 260f;
@@ -39,7 +39,6 @@ public class InfoTurret6 {
                 lifetime = 58f;
                 hitEffect = ADTurretEffects.hitMedium(ADColor.infoMain);
                 despawnEffect = ADTurretEffects.hitBig(ADColor.infoMain);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.infoDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
                 trailChance = 0.5f;
                 frontColor = ADColor.infoLight;

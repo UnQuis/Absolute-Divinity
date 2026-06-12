@@ -14,8 +14,8 @@ public class ChaosTurret5 {
 
     public static void load() {{
         chaosTurret5 = new ItemTurret("chaos-5") {{
-            localizedName = "Chaos Barrage";
-            description = "Rapid-fires incendiary shells.";
+            localizedName = "Chaos Firestorm";
+            description = "Carpet-bombs area with incendiary shells.";
             size = 3;
             health = 1300;
             range = 230f;

@@ -4,7 +4,7 @@ import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
-import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -35,22 +35,18 @@ public class TimeTurret8 {
                 Items.thorium, 80
             ));
             category = Category.turret;
-            ammo(Items.thorium, new BasicBulletType(8f, 200f) {{
-                width = 10f;
-                height = 16f;
-                lifetime = 35f;
+            ammo(Items.thorium, new ArtilleryBulletType(8f, 180f, "shell") {{
                 hitEffect = ADTurretEffects.blastEffect(ADColor.timeMain, 60f);
                 despawnEffect = ADTurretEffects.blastEffect(ADColor.timeLight, 60f);
-                smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
-                trailChance = 0.8f;
+                width = 14f;
+                height = 14f;
+                lifetime = 35f;
+                hitShake = 10f;
+                splashDamageRadius = 60f;
+                splashDamage = 80f;
+                knockback = 5f;
                 frontColor = ADColor.timeLight;
                 backColor = ADColor.timeMain;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = 5;
-                knockback = 4f;
-                hitShake = 8f;
                 status = StatusEffects.freezing;
                 statusDuration = 240f;
             }});

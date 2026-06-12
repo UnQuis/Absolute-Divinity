@@ -5,6 +5,7 @@ import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.pattern.ShootSpread;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -15,12 +16,13 @@ public class TimeTurret1 {
     public static void load() {{
         timeTurret1 = new ItemTurret("time-1") {{
             localizedName = "Chrono Dart";
-            description = "Fires temporal darts that slow their targets.";
+            description = "Rapid-fire temporal darts that slow targets.";
             size = 1;
             health = 320;
             range = 155f;
-            reload = 38f;
+            reload = 30f;
             rotateSpeed = 9f;
+            inaccuracy = 4f;
             targetAir = true;
             targetGround = true;
             shootEffect = ADTurretEffects.shootSmall(ADColor.timeMain);
@@ -31,18 +33,21 @@ public class TimeTurret1 {
                 Items.lead, 25
             ));
             category = Category.turret;
-            ammo(Items.lead, new BasicBulletType(4f, 9f) {{
-                width = 5f;
-                height = 7f;
+            shoot = new ShootSpread() {{
+                shots = 2;
+                spread = 6f;
+            }};
+            ammo(Items.lead, new BasicBulletType(4f, 8f) {{
+                width = 4f;
+                height = 6f;
                 lifetime = 40f;
                 hitEffect = ADTurretEffects.hitSmall(ADColor.timeMain);
                 despawnEffect = ADTurretEffects.hitSmall(ADColor.timeLight);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.timeDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
                 trailChance = 0.3f;
                 frontColor = ADColor.timeLight;
                 backColor = ADColor.timeMain;
-                knockback = 0.3f;
+                knockback = 0.2f;
                 status = StatusEffects.slow;
                 statusDuration = 60f;
             }});
