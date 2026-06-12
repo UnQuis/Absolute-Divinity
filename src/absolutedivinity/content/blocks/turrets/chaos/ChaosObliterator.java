@@ -2,6 +2,7 @@ package absolutedivinity.content.blocks.turrets.chaos;
 
 import absolutedivinity.content.ADItems;
 import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADNHEffects;
 import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
 import arc.math.Interp;
@@ -37,16 +38,8 @@ public class ChaosObliterator {
             shootWarmupSpeed = 0.013f;
             inaccuracy = 8f;
             shootEffect = new MultiEffect(
-                ADTurretEffects.shootBig(ADColor.chaosMain),
-                new WaveEffect() {{
-                    sizeFrom = 0f;
-                    sizeTo = 160f;
-                    colorFrom = ADColor.chaosMain;
-                    colorTo = ADColor.chaosDark;
-                    strokeFrom = 10f;
-                    strokeTo = 0f;
-                    interp = Interp.pow5Out;
-                }}
+                ADNHEffects.instShoot,
+                ADNHEffects.crossBlast
             );
             smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
             heatColor = ADColor.chaosMain;

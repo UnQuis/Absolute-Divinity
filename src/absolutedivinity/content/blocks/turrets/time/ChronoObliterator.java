@@ -2,6 +2,7 @@ package absolutedivinity.content.blocks.turrets.time;
 
 import absolutedivinity.content.ADItems;
 import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADNHEffects;
 import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
@@ -42,16 +43,8 @@ public class ChronoObliterator {
             minWarmup = 0.88f;
             shootWarmupSpeed = 0.014f;
             shootEffect = new MultiEffect(
-                ADTurretEffects.shootBig(ADColor.timeMain),
-                new WaveEffect() {{
-                    sizeFrom = 0f;
-                    sizeTo = 140f;
-                    colorFrom = ADColor.timeMain;
-                    colorTo = ADColor.timeDark;
-                    strokeFrom = 8f;
-                    strokeTo = 0f;
-                    interp = Interp.pow5Out;
-                }}
+                ADNHEffects.instShoot,
+                ADNHEffects.crossBlast
             );
             smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
             heatColor = ADColor.timeMain;

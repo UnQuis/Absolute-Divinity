@@ -173,5 +173,60 @@ public class ADNHEffects {
         Angles.randLenVectors(e.id, 6, 2f + e.rotation * 5f * e.finpow(), (x, y) -> {
             Fill.circle(e.x + x / 2f, e.y + y / 2f, e.fout(Interp.pow3Out) * e.rotation);
         });
+    }),
+
+    hyperExplode = new Effect(30f, 80f, e -> {
+        Draw.color(e.color, Color.white, e.fout() * 0.75f);
+        Lines.stroke(1.3f * e.fslope());
+        Lines.circle(e.x, e.y, 45f * e.fin());
+        randLenVectors(e.id + 1, 5, 8f + 60 * e.finpow(), (x, y) -> Fill.circle(e.x + x, e.y + y, e.fout() * 7f));
+        Drawf.light(e.x, e.y, e.fout() * 70f, e.color, 0.7f);
+    }),
+
+    hyperCloud = new Effect(140f, 400f, e -> {
+        randLenVectors(e.id, 20, e.finpow() * 160f, (x, y) -> {
+            float size = e.fout() * 15f;
+            Draw.color(e.color, Color.lightGray, e.fin());
+            Fill.circle(e.x + x, e.y + y, size / 2f);
+            Drawf.light(e.x + x, e.y + y, e.fout() * size, e.color, 0.7f);
+        });
+    }),
+
+    hyperBlast = new Effect(50f, 1600f, e -> {
+        float rad = e.rotation;
+        rand.setSeed(e.id);
+        Draw.color(Color.white, e.color, e.fin() / 5 + 0.6f);
+        float circleRad = e.fin(Interp.circleOut) * rad;
+        Lines.stroke(12 * e.fout());
+        Lines.circle(e.x, e.y, circleRad);
+        e.scaled(120f, i -> {
+            Fill.circle(i.x, i.y, rad * i.fout() / 2);
+            Lines.stroke(18 * i.fout());
+            Lines.circle(i.x, i.y, i.fin(Interp.circleOut) * rad * 1.2f);
+            Angles.randLenVectors(i.id, (int)(rad / 4), rad / 6, rad * (1 + i.fout(Interp.circleOut)) / 2f, (x, y) -> {
+                float angle = Mathf.angle(x, y);
+                float width = i.foutpowdown() * rand.random(rad / 8, rad / 10);
+                float length = rand.random(rad / 2, rad) * i.fout(Interp.circleOut);
+                Draw.color(i.color);
+                Drawf.tri(i.x + x, i.y + y, width, rad / 8 * i.fout(Interp.circleOut), angle - 180);
+                Drawf.tri(i.x + x, i.y + y, width, length, angle);
+                Draw.color(Color.black);
+                width *= i.fout();
+                Drawf.tri(i.x + x, i.y + y, width / 2, rad / 8 * i.fout(Interp.circleOut) * 0.9f * i.fout(), angle - 180);
+                Drawf.tri(i.x + x, i.y + y, width / 2, length / 1.5f * i.fout(), angle);
+            });
+            Draw.color(Color.black);
+            Fill.circle(i.x, i.y, rad * i.fout() * 0.375f);
+        });
+        Drawf.light(e.x, e.y, rad * e.fout() * 4f * Mathf.curve(e.fin(), 0f, 0.05f), e.color, 0.7f);
+    }).layer(Layer.effect + 0.001f),
+
+    blast = new Effect(40f, 600f, e -> {
+        rand.setSeed(e.id);
+        Draw.color(e.color);
+        stroke(e.fout() * 3.7f);
+        Lines.circle(e.x, e.y, e.fin(Interp.pow3Out) * 240 + 15);
+        randLenVectors(e.id, 12, 8 + 60 * e.fin(Interp.pow5Out), (x, y) -> Fill.circle(e.x + x, e.y + y, e.fout(Interp.circleIn) * (6f + rand.random(6f))));
+        Drawf.light(e.x, e.y, e.fout() * 320f, e.color, 0.7f);
     });
 }

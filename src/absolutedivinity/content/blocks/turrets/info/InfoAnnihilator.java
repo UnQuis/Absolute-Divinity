@@ -2,6 +2,7 @@ package absolutedivinity.content.blocks.turrets.info;
 
 import absolutedivinity.content.ADItems;
 import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADNHEffects;
 import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
 import arc.math.Interp;
@@ -35,16 +36,8 @@ public class InfoAnnihilator {
             minWarmup = 0.9f;
             shootWarmupSpeed = 0.012f;
             shootEffect = new MultiEffect(
-                ADTurretEffects.shootBig(ADColor.infoMain),
-                new WaveEffect() {{
-                    sizeFrom = 0f;
-                    sizeTo = 150f;
-                    colorFrom = ADColor.infoMain;
-                    colorTo = ADColor.infoDark;
-                    strokeFrom = 8f;
-                    strokeTo = 0f;
-                    interp = Interp.pow5Out;
-                }}
+                ADNHEffects.instShoot,
+                ADNHEffects.crossBlast
             );
             smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
             heatColor = ADColor.infoMain;

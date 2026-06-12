@@ -2,6 +2,7 @@ package absolutedivinity.content.blocks.turrets.abyss;
 
 import absolutedivinity.content.ADItems;
 import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADNHEffects;
 import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
@@ -42,16 +43,8 @@ public class AbyssAnnihilator {
             minWarmup = 0.88f;
             shootWarmupSpeed = 0.015f;
             shootEffect = new MultiEffect(
-                ADTurretEffects.shootBig(ADColor.abyssMain),
-                new WaveEffect() {{
-                    sizeFrom = 0f;
-                    sizeTo = 150f;
-                    colorFrom = ADColor.abyssMain;
-                    colorTo = ADColor.abyssDark;
-                    strokeFrom = 8f;
-                    strokeTo = 0f;
-                    interp = Interp.pow5Out;
-                }}
+                ADNHEffects.instShoot,
+                ADNHEffects.crossBlast
             );
             smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
             heatColor = ADColor.abyssMain;

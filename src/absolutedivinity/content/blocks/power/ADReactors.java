@@ -1,12 +1,15 @@
 package absolutedivinity.content.blocks.power;
 
+import absolutedivinity.content.ADNHEffects;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
 import arc.math.Angles;
-import mindustry.content.Fx;
+import arc.math.Interp;
+import arc.math.Mathf;
 import mindustry.content.Items;
+import mindustry.entities.Damage;
 import mindustry.entities.Effect;
 import mindustry.gen.Sounds;
 import mindustry.graphics.Drawf;
@@ -33,12 +36,7 @@ public class ADReactors {
             hasItems = true;
             hasLiquids = true;
             liquidCapacity = 30f;
-            explodeEffect = new Effect(30f, e -> {
-                Draw.color(Color.orange, Color.red, e.fin());
-                Lines.stroke(3f * e.fout());
-                Lines.circle(e.x, e.y, e.fin() * 40f);
-                Angles.randLenVectors(e.id, 8, 30f * e.fin(), (x, y) -> Fill.circle(e.x + x, e.y + y, 3f * e.fout()));
-            });
+            explodeEffect = ADNHEffects.hyperExplode;
             explodeSound = Sounds.explosion;
             requirements(Category.power, ItemStack.with(
                 Items.copper, 100,
@@ -58,11 +56,15 @@ public class ADReactors {
             hasItems = true;
             hasLiquids = true;
             liquidCapacity = 60f;
-            explodeEffect = new Effect(50f, e -> {
-                Draw.color(Color.yellow, Color.red, e.fin());
-                Lines.stroke(5f * e.fout());
+            explodeEffect = new Effect(50f, 160f, e -> {
+                Draw.color(e.color, Color.white, e.fout() * 0.75f);
+                Lines.stroke(2f * e.fout());
                 Lines.circle(e.x, e.y, e.fin() * 80f);
-                Angles.randLenVectors(e.id, 16, 60f * e.fin(), (x, y) -> Fill.circle(e.x + x, e.y + y, 5f * e.fout()));
+                Angles.randLenVectors(e.id, 12, 60f * e.finpow(), (x, y) -> Fill.circle(e.x + x, e.y + y, e.fout() * 6f));
+                e.scaled(20f, i -> {
+                    Lines.stroke(3f * i.fout());
+                    Lines.circle(i.x, i.y, 3f + i.finpow() * 60f);
+                });
                 Drawf.light(e.x, e.y, e.fout() * 120f, Color.orange, 0.8f);
             });
             explodeSound = Sounds.explosion;
@@ -85,18 +87,7 @@ public class ADReactors {
             hasItems = true;
             hasLiquids = true;
             liquidCapacity = 120f;
-            explodeEffect = new Effect(80f, 200f, e -> {
-                Draw.color(Color.yellow, Color.white, e.fin());
-                Lines.stroke(8f * e.fout());
-                Lines.circle(e.x, e.y, e.fin() * 150f);
-                Angles.randLenVectors(e.id, 24, 120f * e.fin(), (x, y) -> Fill.circle(e.x + x, e.y + y, 7f * e.fout()));
-                for(int i = 0; i < 6; i++){
-                    float ang = 360f / 6 * i;
-                    float len = e.fin() * 120f;
-                    Lines.lineAngle(e.x, e.y, ang, len);
-                }
-                Drawf.light(e.x, e.y, e.fout() * 250f, Color.yellow, 0.9f);
-            });
+            explodeEffect = ADNHEffects.hyperBlast;
             explodeSound = Sounds.explosion;
             requirements(Category.power, ItemStack.with(
                 Items.copper, 800,
