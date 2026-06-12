@@ -13,8 +13,8 @@ public class AbyssTurret2 {
 
     public static void load() {{
         abyssTurret2 = new ItemTurret("abyss-2") {{
-            localizedName = "Abyss Dart";
-            description = "Fires piercing darts that cut through light armor.";
+            localizedName = "Abyss Fang";
+            description = "Fires piercing bolts that cut through armor.";
             size = 1;
             health = 380;
             range = 170f;
@@ -30,34 +30,34 @@ public class AbyssTurret2 {
                 Items.lead, 30
             ));
             category = Category.turret;
-            ammo(Items.lead, new BasicBulletType(5f, 12f) {{
+            ammo(Items.graphite, new BasicBulletType(5.5f, 14f) {{
                 width = 4f;
-                height = 9f;
-                lifetime = 35f;
+                height = 8f;
+                lifetime = 32f;
                 hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
                 despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
-                trailChance = 0.3f;
+                trailChance = 0.4f;
                 frontColor = ADColor.abyssLight;
                 backColor = ADColor.abyssMain;
                 pierce = true;
                 pierceCap = 2;
+                pierceArmor = true;
                 knockback = 0.2f;
             }});
-            ammo(Items.graphite, new BasicBulletType(5.5f, 20f) {{
+            ammo(Items.titanium, new BasicBulletType(6f, 22f) {{
                 width = 5f;
                 height = 10f;
-                lifetime = 35f;
+                lifetime = 30f;
                 hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
                 despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
-                trailChance = 0.3f;
+                trailChance = 0.4f;
                 frontColor = ADColor.abyssLight;
                 backColor = ADColor.abyssMain;
                 pierce = true;
                 pierceCap = 3;
+                pierceArmor = true;
                 knockback = 0.3f;
             }});
         }};

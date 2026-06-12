@@ -3,7 +3,8 @@ package absolutedivinity.content.blocks.turrets.abyss;
 import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
-import mindustry.entities.bullet.BasicBulletType;
+import mindustry.content.StatusEffects;
+import mindustry.entities.bullet.ContinuousFlameBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -14,7 +15,7 @@ public class AbyssTurret9 {
     public static void load() {{
         abyssTurret9 = new ItemTurret("abyss-9") {{
             localizedName = "Abyss Beam";
-            description = "Fires a devastating continuous beam.";
+            description = "Fires a continuous corrosive beam that melts through everything.";
             size = 4;
             health = 4000;
             range = 280f;
@@ -35,21 +36,19 @@ public class AbyssTurret9 {
                 Items.surgeAlloy, 40
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(0f, 55f) {{
-                speed = 0f;
-                lifetime = 8f;
+            ammo(Items.surgeAlloy, new ContinuousFlameBulletType() {{
+                damage = 45f;
+                length = 250f;
                 hitEffect = ADTurretEffects.hitMedium(ADColor.abyssMain);
-                despawnEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
                 smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
                 shootEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
-                frontColor = ADColor.abyssLight;
-                backColor = ADColor.abyssMain;
                 pierce = true;
                 pierceCap = -1;
                 hittable = false;
                 collides = false;
                 keepVelocity = false;
-                damage = 55f;
+                status = StatusEffects.melting;
+                statusDuration = 60f;
             }});
         }};
     }}

@@ -3,6 +3,8 @@ package absolutedivinity.content.blocks.turrets.abyss;
 import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
+import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.MissileBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -13,33 +15,32 @@ public class AbyssTurret6 {
 
     public static void load() {{
         abyssTurret6 = new ItemTurret("abyss-6") {{
-            localizedName = "Abyss Repeater";
-            description = "Fires homing missiles that track and pursue their targets.";
+            localizedName = "Abyss Tracker";
+            description = "Launches homing missiles that seek targets.";
             size = 3;
-            health = 1400;
+            health = 1600;
             range = 250f;
-            reload = 60f;
-            rotateSpeed = 6f;
+            reload = 55f;
+            rotateSpeed = 5f;
             targetAir = true;
             targetGround = true;
             shootEffect = ADTurretEffects.shootMedium(ADColor.abyssMain);
             smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
             heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
-                Items.copper, 200,
-                Items.lead, 150,
-                Items.graphite, 70,
-                Items.silicon, 50,
-                Items.titanium, 30
+                Items.copper, 280,
+                Items.lead, 200,
+                Items.graphite, 80,
+                Items.silicon, 60,
+                Items.titanium, 40
             ));
             category = Category.turret;
-            ammo(Items.titanium, new MissileBulletType(4f, 28f) {{
+            ammo(Items.titanium, new MissileBulletType(4f, 30f) {{
                 width = 8f;
                 height = 8f;
                 lifetime = 60f;
                 hitEffect = ADTurretEffects.hitMedium(ADColor.abyssMain);
                 despawnEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
                 trailChance = 0.5f;
                 frontColor = ADColor.abyssLight;
@@ -47,16 +48,15 @@ public class AbyssTurret6 {
                 homingPower = 0.08f;
                 homingRange = 120f;
                 knockback = 1f;
-                splashDamageRadius = 16f;
-                splashDamage = 10f;
+                splashDamageRadius = 18f;
+                splashDamage = 12f;
             }});
-            ammo(Items.phaseFabric, new MissileBulletType(5f, 45f) {{
+            ammo(Items.phaseFabric, new MissileBulletType(5f, 50f) {{
                 width = 9f;
                 height = 9f;
                 lifetime = 65f;
                 hitEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
                 despawnEffect = ADTurretEffects.blastEffect(ADColor.abyssMain, 30f);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
                 trailChance = 0.5f;
                 frontColor = ADColor.abyssLight;
@@ -67,7 +67,7 @@ public class AbyssTurret6 {
                 splashDamageRadius = 24f;
                 splashDamage = 20f;
                 lightning = 2;
-                lightningDamage = 8f;
+                lightningDamage = 10f;
                 lightningLength = 8;
                 lightningColor = ADColor.abyssGlow;
             }});

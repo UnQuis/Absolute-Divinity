@@ -14,15 +14,15 @@ public class AbyssTurret4 {
 
     public static void load() {{
         abyssTurret4 = new ItemTurret("abyss-4") {{
-            localizedName = "Abyss Mortar";
-            description = "Hurls arcing explosive shells that rain down on groups of enemies.";
+            localizedName = "Abyss Scatter";
+            description = "Fires a shotgun-like burst of corrosive pellets.";
             size = 2;
             health = 850;
-            range = 260f;
-            reload = 90f;
-            rotateSpeed = 4f;
-            shootCone = 20f;
-            targetAir = false;
+            range = 190f;
+            reload = 60f;
+            rotateSpeed = 6f;
+            inaccuracy = 12f;
+            targetAir = true;
             targetGround = true;
             shootEffect = ADTurretEffects.shootMedium(ADColor.abyssMain);
             smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
@@ -30,37 +30,40 @@ public class AbyssTurret4 {
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 100,
                 Items.lead, 80,
-                Items.graphite, 40,
-                Items.silicon, 25
+                Items.graphite, 30
             ));
             category = Category.turret;
-            ammo(Items.graphite, new ArtilleryBulletType(3f, 40f, "shell") {{
-                hitEffect = ADTurretEffects.hitMedium(ADColor.abyssMain);
-                despawnEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
-                width = 10f;
-                height = 10f;
-                lifetime = 80f;
-                hitShake = 4f;
-                splashDamageRadius = 30f;
-                splashDamage = 20f;
-                knockback = 1.5f;
+            shoot = new mindustry.entities.pattern.ShootSpread() {{
+                shots = 6;
+                spread = 15f;
+            }};
+            ammo(Items.graphite, new ArtilleryBulletType(3f, 20f, "shell") {{
+                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
+                width = 6f;
+                height = 6f;
+                lifetime = 40f;
+                hitShake = 2f;
+                splashDamageRadius = 16f;
+                splashDamage = 12f;
+                knockback = 1f;
                 frontColor = ADColor.abyssLight;
                 backColor = ADColor.abyssMain;
             }});
-            ammo(Items.pyratite, new ArtilleryBulletType(3f, 55f, "shell") {{
-                hitEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
-                despawnEffect = ADTurretEffects.blastEffect(ADColor.abyssMain, 40f);
-                width = 10f;
-                height = 10f;
-                lifetime = 80f;
-                hitShake = 5f;
-                splashDamageRadius = 40f;
-                splashDamage = 30f;
-                knockback = 2f;
+            ammo(Items.pyratite, new ArtilleryBulletType(3.5f, 28f, "shell") {{
+                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
+                width = 7f;
+                height = 7f;
+                lifetime = 40f;
+                hitShake = 2f;
+                splashDamageRadius = 20f;
+                splashDamage = 16f;
+                knockback = 1.2f;
                 frontColor = ADColor.abyssLight;
                 backColor = ADColor.abyssMain;
                 status = StatusEffects.burning;
-                statusDuration = 120f;
+                statusDuration = 60f;
             }});
         }};
     }}

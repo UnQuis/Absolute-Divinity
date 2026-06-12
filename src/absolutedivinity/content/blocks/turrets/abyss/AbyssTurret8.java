@@ -14,7 +14,7 @@ public class AbyssTurret8 {
 
     public static void load() {{
         abyssTurret8 = new ItemTurret("abyss-8") {{
-            localizedName = "Abyss Cannon";
+            localizedName = "Abyss Howitzer";
             description = "Heavy siege cannon with massive splash damage.";
             size = 4;
             health = 3200;

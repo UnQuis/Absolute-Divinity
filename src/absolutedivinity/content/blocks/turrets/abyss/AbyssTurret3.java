@@ -4,7 +4,7 @@ import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
-import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -14,17 +14,18 @@ public class AbyssTurret3 {
 
     public static void load() {{
         abyssTurret3 = new ItemTurret("abyss-3") {{
-            localizedName = "Abyss Fang";
-            description = "Rapidly spits acidic globs that slow targets on hit.";
+            localizedName = "Abyss Mortar";
+            description = "Launches arcing shells that rain down on enemies.";
             size = 2;
             health = 720;
-            range = 190f;
-            reload = 18f;
-            rotateSpeed = 9f;
+            range = 220f;
+            reload = 80f;
+            rotateSpeed = 4f;
+            shootCone = 20f;
             targetAir = false;
             targetGround = true;
-            shootEffect = ADTurretEffects.shootSmall(ADColor.abyssMain);
-            smokeEffect = ADTurretEffects.shootSmall(ADColor.abyssDark);
+            shootEffect = ADTurretEffects.shootMedium(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
             heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 80,
@@ -32,37 +33,33 @@ public class AbyssTurret3 {
                 Items.graphite, 20
             ));
             category = Category.turret;
-            ammo(Items.graphite, new BasicBulletType(6f, 18f) {{
-                width = 6f;
-                height = 8f;
-                lifetime = 32f;
-                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
-                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
-                trailChance = 0.3f;
+            ammo(Items.graphite, new ArtilleryBulletType(3f, 35f, "shell") {{
+                hitEffect = ADTurretEffects.hitMedium(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
+                width = 10f;
+                height = 10f;
+                lifetime = 80f;
+                hitShake = 4f;
+                splashDamageRadius = 30f;
+                splashDamage = 25f;
+                knockback = 1.5f;
                 frontColor = ADColor.abyssLight;
                 backColor = ADColor.abyssMain;
-                knockback = 0.5f;
-                status = StatusEffects.slow;
-                statusDuration = 60f;
             }});
-            ammo(Items.silicon, new BasicBulletType(7f, 25f) {{
-                width = 6f;
-                height = 8f;
-                lifetime = 30f;
-                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
-                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
-                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
-                trailChance = 0.3f;
+            ammo(Items.pyratite, new ArtilleryBulletType(3f, 45f, "shell") {{
+                hitEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.abyssMain, 40f);
+                width = 10f;
+                height = 10f;
+                lifetime = 80f;
+                hitShake = 5f;
+                splashDamageRadius = 35f;
+                splashDamage = 30f;
+                knockback = 2f;
                 frontColor = ADColor.abyssLight;
                 backColor = ADColor.abyssMain;
-                knockback = 0.5f;
-                pierce = true;
-                pierceCap = 2;
-                status = StatusEffects.slow;
-                statusDuration = 60f;
+                status = StatusEffects.burning;
+                statusDuration = 120f;
             }});
         }};
     }}
