@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks.turrets.order;
 
 import absolutedivinity.content.ADEffects;
+import absolutedivinity.content.ADNHEffects;
 import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.content.Fx;
@@ -32,40 +33,9 @@ public class OrderAnnihilator {
             minWarmup = 0.92f;
             shootWarmupSpeed = 0.012f;
             shootEffect = new MultiEffect(
-                ADEffects.orderShootBig,
-                new ParticleEffect() {{
-                    sizeFrom = 12f;
-                    sizeTo = 2f;
-                    colorFrom = Color.white;
-                    colorTo = Color.valueOf("e0e0e0");
-                    length = -200f;
-                    baseLength = 200f;
-                    lifetime = 90f;
-                    particles = 60;
-                    interp = Interp.exp5;
-                    sizeInterp = Interp.pow5Out;
-                }},
-                new ParticleEffect() {{
-                    sizeFrom = 12f;
-                    sizeTo = 2f;
-                    colorFrom = Color.white;
-                    colorTo = Color.valueOf("e0e0e0");
-                    length = 200f;
-                    baseLength = -200f;
-                    lifetime = 90f;
-                    particles = 60;
-                    interp = Interp.exp5;
-                    sizeInterp = Interp.pow5Out;
-                }},
-                new WaveEffect() {{
-                    sizeFrom = 0f;
-                    sizeTo = 180f;
-                    colorFrom = Color.white;
-                    colorTo = Color.valueOf("e0e0e0");
-                    strokeFrom = 8f;
-                    strokeTo = 0f;
-                    interp = Interp.pow5Out;
-                }}
+                ADNHEffects.instShoot,
+                ADNHEffects.crossBlast,
+                ADNHEffects.chargeEffect
             );
             heatColor = Color.white;
             consumePower(180f);
@@ -101,52 +71,13 @@ public class OrderAnnihilator {
                 lightningCone = 360f;
                 lightningColor = Color.white;
                 hitEffect = new MultiEffect(
-                    ADEffects.orderAnnihilateHit,
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 240f;
-                        colorFrom = Color.white;
-                        colorTo = Color.valueOf("e0e0e0");
-                        strokeFrom = 8f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 12f;
-                        sizeTo = 2f;
-                        colorFrom = Color.white;
-                        colorTo = Color.valueOf("e0e0e0");
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 80f;
-                        particles = 60;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
+                    ADNHEffects.instHit,
+                    ADNHEffects.crossBlast45,
+                    ADNHEffects.hitSparkHuge
                 );
                 despawnEffect = new MultiEffect(
-                    ADEffects.orderAnnihilateBlast,
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 450f;
-                        colorFrom = Color.white;
-                        colorTo = Color.valueOf("e0e0e0");
-                        strokeFrom = 16f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 16f;
-                        sizeTo = 3f;
-                        colorFrom = Color.white;
-                        colorTo = Color.valueOf("e0e0e0");
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 100f;
-                        particles = 100;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
+                    ADNHEffects.instBomb,
+                    ADNHEffects.circleOut
                 );
                 shootEffect = Fx.none;
                 smokeEffect = Fx.shootSmokeTitan;
@@ -170,52 +101,12 @@ public class OrderAnnihilator {
                     splashDamageRadius = 90f;
                     hitShake = 20f;
                     hitEffect = new MultiEffect(
-                        ADEffects.orderHit,
-                        new WaveEffect() {{
-                            sizeFrom = 0f;
-                            sizeTo = 120f;
-                            colorFrom = Color.white;
-                            colorTo = Color.valueOf("e0e0e0");
-                            strokeFrom = 6f;
-                            strokeTo = 0f;
-                            interp = Interp.pow5Out;
-                        }},
-                        new ParticleEffect() {{
-                            sizeFrom = 8f;
-                            sizeTo = 2f;
-                            colorFrom = Color.white;
-                            colorTo = Color.valueOf("e0e0e0");
-                            length = 0f;
-                            baseLength = 0f;
-                            lifetime = 60f;
-                            particles = 30;
-                            interp = Interp.exp5;
-                            sizeInterp = Interp.pow5Out;
-                        }}
+                        ADNHEffects.hitSparkLarge,
+                        ADNHEffects.circleOut
                     );
                     despawnEffect = new MultiEffect(
-                        ADEffects.orderHit,
-                        new WaveEffect() {{
-                            sizeFrom = 0f;
-                            sizeTo = 100f;
-                            colorFrom = Color.white;
-                            colorTo = Color.valueOf("e0e0e0");
-                            strokeFrom = 4f;
-                            strokeTo = 0f;
-                            interp = Interp.pow5Out;
-                        }},
-                        new ParticleEffect() {{
-                            sizeFrom = 6f;
-                            sizeTo = 1f;
-                            colorFrom = Color.white;
-                            colorTo = Color.valueOf("e0e0e0");
-                            length = 0f;
-                            baseLength = 0f;
-                            lifetime = 50f;
-                            particles = 20;
-                            interp = Interp.exp5;
-                            sizeInterp = Interp.pow5Out;
-                        }}
+                        ADNHEffects.hitSparkLarge,
+                        ADNHEffects.circleOut
                     );
                     trailEffect = ADEffects.orderTrail;
                     trailChance = 1f;

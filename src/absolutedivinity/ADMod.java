@@ -19,6 +19,7 @@ import absolutedivinity.content.ADUnits;
 import absolutedivinity.content.ADWeapons;
 import absolutedivinity.content.ADWeathers;
 import absolutedivinity.content.blocks.ADCores;
+import absolutedivinity.content.blocks.power.ADReactors;
 import absolutedivinity.core.ADGameLogic;
 import absolutedivinity.core.ADSettings;
 import arc.Events;
@@ -43,6 +44,7 @@ public class ADMod extends Mod {
         ADEffectBlocks.load();
         ADUnits.load();
         ADCores.load();
+        ADReactors.load();
         ADEnvironment.load();
         ADWeathers.load();
         ADPlanets.load();
