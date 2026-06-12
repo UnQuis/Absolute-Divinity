@@ -9,7 +9,7 @@ import absolutedivinity.content.blocks.turrets.abyss.AbyssTurret6;
 import absolutedivinity.content.blocks.turrets.abyss.AbyssTurret7;
 import absolutedivinity.content.blocks.turrets.abyss.AbyssTurret8;
 import absolutedivinity.content.blocks.turrets.abyss.AbyssTurret9;
-import absolutedivinity.content.blocks.turrets.abyss.AbyssTurret10;
+import absolutedivinity.content.blocks.turrets.abyss.AbyssAnnihilator;
 
 public class ADAbyssTurrets {
     public static void load(){
@@ -22,6 +22,6 @@ public class ADAbyssTurrets {
         AbyssTurret7.load();
         AbyssTurret8.load();
         AbyssTurret9.load();
-        AbyssTurret10.load();
+        AbyssAnnihilator.load();
     }
 }

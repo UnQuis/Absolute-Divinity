@@ -105,7 +105,7 @@ public class ADTechTree {
         addItem(AbyssTurret6.abyssTurret6, AbyssTurret7.abyssTurret7);
         addItem(AbyssTurret7.abyssTurret7, AbyssTurret8.abyssTurret8);
         addItem(AbyssTurret8.abyssTurret8, AbyssTurret9.abyssTurret9);
-        addItem(AbyssTurret9.abyssTurret9, AbyssTurret10.abyssTurret10);
+        addItem(AbyssTurret9.abyssTurret9, AbyssAnnihilator.abyssAnnihilator);
 
         // Chaos turrets
         addItem(Blocks.coreShard, ChaosTurret1.chaosTurret1);
@@ -117,7 +117,7 @@ public class ADTechTree {
         addItem(ChaosTurret6.chaosTurret6, ChaosTurret7.chaosTurret7);
         addItem(ChaosTurret7.chaosTurret7, ChaosTurret8.chaosTurret8);
         addItem(ChaosTurret8.chaosTurret8, ChaosTurret9.chaosTurret9);
-        addItem(ChaosTurret9.chaosTurret9, ChaosTurret10.chaosTurret10);
+        addItem(ChaosTurret9.chaosTurret9, ChaosObliterator.chaosObliterator);
 
         // Time turrets
         addItem(Blocks.coreShard, TimeTurret1.timeTurret1);
@@ -129,7 +129,7 @@ public class ADTechTree {
         addItem(TimeTurret6.timeTurret6, TimeTurret7.timeTurret7);
         addItem(TimeTurret7.timeTurret7, TimeTurret8.timeTurret8);
         addItem(TimeTurret8.timeTurret8, TimeTurret9.timeTurret9);
-        addItem(TimeTurret9.timeTurret9, TimeTurret10.timeTurret10);
+        addItem(TimeTurret9.timeTurret9, ChronoObliterator.chronoObliterator);
 
         // Info turrets
         addItem(Blocks.coreShard, InfoTurret1.infoTurret1);
@@ -141,7 +141,7 @@ public class ADTechTree {
         addItem(InfoTurret6.infoTurret6, InfoTurret7.infoTurret7);
         addItem(InfoTurret7.infoTurret7, InfoTurret8.infoTurret8);
         addItem(InfoTurret8.infoTurret8, InfoTurret9.infoTurret9);
-        addItem(InfoTurret9.infoTurret9, InfoTurret10.infoTurret10);
+        addItem(InfoTurret9.infoTurret9, InfoAnnihilator.infoAnnihilator);
     }
 
     private static void addBlock(UnlockableContent parent, UnlockableContent child, UnlockableContent... requirements) {

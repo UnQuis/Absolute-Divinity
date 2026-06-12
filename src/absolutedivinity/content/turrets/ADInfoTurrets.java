@@ -9,7 +9,7 @@ import absolutedivinity.content.blocks.turrets.info.InfoTurret6;
 import absolutedivinity.content.blocks.turrets.info.InfoTurret7;
 import absolutedivinity.content.blocks.turrets.info.InfoTurret8;
 import absolutedivinity.content.blocks.turrets.info.InfoTurret9;
-import absolutedivinity.content.blocks.turrets.info.InfoTurret10;
+import absolutedivinity.content.blocks.turrets.info.InfoAnnihilator;
 
 public class ADInfoTurrets {
     public static void load(){
@@ -22,6 +22,6 @@ public class ADInfoTurrets {
         InfoTurret7.load();
         InfoTurret8.load();
         InfoTurret9.load();
-        InfoTurret10.load();
+        InfoAnnihilator.load();
     }
 }

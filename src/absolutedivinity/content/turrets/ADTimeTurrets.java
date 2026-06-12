@@ -9,7 +9,7 @@ import absolutedivinity.content.blocks.turrets.time.TimeTurret6;
 import absolutedivinity.content.blocks.turrets.time.TimeTurret7;
 import absolutedivinity.content.blocks.turrets.time.TimeTurret8;
 import absolutedivinity.content.blocks.turrets.time.TimeTurret9;
-import absolutedivinity.content.blocks.turrets.time.TimeTurret10;
+import absolutedivinity.content.blocks.turrets.time.ChronoObliterator;
 
 public class ADTimeTurrets {
     public static void load(){
@@ -22,6 +22,6 @@ public class ADTimeTurrets {
         TimeTurret7.load();
         TimeTurret8.load();
         TimeTurret9.load();
-        TimeTurret10.load();
+        ChronoObliterator.load();
     }
 }

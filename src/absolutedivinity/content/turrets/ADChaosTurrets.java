@@ -9,7 +9,7 @@ import absolutedivinity.content.blocks.turrets.chaos.ChaosTurret6;
 import absolutedivinity.content.blocks.turrets.chaos.ChaosTurret7;
 import absolutedivinity.content.blocks.turrets.chaos.ChaosTurret8;
 import absolutedivinity.content.blocks.turrets.chaos.ChaosTurret9;
-import absolutedivinity.content.blocks.turrets.chaos.ChaosTurret10;
+import absolutedivinity.content.blocks.turrets.chaos.ChaosObliterator;
 
 public class ADChaosTurrets {
     public static void load(){
@@ -22,6 +22,6 @@ public class ADChaosTurrets {
         ChaosTurret7.load();
         ChaosTurret8.load();
         ChaosTurret9.load();
-        ChaosTurret10.load();
+        ChaosObliterator.load();
     }
 }
