@@ -15,7 +15,6 @@ public class ADItems {
         bioAlloy,
         hardenedBioAlloy,
         cryoSteel,
-        reactiveRod,
         ferroamalgam,
         funnyMetal,
         mythril,

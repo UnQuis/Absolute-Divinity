@@ -1,6 +1,11 @@
 package absolutedivinity.content.blocks.turrets.time;
 
+import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.content.StatusEffects;
+import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.type.Category;
+import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 
 public class TimeTurret3 {
@@ -8,16 +13,39 @@ public class TimeTurret3 {
 
     public static void load() {{
         timeTurret3 = new ItemTurret("time-3") {{
-            localizedName = "Time Turret 3";
-            description = "[orange]Time faction[] turret. Not yet implemented.";
+            localizedName = "Chrono Mortar";
+            description = "Launches freezing shells that create zones of temporal distortion.";
             size = 2;
-            health = 500;
-            reload = 30f;
-            range = 200f;
-            rotateSpeed = 5f;
-            targetAir = true;
+            health = 740;
+            range = 260f;
+            reload = 88f;
+            rotateSpeed = 4f;
+            shootCone = 18f;
+            targetAir = false;
             targetGround = true;
+            shootEffect = Fx.shootBig;
+            smokeEffect = Fx.shootBigSmoke;
+            requirements(Category.turret, ItemStack.with(
+                Items.copper, 85,
+                Items.lead, 65,
+                Items.graphite, 25
+            ));
             category = Category.turret;
+            ammo(Items.graphite, new ArtilleryBulletType(3f, 30f, "shell") {{
+                hitEffect = Fx.blastExplosion;
+                despawnEffect = Fx.blastExplosion;
+                width = 10f;
+                height = 10f;
+                lifetime = 88f;
+                hitShake = 3f;
+                splashDamageRadius = 30f;
+                splashDamage = 18f;
+                knockback = 1f;
+                frontColor = Items.graphite.color;
+                backColor = Items.graphite.color;
+                status = StatusEffects.slow;
+                statusDuration = 120f;
+            }});
         }};
     }}
 }

@@ -1,6 +1,12 @@
 package absolutedivinity.content.blocks.turrets.time;
 
+import arc.graphics.Color;
+import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.content.StatusEffects;
+import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
+import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 
 public class TimeTurret9 {
@@ -8,16 +14,45 @@ public class TimeTurret9 {
 
     public static void load() {{
         timeTurret9 = new ItemTurret("time-9") {{
-            localizedName = "Time Turret 9";
-            description = "[orange]Time faction[] turret. Not yet implemented.";
-            size = 2;
-            health = 500;
-            reload = 30f;
-            range = 200f;
-            rotateSpeed = 5f;
+            localizedName = "Chrono Beam";
+            description = "Fires a continuous temporal beam that slows and damages everything it touches.";
+            size = 4;
+            health = 4800;
+            range = 260f;
+            reload = 6f;
+            rotateSpeed = 4f;
             targetAir = true;
             targetGround = true;
+            shootEffect = Fx.shootBig;
+            smokeEffect = Fx.shootBigSmoke;
+            requirements(Category.turret, ItemStack.with(
+                Items.copper, 1000,
+                Items.lead, 800,
+                Items.graphite, 280,
+                Items.silicon, 200,
+                Items.titanium, 160,
+                Items.thorium, 110,
+                Items.surgeAlloy, 60
+            ));
             category = Category.turret;
+            ammo(Items.surgeAlloy, new BasicBulletType(0f, 40f) {{
+                speed = 0f;
+                lifetime = 8f;
+                hitEffect = Fx.hitMeltdown;
+                despawnEffect = Fx.none;
+                smokeEffect = Fx.none;
+                shootEffect = Fx.none;
+                frontColor = Color.valueOf("88ccff");
+                backColor = Color.valueOf("4488aa");
+                pierce = true;
+                pierceCap = -1;
+                hittable = false;
+                collides = false;
+                keepVelocity = false;
+                damage = 40f;
+                status = StatusEffects.freezing;
+                statusDuration = 60f;
+            }});
         }};
     }}
 }

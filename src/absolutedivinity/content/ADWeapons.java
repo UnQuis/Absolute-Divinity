@@ -1,6 +1,7 @@
 package absolutedivinity.content;
 
 import absolutedivinity.content.units.ADMissiles;
+import arc.graphics.Color;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
@@ -52,6 +53,70 @@ public class ADWeapons {
                        spin = 16;
                        layer = 95.1f; 
                     }};
+                }};
+            }};
+
+            culisetaMainRailgun = new Weapon(){{
+                x = 28;
+                y = -8;
+                shootY = 4;
+                rotate = true;
+                rotateSpeed = 2f;
+                mirror = true;
+                reload = 180f;
+                recoil = 8f;
+                shake = 4f;
+                shootCone = 15f;
+                shootSound = Sounds.shoot;
+                bullet = new BasicBulletType(20f, 350f){{
+                    sprite = "missile-large";
+                    width = 8f;
+                    height = 18f;
+                    lifetime = 30f;
+                    pierce = true;
+                    pierceArmor = true;
+                    pierceCap = 5;
+                    hitEffect = Fx.hitBulletColor;
+                    despawnEffect = Fx.shootBig;
+                    smokeEffect = Fx.shootSmokeTitan;
+                    trailEffect = Fx.artilleryTrail;
+                    trailChance = 1f;
+                    trailLength = 12;
+                    trailWidth = 2f;
+                    knockback = 3f;
+                    hitShake = 6f;
+                    backColor = Color.valueOf("a93e3e");
+                    frontColor = Color.white;
+                    mixColorFrom = Color.valueOf("ff6b6b");
+                    mixColorTo = Color.white;
+                }};
+            }};
+
+            pointDefenceMount = new Weapon(){{
+                x = 0;
+                y = 0;
+                mirror = false;
+                rotate = false;
+                alwaysShooting = true;
+                ignoreRotation = true;
+                shootCone = 360;
+                reload = 8f;
+                shootSound = Sounds.none;
+                bullet = new BasicBulletType(12f, 12f){{
+                    speed = 16f;
+                    width = 4f;
+                    height = 4f;
+                    lifetime = 12f;
+                    collidesAir = true;
+                    collidesGround = false;
+                    shootEffect = Fx.shootSmall;
+                    smokeEffect = Fx.none;
+                    hitEffect = Fx.hitBulletSmall;
+                    despawnEffect = Fx.none;
+                    backColor = Color.valueOf("ffec80");
+                    frontColor = Color.white;
+                    pierce = false;
+                    knockback = 0.5f;
                 }};
             }};
 

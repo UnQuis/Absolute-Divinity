@@ -26,6 +26,9 @@ public class CulisetaUnit {
             hitSize = 64;
             strafePenalty = 1;
             weapons.add(ADWeapons.culisetaRotor);
+            weapons.add(ADWeapons.tinyStarter);
+            weapons.add(ADWeapons.culisetaMainRailgun);
+            weapons.add(ADWeapons.pointDefenceMount);
 
             abilities.add(new SpawnDeathAbility(UnitTypes.dagger, 8, 45f));
 
