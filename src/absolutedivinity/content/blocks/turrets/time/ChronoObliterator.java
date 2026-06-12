@@ -63,10 +63,9 @@ public class ChronoObliterator {
                 Items.surgeAlloy, 1000
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(0f, 80f) {
+            ammo(Items.surgeAlloy, new BasicBulletType(4f, 80f) {
                 {
-                    speed = 0f;
-                    lifetime = 120f;
+                    lifetime = 40f;
                     hitEffect = Fx.none;
                     despawnEffect = Fx.none;
                     shootEffect = Fx.none;
@@ -131,10 +130,9 @@ public class ChronoObliterator {
                     }
                 }
             });
-            ammo(ADItems.divinite, new BasicBulletType(0f, 150f) {
+            ammo(ADItems.divinite, new BasicBulletType(5f, 150f) {
                 {
-                    speed = 0f;
-                    lifetime = 150f;
+                    lifetime = 50f;
                     hitEffect = Fx.none;
                     despawnEffect = Fx.none;
                     shootEffect = Fx.none;

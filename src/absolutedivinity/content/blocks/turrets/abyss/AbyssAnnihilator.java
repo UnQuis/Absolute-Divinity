@@ -63,10 +63,9 @@ public class AbyssAnnihilator {
                 Items.surgeAlloy, 1200
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(0f, 100f) {
+            ammo(Items.surgeAlloy, new BasicBulletType(4f, 100f) {
                 {
-                    speed = 0f;
-                    lifetime = 120f;
+                    lifetime = 40f;
                     hitEffect = Fx.none;
                     despawnEffect = Fx.none;
                     shootEffect = Fx.none;
@@ -134,10 +133,9 @@ public class AbyssAnnihilator {
                     }
                 }
             });
-            ammo(ADItems.divinite, new BasicBulletType(0f, 200f) {
+            ammo(ADItems.divinite, new BasicBulletType(5f, 200f) {
                 {
-                    speed = 0f;
-                    lifetime = 150f;
+                    lifetime = 50f;
                     hitEffect = Fx.none;
                     despawnEffect = Fx.none;
                     shootEffect = Fx.none;
