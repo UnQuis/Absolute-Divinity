@@ -4,13 +4,21 @@ import absolutedivinity.content.ADItems;
 import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Fill;
+import arc.graphics.g2d.Lines;
+import arc.math.Angles;
 import arc.math.Interp;
+import arc.math.Mathf;
+import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
+import mindustry.entities.Effect;
+import mindustry.entities.Units;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.MultiEffect;
-import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.effect.WaveEffect;
+import mindustry.gen.Bullet;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -21,7 +29,7 @@ public class AbyssAnnihilator {
     public static void load() {{
         abyssAnnihilator = new ItemTurret("abyss-annihilator") {{
             localizedName = "Abyss Annihilator";
-            description = "The apex of abyssal weaponry. Fires devastating purple energy salvos that obliterate everything.";
+            description = "Opens a gravitational singularity that pulls enemies in before detonating in a purple cataclysm.";
             size = 10;
             health = 80000;
             armor = 18;
@@ -55,136 +63,148 @@ public class AbyssAnnihilator {
                 Items.surgeAlloy, 1200
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(7f, 800f) {{
-                width = 22f;
-                height = 26f;
-                lifetime = 65f;
-                hitEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.abyssMain, 120f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 200f;
-                        colorFrom = ADColor.abyssMain;
-                        colorTo = ADColor.abyssLight;
-                        strokeFrom = 10f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 10f;
-                        sizeTo = 2f;
-                        colorFrom = ADColor.abyssMain;
-                        colorTo = ADColor.abyssLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 70f;
-                        particles = 50;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
-                );
-                despawnEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.abyssMain, 140f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 280f;
-                        colorFrom = ADColor.abyssMain;
-                        colorTo = ADColor.abyssLight;
-                        strokeFrom = 14f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 14f;
-                        sizeTo = 3f;
-                        colorFrom = ADColor.abyssMain;
-                        colorTo = ADColor.abyssLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 90f;
-                        particles = 80;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
-                );
-                smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
-                trailChance = 0.8f;
-                frontColor = Color.white;
-                backColor = ADColor.abyssMain;
-                knockback = 10f;
-                hitShake = 16f;
-                splashDamageRadius = 80f;
-                splashDamage = 350f;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = 8;
-                lightning = 10;
-                lightningDamage = 60f;
-                lightningLength = 25;
-                lightningColor = ADColor.abyssGlow;
-                status = StatusEffects.shocked;
-                statusDuration = 180f;
-            }});
-            ammo(ADItems.divinite, new BasicBulletType(9f, 1400f) {{
-                width = 28f;
-                height = 32f;
-                lifetime = 55f;
-                hitEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.abyssMain, 160f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 350f;
-                        colorFrom = ADColor.abyssMain;
-                        colorTo = ADColor.abyssLight;
-                        strokeFrom = 18f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 18f;
-                        sizeTo = 4f;
-                        colorFrom = ADColor.abyssMain;
-                        colorTo = ADColor.abyssLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 100f;
-                        particles = 100;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
-                );
-                despawnEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.abyssMain, 180f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 400f;
-                        colorFrom = ADColor.abyssMain;
-                        colorTo = ADColor.abyssLight;
-                        strokeFrom = 20f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }}
-                );
-                smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
-                trailChance = 1f;
-                frontColor = Color.white;
-                backColor = ADColor.abyssMain;
-                knockback = 14f;
-                hitShake = 20f;
-                splashDamageRadius = 100f;
-                splashDamage = 600f;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = -1;
-                lightning = 16;
-                lightningDamage = 100f;
-                lightningLength = 35;
-                lightningColor = ADColor.abyssGlow;
-                status = StatusEffects.melting;
-                statusDuration = 400f;
-            }});
+            ammo(Items.surgeAlloy, new BasicBulletType(0f, 100f) {
+                {
+                    speed = 0f;
+                    lifetime = 120f;
+                    hitEffect = Fx.none;
+                    despawnEffect = Fx.none;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    collides = false;
+                    collidesAir = false;
+                    collidesGround = false;
+                    hittable = false;
+                    absorbable = false;
+                    keepVelocity = false;
+                    drawSize = 400f;
+                    damage = 0f;
+                }
+
+                @Override
+                public void update(Bullet b) {
+                    super.update(b);
+                    float phase = b.fin();
+                    float pullRange = 180f;
+                    float pullStr = 0.15f;
+
+                    if(phase < 0.7f) {
+                        float expandPhase = phase / 0.7f;
+                        Units.nearby(b.team, b.x, b.y, pullRange * expandPhase, u -> {
+                            if(u.dead() || u.team == b.team) return;
+                            float dst = u.dst(b);
+                            if(dst < 5f) return;
+                            float str = pullStr * (1f - dst / pullRange) * (1f - expandPhase * 0.5f);
+                            u.vel.trns(u.angleTo(b), str * 100f);
+                            u.apply(StatusEffects.unmoving, 4f);
+                            if(dst < 30f) u.damage(15f);
+                        });
+
+                        if(b.timer(0, 8f)) {
+                            new Effect(40f, 120f, e -> {
+                                Draw.color(ADColor.abyssMain, ADColor.abyssLight, e.fin());
+                                Lines.stroke(2f * e.fout());
+                                Lines.circle(e.x, e.y, e.fin() * pullRange * 0.8f);
+                                for(int i = 0; i < 8; i++) {
+                                    float ang = 360f / 8 * i + e.time * 50f;
+                                    float dist = pullRange * 0.7f * e.fin();
+                                    Fill.circle(e.x + Mathf.cosDeg(ang) * dist, e.y + Mathf.sinDeg(ang) * dist, 3f * e.fout());
+                                }
+                            }).at(b.x, b.y);
+                        }
+                    } else {
+                        float expPhase = (phase - 0.7f) / 0.3f;
+                        if(expPhase < 0.1f && b.timer(1, 2f)) {
+                            Units.nearby(b.team, b.x, b.y, 200f, u -> {
+                                if(u.dead() || u.team == b.team) return;
+                                u.damagePierce(200f);
+                                u.apply(StatusEffects.melting, 120f);
+                            });
+                            new Effect(60f, 250f, e -> {
+                                Draw.color(ADColor.abyssMain, Color.white, e.fin());
+                                Lines.stroke(4f * e.fout());
+                                Lines.circle(e.x, e.y, e.fin() * 200f);
+                                Angles.randLenVectors(e.id, 30, 200f * e.fin(), (x, y) -> Fill.circle(e.x + x, e.y + y, 4f * e.fout()));
+                            }).at(b.x, b.y);
+                        }
+                        if(expPhase >= 0.3f) {
+                            Fx.massiveExplosion.at(b.x, b.y, 0f, ADColor.abyssMain);
+                            b.remove();
+                        }
+                    }
+                }
+            });
+            ammo(ADItems.divinite, new BasicBulletType(0f, 200f) {
+                {
+                    speed = 0f;
+                    lifetime = 150f;
+                    hitEffect = Fx.none;
+                    despawnEffect = Fx.none;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    collides = false;
+                    collidesAir = false;
+                    collidesGround = false;
+                    hittable = false;
+                    absorbable = false;
+                    keepVelocity = false;
+                    drawSize = 500f;
+                    damage = 0f;
+                }
+
+                @Override
+                public void update(Bullet b) {
+                    super.update(b);
+                    float phase = b.fin();
+                    float pullRange = 250f;
+                    float pullStr = 0.2f;
+
+                    if(phase < 0.7f) {
+                        float expandPhase = phase / 0.7f;
+                        Units.nearby(b.team, b.x, b.y, pullRange * expandPhase, u -> {
+                            if(u.dead() || u.team == b.team) return;
+                            float dst = u.dst(b);
+                            if(dst < 5f) return;
+                            float str = pullStr * (1f - dst / pullRange) * (1f - expandPhase * 0.5f);
+                            u.vel.trns(u.angleTo(b), str * 120f);
+                            u.apply(StatusEffects.unmoving, 6f);
+                            if(dst < 40f) u.damage(30f);
+                        });
+
+                        if(b.timer(0, 6f)) {
+                            new Effect(50f, 160f, e -> {
+                                Draw.color(ADColor.abyssMain, ADColor.abyssLight, e.fin());
+                                Lines.stroke(3f * e.fout());
+                                Lines.circle(e.x, e.y, e.fin() * pullRange * 0.8f);
+                                for(int i = 0; i < 12; i++) {
+                                    float ang = 360f / 12 * i + e.time * 60f;
+                                    float dist = pullRange * 0.7f * e.fin();
+                                    Fill.circle(e.x + Mathf.cosDeg(ang) * dist, e.y + Mathf.sinDeg(ang) * dist, 4f * e.fout());
+                                }
+                            }).at(b.x, b.y);
+                        }
+                    } else {
+                        float expPhase = (phase - 0.7f) / 0.3f;
+                        if(expPhase < 0.1f && b.timer(1, 2f)) {
+                            Units.nearby(b.team, b.x, b.y, 300f, u -> {
+                                if(u.dead() || u.team == b.team) return;
+                                u.damagePierce(400f);
+                                u.apply(StatusEffects.melting, 240f);
+                            });
+                            new Effect(80f, 350f, e -> {
+                                Draw.color(ADColor.abyssMain, Color.white, e.fin());
+                                Lines.stroke(6f * e.fout());
+                                Lines.circle(e.x, e.y, e.fin() * 300f);
+                                Angles.randLenVectors(e.id, 40, 300f * e.fin(), (x, y) -> Fill.circle(e.x + x, e.y + y, 5f * e.fout()));
+                            }).at(b.x, b.y);
+                        }
+                        if(expPhase >= 0.3f) {
+                            Fx.massiveExplosion.at(b.x, b.y, 0f, ADColor.abyssMain);
+                            b.remove();
+                        }
+                    }
+                }
+            });
         }};
     }}
 }

@@ -5,8 +5,10 @@ import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
 import arc.math.Interp;
+import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
+import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.effect.ParticleEffect;
@@ -21,18 +23,19 @@ public class ChaosObliterator {
     public static void load() {{
         chaosObliterator = new ItemTurret("chaos-oblivion") {{
             localizedName = "Chaos Obliterator";
-            description = "The ultimate expression of chaos. Fires a world-ending projectile that tears reality apart.";
+            description = "Unleashes a devastating barrage of fire, lightning, and explosive shells simultaneously.";
             size = 11;
             health = 100000;
             armor = 20;
             range = 420f;
-            reload = 280f;
+            reload = 180f;
             rotateSpeed = 0.7f;
             shootCone = 5f;
             targetAir = true;
             targetGround = true;
             minWarmup = 0.9f;
             shootWarmupSpeed = 0.013f;
+            inaccuracy = 8f;
             shootEffect = new MultiEffect(
                 ADTurretEffects.shootBig(ADColor.chaosMain),
                 new WaveEffect() {{
@@ -55,135 +58,121 @@ public class ChaosObliterator {
                 Items.surgeAlloy, 1600
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(8f, 1000f) {{
-                width = 24f;
-                height = 28f;
-                lifetime = 60f;
+            ammo(Items.surgeAlloy, new BasicBulletType(6f, 300f) {{
+                width = 16f;
+                height = 18f;
+                lifetime = 70f;
                 hitEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.chaosMain, 140f),
+                    ADTurretEffects.blastEffect(ADColor.chaosMain, 80f),
+                    new WaveEffect() {{
+                        sizeFrom = 0f;
+                        sizeTo = 180f;
+                        colorFrom = ADColor.chaosMain;
+                        colorTo = ADColor.chaosLight;
+                        strokeFrom = 10f;
+                        strokeTo = 0f;
+                        interp = Interp.pow5Out;
+                    }}
+                );
+                despawnEffect = new MultiEffect(
+                    ADTurretEffects.blastEffect(ADColor.chaosMain, 100f),
                     new WaveEffect() {{
                         sizeFrom = 0f;
                         sizeTo = 250f;
                         colorFrom = ADColor.chaosMain;
                         colorTo = ADColor.chaosLight;
-                        strokeFrom = 12f;
+                        strokeFrom = 14f;
                         strokeTo = 0f;
                         interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 12f;
-                        sizeTo = 3f;
-                        colorFrom = ADColor.chaosMain;
-                        colorTo = ADColor.chaosLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 80f;
-                        particles = 70;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
                     }}
                 );
-                despawnEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.chaosMain, 160f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 320f;
-                        colorFrom = ADColor.chaosMain;
-                        colorTo = ADColor.chaosLight;
-                        strokeFrom = 16f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 16f;
-                        sizeTo = 4f;
-                        colorFrom = ADColor.chaosMain;
-                        colorTo = ADColor.chaosLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 100f;
-                        particles = 90;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
-                );
-                smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.chaosMain);
-                trailChance = 1f;
+                trailChance = 0.8f;
                 frontColor = Color.white;
                 backColor = ADColor.chaosMain;
-                knockback = 12f;
-                hitShake = 18f;
-                splashDamageRadius = 90f;
-                splashDamage = 450f;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = -1;
-                lightning = 12;
-                lightningDamage = 80f;
-                lightningLength = 30;
+                knockback = 6f;
+                hitShake = 12f;
+                splashDamageRadius = 60f;
+                splashDamage = 200f;
+                lightning = 8;
+                lightningDamage = 40f;
+                lightningLength = 18;
                 lightningColor = ADColor.chaosGlow;
                 status = StatusEffects.burning;
-                statusDuration = 400f;
+                statusDuration = 200f;
+                fragBullets = 8;
+                fragBullet = new ArtilleryBulletType(4f, 80f, "shell") {{
+                    hitEffect = ADTurretEffects.hitBig(ADColor.chaosMain);
+                    despawnEffect = ADTurretEffects.hitBig(ADColor.chaosMain);
+                    width = 10f;
+                    height = 10f;
+                    lifetime = 60f;
+                    hitShake = 6f;
+                    splashDamageRadius = 35f;
+                    splashDamage = 60f;
+                    frontColor = ADColor.chaosLight;
+                    backColor = ADColor.chaosMain;
+                    status = StatusEffects.burning;
+                    statusDuration = 120f;
+                }};
             }});
-            ammo(ADItems.divinite, new BasicBulletType(10f, 1800f) {{
-                width = 30f;
-                height = 34f;
-                lifetime = 52f;
+            ammo(ADItems.divinite, new BasicBulletType(7f, 500f) {{
+                width = 22f;
+                height = 26f;
+                lifetime = 60f;
                 hitEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.chaosMain, 200f),
+                    ADTurretEffects.blastEffect(ADColor.chaosMain, 120f),
                     new WaveEffect() {{
                         sizeFrom = 0f;
-                        sizeTo = 400f;
+                        sizeTo = 300f;
                         colorFrom = ADColor.chaosMain;
                         colorTo = ADColor.chaosLight;
-                        strokeFrom = 20f;
+                        strokeFrom = 14f;
                         strokeTo = 0f;
                         interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 20f;
-                        sizeTo = 5f;
-                        colorFrom = ADColor.chaosMain;
-                        colorTo = ADColor.chaosLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 120f;
-                        particles = 120;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
                     }}
                 );
                 despawnEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.chaosMain, 220f),
+                    ADTurretEffects.blastEffect(ADColor.chaosMain, 140f),
                     new WaveEffect() {{
                         sizeFrom = 0f;
-                        sizeTo = 500f;
+                        sizeTo = 350f;
                         colorFrom = ADColor.chaosMain;
                         colorTo = ADColor.chaosLight;
-                        strokeFrom = 24f;
+                        strokeFrom = 18f;
                         strokeTo = 0f;
                         interp = Interp.pow5Out;
                     }}
                 );
-                smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.chaosMain);
                 trailChance = 1f;
                 frontColor = Color.white;
                 backColor = ADColor.chaosMain;
-                knockback = 16f;
-                hitShake = 22f;
-                splashDamageRadius = 120f;
-                splashDamage = 800f;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = -1;
-                lightning = 18;
-                lightningDamage = 120f;
-                lightningLength = 40;
+                knockback = 10f;
+                hitShake = 16f;
+                splashDamageRadius = 80f;
+                splashDamage = 400f;
+                lightning = 12;
+                lightningDamage = 60f;
+                lightningLength = 25;
                 lightningColor = ADColor.chaosGlow;
                 status = StatusEffects.melting;
-                statusDuration = 600f;
+                statusDuration = 300f;
+                fragBullets = 12;
+                fragBullet = new ArtilleryBulletType(5f, 120f, "shell") {{
+                    hitEffect = ADTurretEffects.hitBig(ADColor.chaosMain);
+                    despawnEffect = ADTurretEffects.blastEffect(ADColor.chaosMain, 40f);
+                    width = 12f;
+                    height = 12f;
+                    lifetime = 70f;
+                    hitShake = 8f;
+                    splashDamageRadius = 45f;
+                    splashDamage = 80f;
+                    frontColor = ADColor.chaosLight;
+                    backColor = ADColor.chaosMain;
+                    status = StatusEffects.burning;
+                    statusDuration = 180f;
+                }};
             }});
         }};
     }}

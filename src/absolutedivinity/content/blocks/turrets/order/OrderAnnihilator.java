@@ -19,7 +19,7 @@ public class OrderAnnihilator {
     public static void load() {{
         orderAnnihilator = new PowerTurret("order-annihilator") {{
             localizedName = "Order Annihilator";
-            description = "The ultimate weapon of Order. Fires a colossal white energy orb that annihilates everything in its path with divine precision.";
+            description = "Fires a divine orb that explodes into a storm of white lightning chains, annihilating everything.";
             size = 12;
             health = 160000;
             armor = 22;
@@ -160,7 +160,7 @@ public class OrderAnnihilator {
                 frontColor = Color.white;
                 mixColorFrom = Color.white;
                 mixColorTo = Color.valueOf("e0e0e0");
-                fragBullets = 20;
+                fragBullets = 24;
                 fragBullet = new BasicBulletType(4f, 600f) {{
                     width = 18f;
                     height = 22f;
@@ -169,8 +169,54 @@ public class OrderAnnihilator {
                     splashDamage = 500f;
                     splashDamageRadius = 90f;
                     hitShake = 20f;
-                    hitEffect = ADEffects.orderHit;
-                    despawnEffect = ADEffects.orderHit;
+                    hitEffect = new MultiEffect(
+                        ADEffects.orderHit,
+                        new WaveEffect() {{
+                            sizeFrom = 0f;
+                            sizeTo = 120f;
+                            colorFrom = Color.white;
+                            colorTo = Color.valueOf("e0e0e0");
+                            strokeFrom = 6f;
+                            strokeTo = 0f;
+                            interp = Interp.pow5Out;
+                        }},
+                        new ParticleEffect() {{
+                            sizeFrom = 8f;
+                            sizeTo = 2f;
+                            colorFrom = Color.white;
+                            colorTo = Color.valueOf("e0e0e0");
+                            length = 0f;
+                            baseLength = 0f;
+                            lifetime = 60f;
+                            particles = 30;
+                            interp = Interp.exp5;
+                            sizeInterp = Interp.pow5Out;
+                        }}
+                    );
+                    despawnEffect = new MultiEffect(
+                        ADEffects.orderHit,
+                        new WaveEffect() {{
+                            sizeFrom = 0f;
+                            sizeTo = 100f;
+                            colorFrom = Color.white;
+                            colorTo = Color.valueOf("e0e0e0");
+                            strokeFrom = 4f;
+                            strokeTo = 0f;
+                            interp = Interp.pow5Out;
+                        }},
+                        new ParticleEffect() {{
+                            sizeFrom = 6f;
+                            sizeTo = 1f;
+                            colorFrom = Color.white;
+                            colorTo = Color.valueOf("e0e0e0");
+                            length = 0f;
+                            baseLength = 0f;
+                            lifetime = 50f;
+                            particles = 20;
+                            interp = Interp.exp5;
+                            sizeInterp = Interp.pow5Out;
+                        }}
+                    );
                     trailEffect = ADEffects.orderTrail;
                     trailChance = 1f;
                     trailLength = 16;

@@ -5,8 +5,10 @@ import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
 import arc.math.Interp;
+import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.MissileBulletType;
 import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.effect.WaveEffect;
@@ -20,12 +22,12 @@ public class InfoAnnihilator {
     public static void load() {{
         infoAnnihilator = new ItemTurret("info-annihilator") {{
             localizedName = "Info Annihilator";
-            description = "The pinnacle of informational warfare. Fires devastating precision strikes that leave nothing standing.";
+            description = "Launches a devastating swarm of precision-guided missiles that track and destroy all targets.";
             size = 10;
             health = 85000;
             armor = 19;
             range = 400f;
-            reload = 220f;
+            reload = 180f;
             rotateSpeed = 0.85f;
             shootCone = 5f;
             targetAir = true;
@@ -54,131 +56,135 @@ public class InfoAnnihilator {
                 Items.surgeAlloy, 1300
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(8f, 900f) {{
-                width = 20f;
-                height = 24f;
-                lifetime = 56f;
+            ammo(Items.surgeAlloy, new MissileBulletType(6f, 150f) {{
+                width = 12f;
+                height = 12f;
+                lifetime = 80f;
                 hitEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.infoMain, 130f),
+                    ADTurretEffects.blastEffect(ADColor.infoMain, 80f),
                     new WaveEffect() {{
                         sizeFrom = 0f;
-                        sizeTo = 230f;
+                        sizeTo = 150f;
+                        colorFrom = ADColor.infoMain;
+                        colorTo = ADColor.infoLight;
+                        strokeFrom = 8f;
+                        strokeTo = 0f;
+                        interp = Interp.pow5Out;
+                    }}
+                );
+                despawnEffect = new MultiEffect(
+                    ADTurretEffects.blastEffect(ADColor.infoMain, 100f),
+                    new WaveEffect() {{
+                        sizeFrom = 0f;
+                        sizeTo = 200f;
                         colorFrom = ADColor.infoMain;
                         colorTo = ADColor.infoLight;
                         strokeFrom = 10f;
                         strokeTo = 0f;
                         interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 10f;
-                        sizeTo = 2f;
+                    }}
+                );
+                trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
+                trailChance = 0.8f;
+                frontColor = Color.white;
+                backColor = ADColor.infoMain;
+                homingPower = 0.15f;
+                homingRange = 200f;
+                homingDelay = 5f;
+                knockback = 6f;
+                hitShake = 10f;
+                splashDamageRadius = 50f;
+                splashDamage = 180f;
+                lightning = 4;
+                lightningDamage = 30f;
+                lightningLength = 15;
+                lightningColor = ADColor.infoGlow;
+                fragBullets = 8;
+                fragBullet = new MissileBulletType(5f, 80f) {{
+                    width = 8f;
+                    height = 8f;
+                    lifetime = 60f;
+                    hitEffect = ADTurretEffects.hitBig(ADColor.infoMain);
+                    despawnEffect = ADTurretEffects.hitBig(ADColor.infoMain);
+                    trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
+                    trailChance = 0.6f;
+                    frontColor = ADColor.infoLight;
+                    backColor = ADColor.infoMain;
+                    homingPower = 0.12f;
+                    homingRange = 150f;
+                    knockback = 3f;
+                    splashDamageRadius = 30f;
+                    splashDamage = 60f;
+                    lightning = 2;
+                    lightningDamage = 15f;
+                    lightningLength = 8;
+                    lightningColor = ADColor.infoGlow;
+                }};
+            }});
+            ammo(ADItems.divinite, new MissileBulletType(7f, 250f) {{
+                width = 16f;
+                height = 16f;
+                lifetime = 70f;
+                hitEffect = new MultiEffect(
+                    ADTurretEffects.blastEffect(ADColor.infoMain, 120f),
+                    new WaveEffect() {{
+                        sizeFrom = 0f;
+                        sizeTo = 250f;
                         colorFrom = ADColor.infoMain;
                         colorTo = ADColor.infoLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 75f;
-                        particles = 65;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
+                        strokeFrom = 12f;
+                        strokeTo = 0f;
+                        interp = Interp.pow5Out;
                     }}
                 );
                 despawnEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.infoMain, 150f),
+                    ADTurretEffects.blastEffect(ADColor.infoMain, 140f),
                     new WaveEffect() {{
                         sizeFrom = 0f;
-                        sizeTo = 310f;
+                        sizeTo = 300f;
                         colorFrom = ADColor.infoMain;
                         colorTo = ADColor.infoLight;
                         strokeFrom = 14f;
                         strokeTo = 0f;
                         interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 14f;
-                        sizeTo = 3f;
-                        colorFrom = ADColor.infoMain;
-                        colorTo = ADColor.infoLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 85f;
-                        particles = 85;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
                     }}
                 );
-                smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
-                trailChance = 0.9f;
-                frontColor = Color.white;
-                backColor = ADColor.infoMain;
-                knockback = 10f;
-                hitShake = 16f;
-                splashDamageRadius = 85f;
-                splashDamage = 400f;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = 8;
-                lightning = 10;
-                lightningDamage = 55f;
-                lightningLength = 22;
-                lightningColor = ADColor.infoGlow;
-            }});
-            ammo(ADItems.divinite, new BasicBulletType(10f, 1600f) {{
-                width = 26f;
-                height = 30f;
-                lifetime = 48f;
-                hitEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.infoMain, 170f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 380f;
-                        colorFrom = ADColor.infoMain;
-                        colorTo = ADColor.infoLight;
-                        strokeFrom = 18f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 14f;
-                        sizeTo = 3f;
-                        colorFrom = ADColor.infoMain;
-                        colorTo = ADColor.infoLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 95f;
-                        particles = 95;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
-                );
-                despawnEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.infoMain, 190f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 440f;
-                        colorFrom = ADColor.infoMain;
-                        colorTo = ADColor.infoLight;
-                        strokeFrom = 20f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }}
-                );
-                smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
                 trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
                 trailChance = 1f;
                 frontColor = Color.white;
                 backColor = ADColor.infoMain;
-                knockback = 14f;
-                hitShake = 20f;
-                splashDamageRadius = 110f;
-                splashDamage = 700f;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = -1;
-                lightning = 16;
-                lightningDamage = 85f;
-                lightningLength = 30;
+                homingPower = 0.18f;
+                homingRange = 250f;
+                homingDelay = 3f;
+                knockback = 10f;
+                hitShake = 14f;
+                splashDamageRadius = 70f;
+                splashDamage = 350f;
+                lightning = 6;
+                lightningDamage = 50f;
+                lightningLength = 20;
                 lightningColor = ADColor.infoGlow;
+                fragBullets = 12;
+                fragBullet = new MissileBulletType(6f, 120f) {{
+                    width = 10f;
+                    height = 10f;
+                    lifetime = 65f;
+                    hitEffect = ADTurretEffects.hitBig(ADColor.infoMain);
+                    despawnEffect = ADTurretEffects.blastEffect(ADColor.infoMain, 30f);
+                    trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
+                    trailChance = 0.8f;
+                    frontColor = ADColor.infoLight;
+                    backColor = ADColor.infoMain;
+                    homingPower = 0.14f;
+                    homingRange = 180f;
+                    knockback = 5f;
+                    splashDamageRadius = 40f;
+                    splashDamage = 100f;
+                    lightning = 3;
+                    lightningDamage = 25f;
+                    lightningLength = 12;
+                    lightningColor = ADColor.infoGlow;
+                }};
             }});
         }};
     }}

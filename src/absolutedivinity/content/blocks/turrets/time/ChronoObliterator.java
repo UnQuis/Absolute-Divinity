@@ -4,13 +4,21 @@ import absolutedivinity.content.ADItems;
 import absolutedivinity.content.ADTurretEffects;
 import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Fill;
+import arc.graphics.g2d.Lines;
+import arc.math.Angles;
 import arc.math.Interp;
+import arc.math.Mathf;
+import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
+import mindustry.entities.Effect;
+import mindustry.entities.Units;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.MultiEffect;
-import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.effect.WaveEffect;
+import mindustry.gen.Bullet;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -21,7 +29,7 @@ public class ChronoObliterator {
     public static void load() {{
         chronoObliterator = new ItemTurret("chrono-oblivion") {{
             localizedName = "Chrono Obliterator";
-            description = "The ultimate temporal weapon. Fires a projectile that freezes time itself around the impact zone.";
+            description = "Opens a temporal rift that freezes everything in a massive zone before detonating.";
             size = 9;
             health = 70000;
             armor = 16;
@@ -55,124 +63,142 @@ public class ChronoObliterator {
                 Items.surgeAlloy, 1000
             ));
             category = Category.turret;
-            ammo(Items.surgeAlloy, new BasicBulletType(8f, 900f) {{
-                width = 20f;
-                height = 24f;
-                lifetime = 58f;
-                hitEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.timeMain, 120f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 220f;
-                        colorFrom = ADColor.timeMain;
-                        colorTo = ADColor.timeLight;
-                        strokeFrom = 10f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 10f;
-                        sizeTo = 2f;
-                        colorFrom = ADColor.timeMain;
-                        colorTo = ADColor.timeLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 70f;
-                        particles = 60;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
-                );
-                despawnEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.timeMain, 150f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 300f;
-                        colorFrom = ADColor.timeMain;
-                        colorTo = ADColor.timeLight;
-                        strokeFrom = 14f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }}
-                );
-                smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
-                trailChance = 0.9f;
-                frontColor = Color.white;
-                backColor = ADColor.timeMain;
-                knockback = 10f;
-                hitShake = 16f;
-                splashDamageRadius = 85f;
-                splashDamage = 400f;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = -1;
-                lightning = 10;
-                lightningDamage = 50f;
-                lightningLength = 22;
-                lightningColor = ADColor.timeGlow;
-                status = StatusEffects.freezing;
-                statusDuration = 600f;
-            }});
-            ammo(ADItems.divinite, new BasicBulletType(10f, 1600f) {{
-                width = 26f;
-                height = 30f;
-                lifetime = 50f;
-                hitEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.timeMain, 180f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 380f;
-                        colorFrom = ADColor.timeMain;
-                        colorTo = ADColor.timeLight;
-                        strokeFrom = 18f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }},
-                    new ParticleEffect() {{
-                        sizeFrom = 14f;
-                        sizeTo = 3f;
-                        colorFrom = ADColor.timeMain;
-                        colorTo = ADColor.timeLight;
-                        length = 0f;
-                        baseLength = 0f;
-                        lifetime = 90f;
-                        particles = 90;
-                        interp = Interp.exp5;
-                        sizeInterp = Interp.pow5Out;
-                    }}
-                );
-                despawnEffect = new MultiEffect(
-                    ADTurretEffects.blastEffect(ADColor.timeMain, 200f),
-                    new WaveEffect() {{
-                        sizeFrom = 0f;
-                        sizeTo = 450f;
-                        colorFrom = ADColor.timeMain;
-                        colorTo = ADColor.timeLight;
-                        strokeFrom = 20f;
-                        strokeTo = 0f;
-                        interp = Interp.pow5Out;
-                    }}
-                );
-                smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
-                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
-                trailChance = 1f;
-                frontColor = Color.white;
-                backColor = ADColor.timeMain;
-                knockback = 14f;
-                hitShake = 20f;
-                splashDamageRadius = 110f;
-                splashDamage = 700f;
-                pierce = true;
-                pierceArmor = true;
-                pierceCap = -1;
-                lightning = 16;
-                lightningDamage = 90f;
-                lightningLength = 32;
-                lightningColor = ADColor.timeGlow;
-                status = StatusEffects.freezing;
-                statusDuration = 900f;
-            }});
+            ammo(Items.surgeAlloy, new BasicBulletType(0f, 80f) {
+                {
+                    speed = 0f;
+                    lifetime = 120f;
+                    hitEffect = Fx.none;
+                    despawnEffect = Fx.none;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    collides = false;
+                    collidesAir = false;
+                    collidesGround = false;
+                    hittable = false;
+                    absorbable = false;
+                    keepVelocity = false;
+                    drawSize = 400f;
+                    damage = 0f;
+                }
+
+                @Override
+                public void update(Bullet b) {
+                    super.update(b);
+                    float phase = b.fin();
+                    float freezeRange = 200f;
+
+                    if(phase < 0.7f) {
+                        float expandPhase = phase / 0.7f;
+                        Units.nearby(b.team, b.x, b.y, freezeRange * expandPhase, u -> {
+                            if(u.dead() || u.team == b.team) return;
+                            u.apply(StatusEffects.freezing, 8f);
+                            u.apply(StatusEffects.slow, 8f);
+                            u.vel.scl(0.92f);
+                        });
+
+                        if(b.timer(0, 6f)) {
+                            new Effect(40f, 160f, e -> {
+                                Draw.color(ADColor.timeMain, ADColor.timeLight, e.fin());
+                                Lines.stroke(2f * e.fout());
+                                Lines.circle(e.x, e.y, e.fin() * freezeRange * 0.8f);
+                                for(int i = 0; i < 12; i++) {
+                                    float ang = 360f / 12 * i;
+                                    float dist = freezeRange * 0.6f * e.fin();
+                                    Fill.circle(e.x + Mathf.cosDeg(ang) * dist, e.y + Mathf.sinDeg(ang) * dist, 3f * e.fout());
+                                }
+                            }).at(b.x, b.y);
+                        }
+                    } else {
+                        float expPhase = (phase - 0.7f) / 0.3f;
+                        if(expPhase < 0.1f && b.timer(1, 2f)) {
+                            Units.nearby(b.team, b.x, b.y, 250f, u -> {
+                                if(u.dead() || u.team == b.team) return;
+                                u.damagePierce(150f);
+                                u.apply(StatusEffects.freezing, 300f);
+                                u.apply(StatusEffects.slow, 300f);
+                            });
+                            new Effect(70f, 300f, e -> {
+                                Draw.color(ADColor.timeMain, Color.white, e.fin());
+                                Lines.stroke(5f * e.fout());
+                                Lines.circle(e.x, e.y, e.fin() * 250f);
+                                Angles.randLenVectors(e.id, 35, 250f * e.fin(), (x, y) -> Fill.circle(e.x + x, e.y + y, 4f * e.fout()));
+                            }).at(b.x, b.y);
+                        }
+                        if(expPhase >= 0.3f) {
+                            Fx.massiveExplosion.at(b.x, b.y, 0f, ADColor.timeMain);
+                            b.remove();
+                        }
+                    }
+                }
+            });
+            ammo(ADItems.divinite, new BasicBulletType(0f, 150f) {
+                {
+                    speed = 0f;
+                    lifetime = 150f;
+                    hitEffect = Fx.none;
+                    despawnEffect = Fx.none;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    collides = false;
+                    collidesAir = false;
+                    collidesGround = false;
+                    hittable = false;
+                    absorbable = false;
+                    keepVelocity = false;
+                    drawSize = 500f;
+                    damage = 0f;
+                }
+
+                @Override
+                public void update(Bullet b) {
+                    super.update(b);
+                    float phase = b.fin();
+                    float freezeRange = 300f;
+
+                    if(phase < 0.7f) {
+                        float expandPhase = phase / 0.7f;
+                        Units.nearby(b.team, b.x, b.y, freezeRange * expandPhase, u -> {
+                            if(u.dead() || u.team == b.team) return;
+                            u.apply(StatusEffects.freezing, 12f);
+                            u.apply(StatusEffects.slow, 12f);
+                            u.vel.scl(0.88f);
+                        });
+
+                        if(b.timer(0, 5f)) {
+                            new Effect(50f, 200f, e -> {
+                                Draw.color(ADColor.timeMain, ADColor.timeLight, e.fin());
+                                Lines.stroke(3f * e.fout());
+                                Lines.circle(e.x, e.y, e.fin() * freezeRange * 0.8f);
+                                for(int i = 0; i < 16; i++) {
+                                    float ang = 360f / 16 * i;
+                                    float dist = freezeRange * 0.7f * e.fin();
+                                    Fill.circle(e.x + Mathf.cosDeg(ang) * dist, e.y + Mathf.sinDeg(ang) * dist, 4f * e.fout());
+                                }
+                            }).at(b.x, b.y);
+                        }
+                    } else {
+                        float expPhase = (phase - 0.7f) / 0.3f;
+                        if(expPhase < 0.1f && b.timer(1, 2f)) {
+                            Units.nearby(b.team, b.x, b.y, 350f, u -> {
+                                if(u.dead() || u.team == b.team) return;
+                                u.damagePierce(300f);
+                                u.apply(StatusEffects.freezing, 600f);
+                                u.apply(StatusEffects.slow, 600f);
+                            });
+                            new Effect(90f, 400f, e -> {
+                                Draw.color(ADColor.timeMain, Color.white, e.fin());
+                                Lines.stroke(7f * e.fout());
+                                Lines.circle(e.x, e.y, e.fin() * 350f);
+                                Angles.randLenVectors(e.id, 45, 350f * e.fin(), (x, y) -> Fill.circle(e.x + x, e.y + y, 5f * e.fout()));
+                            }).at(b.x, b.y);
+                        }
+                        if(expPhase >= 0.3f) {
+                            Fx.massiveExplosion.at(b.x, b.y, 0f, ADColor.timeMain);
+                            b.remove();
+                        }
+                    }
+                }
+            });
         }};
     }}
 }
