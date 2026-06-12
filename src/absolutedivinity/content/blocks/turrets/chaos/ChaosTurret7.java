@@ -1,7 +1,7 @@
 package absolutedivinity.content.blocks.turrets.chaos;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
@@ -14,7 +14,7 @@ public class ChaosTurret7 {
     public static void load() {{
         chaosTurret7 = new ItemTurret("chaos-7") {{
             localizedName = "Chaos Howitzer";
-            description = "Massive cannon that fires devastating explosive rounds with extreme knockback.";
+            description = "Massive cannon with extreme knockback.";
             size = 3;
             health = 2200;
             range = 320f;
@@ -23,8 +23,9 @@ public class ChaosTurret7 {
             shootCone = 10f;
             targetAir = false;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.chaosMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+            heatColor = ADColor.chaosMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 400,
                 Items.lead, 300,
@@ -37,11 +38,13 @@ public class ChaosTurret7 {
                 width = 12f;
                 height = 14f;
                 lifetime = 65f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Color.valueOf("ff6b6b");
-                backColor = Color.valueOf("cc4444");
+                hitEffect = ADTurretEffects.hitBig(ADColor.chaosMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.chaosMain, 60f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.chaosMain);
+                trailChance = 0.8f;
+                frontColor = ADColor.chaosLight;
+                backColor = ADColor.chaosMain;
                 knockback = 6f;
                 hitShake = 8f;
                 splashDamageRadius = 50f;
@@ -49,6 +52,7 @@ public class ChaosTurret7 {
                 lightning = 4;
                 lightningDamage = 25f;
                 lightningLength = 12;
+                lightningColor = ADColor.chaosGlow;
             }});
         }};
     }}

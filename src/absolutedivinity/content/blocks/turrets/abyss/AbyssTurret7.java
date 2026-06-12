@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks.turrets.abyss;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
@@ -13,7 +14,7 @@ public class AbyssTurret7 {
     public static void load() {{
         abyssTurret7 = new ItemTurret("abyss-7") {{
             localizedName = "Abyss Lance";
-            description = "Charged laser bolt that pierces through armor and multiple targets.";
+            description = "Charged laser bolt that pierces through armor.";
             size = 3;
             health = 1800;
             range = 300f;
@@ -21,8 +22,9 @@ public class AbyssTurret7 {
             rotateSpeed = 5f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootMedium(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
+            heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 350,
                 Items.lead, 250,
@@ -35,11 +37,13 @@ public class AbyssTurret7 {
                 width = 6f;
                 height = 14f;
                 lifetime = 25f;
-                hitEffect = Fx.hitLancer;
-                despawnEffect = Fx.shootBig;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Items.titanium.color;
-                backColor = Items.titanium.color;
+                hitEffect = ADTurretEffects.hitMedium(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.5f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 pierce = true;
                 pierceCap = 4;
                 pierceArmor = true;
@@ -50,11 +54,13 @@ public class AbyssTurret7 {
                 width = 7f;
                 height = 16f;
                 lifetime = 25f;
-                hitEffect = Fx.hitLancer;
-                despawnEffect = Fx.shootBig;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Items.thorium.color;
-                backColor = Items.thorium.color;
+                hitEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.abyssMain, 40f);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.5f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 pierce = true;
                 pierceCap = 6;
                 pierceArmor = true;
@@ -63,6 +69,7 @@ public class AbyssTurret7 {
                 lightning = 2;
                 lightningDamage = 15f;
                 lightningLength = 10;
+                lightningColor = ADColor.abyssGlow;
             }});
         }};
     }}

@@ -1,8 +1,9 @@
 package absolutedivinity.content.blocks.turrets.chaos;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -22,8 +23,9 @@ public class ChaosTurret2 {
             rotateSpeed = 9f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootSmall;
-            smokeEffect = Fx.shootSmallSmoke;
+            shootEffect = ADTurretEffects.shootSmall(ADColor.chaosMain);
+            smokeEffect = ADTurretEffects.shootSmall(ADColor.chaosDark);
+            heatColor = ADColor.chaosMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 40,
                 Items.lead, 35
@@ -33,13 +35,15 @@ public class ChaosTurret2 {
                 width = 6f;
                 height = 6f;
                 lifetime = 33f;
-                hitEffect = Fx.hitBulletSmall;
-                despawnEffect = Fx.titanExplosionSmall;
-                smokeEffect = Fx.shootSmallSmoke;
-                frontColor = Items.pyratite.color;
-                backColor = Items.pyratite.color;
+                hitEffect = ADTurretEffects.hitSmall(ADColor.chaosMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.chaosLight);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.chaosDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.chaosMain);
+                trailChance = 0.3f;
+                frontColor = ADColor.chaosLight;
+                backColor = ADColor.chaosMain;
                 knockback = 0.5f;
-                status = mindustry.content.StatusEffects.burning;
+                status = StatusEffects.burning;
                 statusDuration = 90f;
             }});
         }};

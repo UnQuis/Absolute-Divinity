@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks.turrets.time;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
@@ -14,7 +15,7 @@ public class TimeTurret5 {
     public static void load() {{
         timeTurret5 = new ItemTurret("time-5") {{
             localizedName = "Chrono Lance";
-            description = "Charged temporal beam that freezes targets solid.";
+            description = "Charged temporal beam that freezes targets.";
             size = 3;
             health = 1500;
             range = 220f;
@@ -22,8 +23,9 @@ public class TimeTurret5 {
             rotateSpeed = 6f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootMedium(ADColor.timeMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+            heatColor = ADColor.timeMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 200,
                 Items.lead, 160,
@@ -35,11 +37,13 @@ public class TimeTurret5 {
                 width = 6f;
                 height = 12f;
                 lifetime = 23f;
-                hitEffect = Fx.hitLancer;
-                despawnEffect = Fx.shootBig;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Items.silicon.color;
-                backColor = Items.silicon.color;
+                hitEffect = ADTurretEffects.hitMedium(ADColor.timeMain);
+                despawnEffect = ADTurretEffects.hitBig(ADColor.timeMain);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.timeDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
+                trailChance = 0.5f;
+                frontColor = ADColor.timeLight;
+                backColor = ADColor.timeMain;
                 pierce = true;
                 pierceCap = 3;
                 knockback = 1.5f;

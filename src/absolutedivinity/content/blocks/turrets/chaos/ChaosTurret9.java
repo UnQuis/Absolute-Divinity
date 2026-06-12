@@ -1,7 +1,8 @@
 package absolutedivinity.content.blocks.turrets.chaos;
 
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
-import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
@@ -14,7 +15,7 @@ public class ChaosTurret9 {
     public static void load() {{
         chaosTurret9 = new ItemTurret("chaos-9") {{
             localizedName = "Chaos Lance";
-            description = "Fires a devastating beam of chaotic energy that pierces through everything.";
+            description = "Fires a devastating beam of chaotic energy.";
             size = 4;
             health = 4500;
             range = 280f;
@@ -22,8 +23,9 @@ public class ChaosTurret9 {
             rotateSpeed = 3f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.chaosMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+            heatColor = ADColor.chaosMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 900,
                 Items.lead, 700,
@@ -38,11 +40,13 @@ public class ChaosTurret9 {
                 width = 8f;
                 height = 18f;
                 lifetime = 18f;
-                hitEffect = Fx.hitLancer;
-                despawnEffect = Fx.shootBig;
-                smokeEffect = Fx.shootBigSmoke;
+                hitEffect = ADTurretEffects.hitBig(ADColor.chaosMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.chaosMain, 50f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.chaosMain);
+                trailChance = 0.8f;
                 frontColor = Color.white;
-                backColor = Color.valueOf("ff6b6b");
+                backColor = ADColor.chaosMain;
                 pierce = true;
                 pierceCap = -1;
                 pierceArmor = true;

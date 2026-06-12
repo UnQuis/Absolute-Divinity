@@ -1,8 +1,8 @@
 package absolutedivinity.content.blocks.turrets.abyss;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
-import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.MissileBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -14,7 +14,7 @@ public class AbyssTurret6 {
     public static void load() {{
         abyssTurret6 = new ItemTurret("abyss-6") {{
             localizedName = "Abyss Repeater";
-            description = "Fires homing missiles that track and pursue their targets relentlessly.";
+            description = "Fires homing missiles that track and pursue their targets.";
             size = 3;
             health = 1400;
             range = 250f;
@@ -22,8 +22,9 @@ public class AbyssTurret6 {
             rotateSpeed = 6f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootMedium(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
+            heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 200,
                 Items.lead, 150,
@@ -36,11 +37,13 @@ public class AbyssTurret6 {
                 width = 8f;
                 height = 8f;
                 lifetime = 60f;
-                hitEffect = Fx.blastExplosion;
-                despawnEffect = Fx.blastExplosion;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Items.titanium.color;
-                backColor = Items.titanium.color;
+                hitEffect = ADTurretEffects.hitMedium(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.5f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 homingPower = 0.08f;
                 homingRange = 120f;
                 knockback = 1f;
@@ -51,11 +54,13 @@ public class AbyssTurret6 {
                 width = 9f;
                 height = 9f;
                 lifetime = 65f;
-                hitEffect = Fx.blastExplosion;
-                despawnEffect = Fx.blastExplosion;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Items.phaseFabric.color;
-                backColor = Items.phaseFabric.color;
+                hitEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.abyssMain, 30f);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.5f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 homingPower = 0.1f;
                 homingRange = 160f;
                 knockback = 1.5f;
@@ -64,6 +69,7 @@ public class AbyssTurret6 {
                 lightning = 2;
                 lightningDamage = 8f;
                 lightningLength = 8;
+                lightningColor = ADColor.abyssGlow;
             }});
         }};
     }}

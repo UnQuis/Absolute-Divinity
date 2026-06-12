@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks.turrets.info;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
@@ -13,7 +14,7 @@ public class InfoTurret1 {
     public static void load() {{
         infoTurret1 = new ItemTurret("info-1") {{
             localizedName = "Info Scanner";
-            description = "Fires precision data bolts that mark targets for increased damage.";
+            description = "Fires precision data bolts.";
             size = 1;
             health = 330;
             range = 160f;
@@ -21,8 +22,9 @@ public class InfoTurret1 {
             rotateSpeed = 11f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootSmall;
-            smokeEffect = Fx.shootSmallSmoke;
+            shootEffect = ADTurretEffects.shootSmall(ADColor.infoMain);
+            smokeEffect = ADTurretEffects.shootSmall(ADColor.infoDark);
+            heatColor = ADColor.infoMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 36,
                 Items.lead, 22
@@ -32,11 +34,13 @@ public class InfoTurret1 {
                 width = 4f;
                 height = 6f;
                 lifetime = 33f;
-                hitEffect = Fx.hitBulletSmall;
-                despawnEffect = Fx.titanExplosionSmall;
-                smokeEffect = Fx.shootSmallSmoke;
-                frontColor = Items.lead.color;
-                backColor = Items.lead.color;
+                hitEffect = ADTurretEffects.hitSmall(ADColor.infoMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.infoLight);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.infoDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
+                trailChance = 0.3f;
+                frontColor = ADColor.infoLight;
+                backColor = ADColor.infoMain;
                 knockback = 0.2f;
             }});
         }};

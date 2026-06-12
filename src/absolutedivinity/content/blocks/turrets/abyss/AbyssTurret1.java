@@ -1,8 +1,9 @@
 package absolutedivinity.content.blocks.turrets.abyss;
 
-import absolutedivinity.content.ADItems;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
+import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -21,22 +22,25 @@ public class AbyssTurret1 {
             rotateSpeed = 8f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootSmall;
-            smokeEffect = Fx.shootSmallSmoke;
+            shootEffect = ADTurretEffects.shootSmall(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootSmall(ADColor.abyssDark);
+            heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 35,
                 Items.lead, 20
             ));
             category = Category.turret;
-            ammo(Items.lead, new mindustry.entities.bullet.BasicBulletType(4f, 8f) {{
+            ammo(Items.lead, new BasicBulletType(4f, 8f) {{
                 width = 5f;
                 height = 7f;
                 lifetime = 38f;
-                hitEffect = Fx.hitBulletSmall;
-                despawnEffect = Fx.titanExplosionSmall;
-                smokeEffect = Fx.shootSmallSmoke;
-                frontColor = Items.lead.color;
-                backColor = Items.lead.color;
+                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.3f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 knockback = 0.3f;
             }});
         }};

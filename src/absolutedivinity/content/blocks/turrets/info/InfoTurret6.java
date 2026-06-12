@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks.turrets.info;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.entities.bullet.MissileBulletType;
 import mindustry.type.Category;
@@ -13,7 +14,7 @@ public class InfoTurret6 {
     public static void load() {{
         infoTurret6 = new ItemTurret("info-6") {{
             localizedName = "Info Tracker";
-            description = "Launches homing missiles that lock onto and pursue targets.";
+            description = "Launches homing missiles.";
             size = 3;
             health = 1750;
             range = 260f;
@@ -21,8 +22,9 @@ public class InfoTurret6 {
             rotateSpeed = 5f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootMedium(ADColor.infoMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
+            heatColor = ADColor.infoMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 260,
                 Items.lead, 210,
@@ -35,11 +37,13 @@ public class InfoTurret6 {
                 width = 8f;
                 height = 8f;
                 lifetime = 58f;
-                hitEffect = Fx.blastExplosion;
-                despawnEffect = Fx.blastExplosion;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Items.titanium.color;
-                backColor = Items.titanium.color;
+                hitEffect = ADTurretEffects.hitMedium(ADColor.infoMain);
+                despawnEffect = ADTurretEffects.hitBig(ADColor.infoMain);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.infoDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
+                trailChance = 0.5f;
+                frontColor = ADColor.infoLight;
+                backColor = ADColor.infoMain;
                 homingPower = 0.1f;
                 homingRange = 140f;
                 knockback = 1.2f;

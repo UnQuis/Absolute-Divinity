@@ -1,7 +1,7 @@
 package absolutedivinity.content.blocks.turrets.time;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
@@ -15,7 +15,7 @@ public class TimeTurret8 {
     public static void load() {{
         timeTurret8 = new ItemTurret("time-8") {{
             localizedName = "Chrono Cannon";
-            description = "Fires devastating temporal blasts that freeze everything in their path.";
+            description = "Fires devastating temporal blasts.";
             size = 4;
             health = 3800;
             range = 280f;
@@ -23,8 +23,9 @@ public class TimeTurret8 {
             rotateSpeed = 3f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.timeMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+            heatColor = ADColor.timeMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 700,
                 Items.lead, 550,
@@ -38,11 +39,13 @@ public class TimeTurret8 {
                 width = 10f;
                 height = 16f;
                 lifetime = 35f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Color.valueOf("88ccff");
-                backColor = Color.valueOf("4488aa");
+                hitEffect = ADTurretEffects.blastEffect(ADColor.timeMain, 60f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.timeLight, 60f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
+                trailChance = 0.8f;
+                frontColor = ADColor.timeLight;
+                backColor = ADColor.timeMain;
                 pierce = true;
                 pierceArmor = true;
                 pierceCap = 5;

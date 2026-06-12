@@ -1,9 +1,8 @@
 package absolutedivinity.content.blocks.turrets.chaos;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
-import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.LightningBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -15,7 +14,7 @@ public class ChaosTurret6 {
     public static void load() {{
         chaosTurret6 = new ItemTurret("chaos-6") {{
             localizedName = "Chaos Storm";
-            description = "Unleashes electrical chaos with chain lightning bolts.";
+            description = "Unleashes electrical chaos with chain lightning.";
             size = 3;
             health = 1600;
             range = 220f;
@@ -23,8 +22,9 @@ public class ChaosTurret6 {
             rotateSpeed = 6f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootMedium(ADColor.chaosMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+            heatColor = ADColor.chaosMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 250,
                 Items.lead, 200,
@@ -35,11 +35,11 @@ public class ChaosTurret6 {
             ammo(Items.silicon, new LightningBulletType() {{
                 damage = 22f;
                 lightningLength = 14;
-                lightningColor = Color.valueOf("ff6b6b");
-                hitEffect = Fx.hitLancer;
-                shootEffect = Fx.shootBig;
-                smokeEffect = Fx.shootBigSmoke;
-                lightColor = Color.valueOf("ff6b6b");
+                lightningColor = ADColor.chaosGlow;
+                hitEffect = ADTurretEffects.hitMedium(ADColor.chaosMain);
+                shootEffect = ADTurretEffects.shootMedium(ADColor.chaosMain);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+                lightColor = ADColor.chaosGlow;
                 lightOpacity = 0.6f;
             }});
         }};

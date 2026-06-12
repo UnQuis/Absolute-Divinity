@@ -1,7 +1,7 @@
 package absolutedivinity.content.blocks.turrets.abyss;
 
-import absolutedivinity.content.ADEffects;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
@@ -14,7 +14,7 @@ public class AbyssTurret2 {
     public static void load() {{
         abyssTurret2 = new ItemTurret("abyss-2") {{
             localizedName = "Abyss Dart";
-            description = "Fires piercing darts that cut through light armor. Useful against clustered enemies.";
+            description = "Fires piercing darts that cut through light armor.";
             size = 1;
             health = 380;
             range = 170f;
@@ -22,8 +22,9 @@ public class AbyssTurret2 {
             rotateSpeed = 10f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootSmall;
-            smokeEffect = Fx.shootSmallSmoke;
+            shootEffect = ADTurretEffects.shootSmall(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootSmall(ADColor.abyssDark);
+            heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 45,
                 Items.lead, 30
@@ -33,11 +34,13 @@ public class AbyssTurret2 {
                 width = 4f;
                 height = 9f;
                 lifetime = 35f;
-                hitEffect = Fx.hitBulletSmall;
-                despawnEffect = Fx.titanExplosionSmall;
-                smokeEffect = Fx.shootSmallSmoke;
-                frontColor = Items.lead.color;
-                backColor = Items.lead.color;
+                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.3f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 pierce = true;
                 pierceCap = 2;
                 knockback = 0.2f;
@@ -46,11 +49,13 @@ public class AbyssTurret2 {
                 width = 5f;
                 height = 10f;
                 lifetime = 35f;
-                hitEffect = Fx.hitBulletSmall;
-                despawnEffect = Fx.titanExplosionSmall;
-                smokeEffect = Fx.shootSmallSmoke;
-                frontColor = Items.graphite.color;
-                backColor = Items.graphite.color;
+                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.3f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 pierce = true;
                 pierceCap = 3;
                 knockback = 0.3f;

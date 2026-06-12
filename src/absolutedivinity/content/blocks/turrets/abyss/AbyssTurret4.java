@@ -1,7 +1,9 @@
 package absolutedivinity.content.blocks.turrets.abyss;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -22,8 +24,9 @@ public class AbyssTurret4 {
             shootCone = 20f;
             targetAir = false;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootMedium(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
+            heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 100,
                 Items.lead, 80,
@@ -32,8 +35,8 @@ public class AbyssTurret4 {
             ));
             category = Category.turret;
             ammo(Items.graphite, new ArtilleryBulletType(3f, 40f, "shell") {{
-                hitEffect = Fx.blastExplosion;
-                despawnEffect = Fx.blastExplosion;
+                hitEffect = ADTurretEffects.hitMedium(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
                 width = 10f;
                 height = 10f;
                 lifetime = 80f;
@@ -41,12 +44,12 @@ public class AbyssTurret4 {
                 splashDamageRadius = 30f;
                 splashDamage = 20f;
                 knockback = 1.5f;
-                frontColor = Items.graphite.color;
-                backColor = Items.graphite.color;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
             }});
             ammo(Items.pyratite, new ArtilleryBulletType(3f, 55f, "shell") {{
-                hitEffect = Fx.blastExplosion;
-                despawnEffect = Fx.blastExplosion;
+                hitEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.abyssMain, 40f);
                 width = 10f;
                 height = 10f;
                 lifetime = 80f;
@@ -54,9 +57,9 @@ public class AbyssTurret4 {
                 splashDamageRadius = 40f;
                 splashDamage = 30f;
                 knockback = 2f;
-                frontColor = Items.pyratite.color;
-                backColor = Items.pyratite.color;
-                status = mindustry.content.StatusEffects.burning;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
+                status = StatusEffects.burning;
                 statusDuration = 120f;
             }});
         }};

@@ -1,9 +1,10 @@
 package absolutedivinity.content.blocks.turrets.abyss;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.ArtilleryBulletType;
-import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -14,7 +15,7 @@ public class AbyssTurret8 {
     public static void load() {{
         abyssTurret8 = new ItemTurret("abyss-8") {{
             localizedName = "Abyss Cannon";
-            description = "Heavy siege cannon that fires devastating shells with massive splash damage.";
+            description = "Heavy siege cannon with massive splash damage.";
             size = 4;
             health = 3200;
             range = 340f;
@@ -22,8 +23,9 @@ public class AbyssTurret8 {
             rotateSpeed = 3f;
             targetAir = false;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
+            heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 600,
                 Items.lead, 450,
@@ -34,8 +36,8 @@ public class AbyssTurret8 {
             ));
             category = Category.turret;
             ammo(Items.thorium, new ArtilleryBulletType(4f, 120f, "shell") {{
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
+                hitEffect = ADTurretEffects.hitBig(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.abyssMain, 60f);
                 width = 14f;
                 height = 14f;
                 lifetime = 85f;
@@ -43,15 +45,16 @@ public class AbyssTurret8 {
                 splashDamageRadius = 50f;
                 splashDamage = 60f;
                 knockback = 4f;
-                frontColor = Items.thorium.color;
-                backColor = Items.thorium.color;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 lightning = 3;
                 lightningDamage = 20f;
                 lightningLength = 12;
+                lightningColor = ADColor.abyssGlow;
             }});
             ammo(Items.surgeAlloy, new ArtilleryBulletType(4.5f, 180f, "shell") {{
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
+                hitEffect = ADTurretEffects.blastEffect(ADColor.abyssMain, 80f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.abyssLight, 80f);
                 width = 16f;
                 height = 16f;
                 lifetime = 80f;
@@ -59,12 +62,13 @@ public class AbyssTurret8 {
                 splashDamageRadius = 60f;
                 splashDamage = 90f;
                 knockback = 5f;
-                frontColor = Items.surgeAlloy.color;
-                backColor = Items.surgeAlloy.color;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 lightning = 6;
                 lightningDamage = 30f;
                 lightningLength = 16;
-                status = mindustry.content.StatusEffects.shocked;
+                lightningColor = ADColor.abyssGlow;
+                status = StatusEffects.shocked;
                 statusDuration = 90f;
             }});
         }};

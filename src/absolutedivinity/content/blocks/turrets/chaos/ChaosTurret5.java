@@ -1,8 +1,9 @@
 package absolutedivinity.content.blocks.turrets.chaos;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -14,7 +15,7 @@ public class ChaosTurret5 {
     public static void load() {{
         chaosTurret5 = new ItemTurret("chaos-5") {{
             localizedName = "Chaos Barrage";
-            description = "Rapid-fires incendiary shells that carpet-bomb an area.";
+            description = "Rapid-fires incendiary shells.";
             size = 3;
             health = 1300;
             range = 230f;
@@ -22,8 +23,9 @@ public class ChaosTurret5 {
             rotateSpeed = 5f;
             targetAir = false;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootMedium(ADColor.chaosMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+            heatColor = ADColor.chaosMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 180,
                 Items.lead, 140,
@@ -32,8 +34,8 @@ public class ChaosTurret5 {
             ));
             category = Category.turret;
             ammo(Items.pyratite, new ArtilleryBulletType(4f, 45f, "shell") {{
-                hitEffect = Fx.blastExplosion;
-                despawnEffect = Fx.blastExplosion;
+                hitEffect = ADTurretEffects.hitBig(ADColor.chaosMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.chaosMain, 50f);
                 width = 10f;
                 height = 10f;
                 lifetime = 60f;
@@ -41,9 +43,9 @@ public class ChaosTurret5 {
                 splashDamageRadius = 40f;
                 splashDamage = 35f;
                 knockback = 3f;
-                frontColor = Items.pyratite.color;
-                backColor = Items.pyratite.color;
-                status = mindustry.content.StatusEffects.burning;
+                frontColor = ADColor.chaosLight;
+                backColor = ADColor.chaosMain;
+                status = StatusEffects.burning;
                 statusDuration = 150f;
             }});
         }};

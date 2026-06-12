@@ -1,8 +1,9 @@
 package absolutedivinity.content.blocks.turrets.abyss;
 
-import absolutedivinity.content.ADEffects;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -22,8 +23,9 @@ public class AbyssTurret3 {
             rotateSpeed = 9f;
             targetAir = false;
             targetGround = true;
-            shootEffect = Fx.shootSmall;
-            smokeEffect = Fx.shootSmallSmoke;
+            shootEffect = ADTurretEffects.shootSmall(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootSmall(ADColor.abyssDark);
+            heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 80,
                 Items.lead, 50,
@@ -34,28 +36,32 @@ public class AbyssTurret3 {
                 width = 6f;
                 height = 8f;
                 lifetime = 32f;
-                hitEffect = Fx.hitBulletSmall;
-                despawnEffect = Fx.titanExplosionSmall;
-                smokeEffect = Fx.shootSmallSmoke;
-                frontColor = Items.graphite.color;
-                backColor = Items.graphite.color;
+                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.3f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 knockback = 0.5f;
-                status = mindustry.content.StatusEffects.slow;
+                status = StatusEffects.slow;
                 statusDuration = 60f;
             }});
             ammo(Items.silicon, new BasicBulletType(7f, 25f) {{
                 width = 6f;
                 height = 8f;
                 lifetime = 30f;
-                hitEffect = Fx.hitBulletSmall;
-                despawnEffect = Fx.titanExplosionSmall;
-                smokeEffect = Fx.shootSmallSmoke;
-                frontColor = Items.silicon.color;
-                backColor = Items.silicon.color;
+                hitEffect = ADTurretEffects.hitSmall(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.hitSmall(ADColor.abyssLight);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                trailChance = 0.3f;
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 knockback = 0.5f;
                 pierce = true;
                 pierceCap = 2;
-                status = mindustry.content.StatusEffects.slow;
+                status = StatusEffects.slow;
                 statusDuration = 60f;
             }});
         }};

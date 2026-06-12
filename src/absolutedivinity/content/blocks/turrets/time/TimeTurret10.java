@@ -1,8 +1,9 @@
 package absolutedivinity.content.blocks.turrets.time;
 
 import absolutedivinity.content.ADItems;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
-import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
@@ -16,7 +17,7 @@ public class TimeTurret10 {
     public static void load() {{
         timeTurret10 = new ItemTurret("time-10") {{
             localizedName = "Chrono Obliterator";
-            description = "The ultimate temporal weapon. Fires a projectile that freezes time itself around the impact zone.";
+            description = "The ultimate temporal weapon.";
             size = 6;
             health = 13000;
             armor = 10;
@@ -26,8 +27,9 @@ public class TimeTurret10 {
             shootCone = 5f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.timeMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+            heatColor = ADColor.timeMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 2800,
                 Items.lead, 2200,
@@ -42,11 +44,13 @@ public class TimeTurret10 {
                 width = 18f;
                 height = 22f;
                 lifetime = 55f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootSmokeTitan;
+                hitEffect = ADTurretEffects.blastEffect(ADColor.timeMain, 90f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.timeLight, 90f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
+                trailChance = 1f;
                 frontColor = Color.white;
-                backColor = Color.valueOf("4488aa");
+                backColor = ADColor.timeMain;
                 knockback = 12f;
                 hitShake = 15f;
                 splashDamageRadius = 75f;
@@ -57,7 +61,7 @@ public class TimeTurret10 {
                 lightning = 8;
                 lightningDamage = 40f;
                 lightningLength = 20;
-                lightningColor = Color.valueOf("88ccff");
+                lightningColor = ADColor.timeGlow;
                 status = StatusEffects.freezing;
                 statusDuration = 600f;
             }});
@@ -65,11 +69,13 @@ public class TimeTurret10 {
                 width = 22f;
                 height = 26f;
                 lifetime = 45f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootSmokeTitan;
+                hitEffect = ADTurretEffects.blastEffect(ADColor.timeMain, 110f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.timeLight, 110f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
+                trailChance = 1f;
                 frontColor = Color.white;
-                backColor = ADItems.divinite.color;
+                backColor = ADColor.timeMain;
                 knockback = 16f;
                 hitShake = 20f;
                 splashDamageRadius = 90f;
@@ -80,7 +86,7 @@ public class TimeTurret10 {
                 lightning = 14;
                 lightningDamage = 80f;
                 lightningLength = 30;
-                lightningColor = ADItems.divinite.color;
+                lightningColor = ADColor.timeGlow;
                 status = StatusEffects.freezing;
                 statusDuration = 900f;
             }});

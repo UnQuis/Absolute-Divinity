@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks.turrets.time;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.ArtilleryBulletType;
@@ -14,7 +15,7 @@ public class TimeTurret3 {
     public static void load() {{
         timeTurret3 = new ItemTurret("time-3") {{
             localizedName = "Chrono Mortar";
-            description = "Launches freezing shells that create zones of temporal distortion.";
+            description = "Launches freezing shells.";
             size = 2;
             health = 740;
             range = 260f;
@@ -23,8 +24,9 @@ public class TimeTurret3 {
             shootCone = 18f;
             targetAir = false;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootMedium(ADColor.timeMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+            heatColor = ADColor.timeMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 85,
                 Items.lead, 65,
@@ -32,8 +34,8 @@ public class TimeTurret3 {
             ));
             category = Category.turret;
             ammo(Items.graphite, new ArtilleryBulletType(3f, 30f, "shell") {{
-                hitEffect = Fx.blastExplosion;
-                despawnEffect = Fx.blastExplosion;
+                hitEffect = ADTurretEffects.hitMedium(ADColor.timeMain);
+                despawnEffect = ADTurretEffects.hitBig(ADColor.timeMain);
                 width = 10f;
                 height = 10f;
                 lifetime = 88f;
@@ -41,8 +43,8 @@ public class TimeTurret3 {
                 splashDamageRadius = 30f;
                 splashDamage = 18f;
                 knockback = 1f;
-                frontColor = Items.graphite.color;
-                backColor = Items.graphite.color;
+                frontColor = ADColor.timeLight;
+                backColor = ADColor.timeMain;
                 status = StatusEffects.slow;
                 statusDuration = 120f;
             }});

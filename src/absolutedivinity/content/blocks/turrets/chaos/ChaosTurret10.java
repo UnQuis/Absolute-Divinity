@@ -1,9 +1,11 @@
 package absolutedivinity.content.blocks.turrets.chaos;
 
 import absolutedivinity.content.ADItems;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
-import mindustry.content.Fx;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -15,7 +17,7 @@ public class ChaosTurret10 {
     public static void load() {{
         chaosTurret10 = new ItemTurret("chaos-10") {{
             localizedName = "Chaos Obliterator";
-            description = "The ultimate expression of chaos. Fires a world-ending projectile that tears reality apart.";
+            description = "The ultimate expression of chaos.";
             size = 6;
             health = 14000;
             armor = 12;
@@ -25,8 +27,9 @@ public class ChaosTurret10 {
             shootCone = 5f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.chaosMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+            heatColor = ADColor.chaosMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 3000,
                 Items.lead, 2500,
@@ -41,11 +44,13 @@ public class ChaosTurret10 {
                 width = 18f;
                 height = 22f;
                 lifetime = 55f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootSmokeTitan;
+                hitEffect = ADTurretEffects.blastEffect(ADColor.chaosMain, 100f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.chaosLight, 100f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.chaosMain);
+                trailChance = 1f;
                 frontColor = Color.white;
-                backColor = Color.valueOf("ff6b6b");
+                backColor = ADColor.chaosMain;
                 knockback = 10f;
                 hitShake = 14f;
                 splashDamageRadius = 70f;
@@ -56,19 +61,21 @@ public class ChaosTurret10 {
                 lightning = 10;
                 lightningDamage = 60f;
                 lightningLength = 25;
-                lightningColor = Color.valueOf("ff6b6b");
-                status = mindustry.content.StatusEffects.burning;
+                lightningColor = ADColor.chaosGlow;
+                status = StatusEffects.burning;
                 statusDuration = 300f;
             }});
             ammo(ADItems.divinite, new BasicBulletType(9f, 1000f) {{
                 width = 22f;
                 height = 26f;
                 lifetime = 48f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootSmokeTitan;
+                hitEffect = ADTurretEffects.blastEffect(ADColor.chaosMain, 120f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.chaosLight, 120f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.chaosDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.chaosMain);
+                trailChance = 1f;
                 frontColor = Color.white;
-                backColor = ADItems.divinite.color;
+                backColor = ADColor.chaosMain;
                 knockback = 14f;
                 hitShake = 18f;
                 splashDamageRadius = 90f;
@@ -79,8 +86,8 @@ public class ChaosTurret10 {
                 lightning = 16;
                 lightningDamage = 100f;
                 lightningLength = 35;
-                lightningColor = ADItems.divinite.color;
-                status = mindustry.content.StatusEffects.melting;
+                lightningColor = ADColor.chaosGlow;
+                status = StatusEffects.melting;
                 statusDuration = 600f;
             }});
         }};

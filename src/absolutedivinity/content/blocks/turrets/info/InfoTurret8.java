@@ -1,7 +1,7 @@
 package absolutedivinity.content.blocks.turrets.info;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
@@ -14,7 +14,7 @@ public class InfoTurret8 {
     public static void load() {{
         infoTurret8 = new ItemTurret("info-8") {{
             localizedName = "Info Cannon";
-            description = "Heavy precision cannon with devastating accuracy.";
+            description = "Heavy precision cannon.";
             size = 4;
             health = 3600;
             range = 290f;
@@ -22,8 +22,9 @@ public class InfoTurret8 {
             rotateSpeed = 3.2f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.infoMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
+            heatColor = ADColor.infoMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 680,
                 Items.lead, 530,
@@ -37,11 +38,13 @@ public class InfoTurret8 {
                 width = 10f;
                 height = 16f;
                 lifetime = 33f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Color.white;
-                backColor = Items.thorium.color;
+                hitEffect = ADTurretEffects.blastEffect(ADColor.infoMain, 50f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.infoLight, 50f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
+                trailChance = 0.8f;
+                frontColor = ADColor.infoLight;
+                backColor = ADColor.infoMain;
                 pierce = true;
                 pierceArmor = true;
                 pierceCap = 4;

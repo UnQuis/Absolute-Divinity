@@ -1,8 +1,9 @@
 package absolutedivinity.content.blocks.turrets.info;
 
 import absolutedivinity.content.ADItems;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import arc.graphics.Color;
-import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
@@ -15,7 +16,7 @@ public class InfoTurret10 {
     public static void load() {{
         infoTurret10 = new ItemTurret("info-10") {{
             localizedName = "Info Annihilator";
-            description = "The pinnacle of informational warfare. Fires devastating precision strikes that leave nothing standing.";
+            description = "The pinnacle of informational warfare.";
             size = 6;
             health = 13500;
             armor = 11;
@@ -25,8 +26,9 @@ public class InfoTurret10 {
             shootCone = 5f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.infoMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
+            heatColor = ADColor.infoMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 2900,
                 Items.lead, 2300,
@@ -41,11 +43,13 @@ public class InfoTurret10 {
                 width = 16f;
                 height = 20f;
                 lifetime = 52f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootSmokeTitan;
+                hitEffect = ADTurretEffects.blastEffect(ADColor.infoMain, 80f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.infoLight, 80f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
+                trailChance = 1f;
                 frontColor = Color.white;
-                backColor = Items.surgeAlloy.color;
+                backColor = ADColor.infoMain;
                 knockback = 10f;
                 hitShake = 13f;
                 splashDamageRadius = 65f;
@@ -56,17 +60,19 @@ public class InfoTurret10 {
                 lightning = 8;
                 lightningDamage = 45f;
                 lightningLength = 18;
-                lightningColor = Items.surgeAlloy.color;
+                lightningColor = ADColor.infoGlow;
             }});
             ammo(ADItems.divinite, new BasicBulletType(10f, 1100f) {{
                 width = 20f;
                 height = 24f;
                 lifetime = 42f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootSmokeTitan;
+                hitEffect = ADTurretEffects.blastEffect(ADColor.infoMain, 100f);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.infoLight, 100f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.infoMain);
+                trailChance = 1f;
                 frontColor = Color.white;
-                backColor = ADItems.divinite.color;
+                backColor = ADColor.infoMain;
                 knockback = 14f;
                 hitShake = 17f;
                 splashDamageRadius = 85f;
@@ -77,7 +83,7 @@ public class InfoTurret10 {
                 lightning = 14;
                 lightningDamage = 80f;
                 lightningLength = 28;
-                lightningColor = ADItems.divinite.color;
+                lightningColor = ADColor.infoGlow;
             }});
         }};
     }}

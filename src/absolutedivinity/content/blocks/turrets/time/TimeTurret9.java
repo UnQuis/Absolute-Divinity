@@ -1,7 +1,7 @@
 package absolutedivinity.content.blocks.turrets.time;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
@@ -15,7 +15,7 @@ public class TimeTurret9 {
     public static void load() {{
         timeTurret9 = new ItemTurret("time-9") {{
             localizedName = "Chrono Beam";
-            description = "Fires a continuous temporal beam that slows and damages everything it touches.";
+            description = "Fires a continuous temporal beam.";
             size = 4;
             health = 4800;
             range = 260f;
@@ -23,8 +23,9 @@ public class TimeTurret9 {
             rotateSpeed = 4f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.timeMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+            heatColor = ADColor.timeMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 1000,
                 Items.lead, 800,
@@ -38,12 +39,12 @@ public class TimeTurret9 {
             ammo(Items.surgeAlloy, new BasicBulletType(0f, 40f) {{
                 speed = 0f;
                 lifetime = 8f;
-                hitEffect = Fx.hitMeltdown;
-                despawnEffect = Fx.none;
-                smokeEffect = Fx.none;
-                shootEffect = Fx.none;
-                frontColor = Color.valueOf("88ccff");
-                backColor = Color.valueOf("4488aa");
+                hitEffect = ADTurretEffects.hitMedium(ADColor.timeMain);
+                despawnEffect = ADTurretEffects.trailEffect(ADColor.timeDark);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.timeDark);
+                shootEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
+                frontColor = ADColor.timeLight;
+                backColor = ADColor.timeMain;
                 pierce = true;
                 pierceCap = -1;
                 hittable = false;

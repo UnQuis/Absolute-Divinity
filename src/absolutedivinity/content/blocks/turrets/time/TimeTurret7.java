@@ -1,7 +1,7 @@
 package absolutedivinity.content.blocks.turrets.time;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
@@ -15,7 +15,7 @@ public class TimeTurret7 {
     public static void load() {{
         timeTurret7 = new ItemTurret("time-7") {{
             localizedName = "Chrono Howitzer";
-            description = "Heavy temporal cannon that creates zones of absolute zero.";
+            description = "Heavy temporal cannon.";
             size = 3;
             health = 2400;
             range = 310f;
@@ -24,8 +24,9 @@ public class TimeTurret7 {
             shootCone = 12f;
             targetAir = false;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.timeMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+            heatColor = ADColor.timeMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 420,
                 Items.lead, 320,
@@ -38,11 +39,13 @@ public class TimeTurret7 {
                 width = 12f;
                 height = 14f;
                 lifetime = 62f;
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
-                smokeEffect = Fx.shootBigSmoke;
-                frontColor = Color.valueOf("88ccff");
-                backColor = Color.valueOf("6699cc");
+                hitEffect = ADTurretEffects.hitBig(ADColor.timeMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.timeMain, 50f);
+                smokeEffect = ADTurretEffects.shootBig(ADColor.timeDark);
+                trailEffect = ADTurretEffects.trailEffect(ADColor.timeMain);
+                trailChance = 0.8f;
+                frontColor = ADColor.timeLight;
+                backColor = ADColor.timeMain;
                 knockback = 5f;
                 hitShake = 7f;
                 splashDamageRadius = 45f;

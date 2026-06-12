@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks.turrets.info;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.type.Category;
@@ -13,7 +14,7 @@ public class InfoTurret7 {
     public static void load() {{
         infoTurret7 = new ItemTurret("info-7") {{
             localizedName = "Info Howitzer";
-            description = "Long-range precision bombardment platform.";
+            description = "Long-range precision bombardment.";
             size = 3;
             health = 2500;
             range = 330f;
@@ -22,8 +23,9 @@ public class InfoTurret7 {
             shootCone = 10f;
             targetAir = false;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.infoMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.infoDark);
+            heatColor = ADColor.infoMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 440,
                 Items.lead, 340,
@@ -33,8 +35,8 @@ public class InfoTurret7 {
             ));
             category = Category.turret;
             ammo(Items.titanium, new ArtilleryBulletType(4.5f, 100f, "shell") {{
-                hitEffect = Fx.massiveExplosion;
-                despawnEffect = Fx.massiveExplosion;
+                hitEffect = ADTurretEffects.hitBig(ADColor.infoMain);
+                despawnEffect = ADTurretEffects.blastEffect(ADColor.infoMain, 60f);
                 width = 12f;
                 height = 12f;
                 lifetime = 75f;
@@ -42,8 +44,8 @@ public class InfoTurret7 {
                 splashDamageRadius = 48f;
                 splashDamage = 55f;
                 knockback = 3f;
-                frontColor = Items.titanium.color;
-                backColor = Items.titanium.color;
+                frontColor = ADColor.infoLight;
+                backColor = ADColor.infoMain;
             }});
         }};
     }}

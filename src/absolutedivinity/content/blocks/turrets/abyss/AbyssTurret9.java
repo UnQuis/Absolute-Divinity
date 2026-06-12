@@ -1,6 +1,7 @@
 package absolutedivinity.content.blocks.turrets.abyss;
 
-import mindustry.content.Fx;
+import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.type.Category;
@@ -13,7 +14,7 @@ public class AbyssTurret9 {
     public static void load() {{
         abyssTurret9 = new ItemTurret("abyss-9") {{
             localizedName = "Abyss Beam";
-            description = "Fires a devastating continuous beam that melts through armor and structures.";
+            description = "Fires a devastating continuous beam.";
             size = 4;
             health = 4000;
             range = 280f;
@@ -21,8 +22,9 @@ public class AbyssTurret9 {
             rotateSpeed = 4f;
             targetAir = true;
             targetGround = true;
-            shootEffect = Fx.shootBig;
-            smokeEffect = Fx.shootBigSmoke;
+            shootEffect = ADTurretEffects.shootBig(ADColor.abyssMain);
+            smokeEffect = ADTurretEffects.shootBig(ADColor.abyssDark);
+            heatColor = ADColor.abyssMain;
             requirements(Category.turret, ItemStack.with(
                 Items.copper, 800,
                 Items.lead, 600,
@@ -36,12 +38,12 @@ public class AbyssTurret9 {
             ammo(Items.surgeAlloy, new BasicBulletType(0f, 55f) {{
                 speed = 0f;
                 lifetime = 8f;
-                hitEffect = Fx.hitMeltdown;
-                despawnEffect = Fx.none;
-                smokeEffect = Fx.none;
-                shootEffect = Fx.none;
-                frontColor = Items.surgeAlloy.color;
-                backColor = Items.surgeAlloy.color;
+                hitEffect = ADTurretEffects.hitMedium(ADColor.abyssMain);
+                despawnEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                smokeEffect = ADTurretEffects.trailEffect(ADColor.abyssDark);
+                shootEffect = ADTurretEffects.trailEffect(ADColor.abyssMain);
+                frontColor = ADColor.abyssLight;
+                backColor = ADColor.abyssMain;
                 pierce = true;
                 pierceCap = -1;
                 hittable = false;
