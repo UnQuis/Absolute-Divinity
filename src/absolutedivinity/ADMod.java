@@ -18,6 +18,7 @@ import absolutedivinity.content.turrets.ADOrderTurrets;
 import absolutedivinity.content.ADUnits;
 import absolutedivinity.content.ADWeapons;
 import absolutedivinity.content.ADWeathers;
+import absolutedivinity.content.ADSectorPresets;
 import absolutedivinity.content.ADPlaceholderSprites;
 import absolutedivinity.content.blocks.ADCores;
 import absolutedivinity.content.blocks.ADFactionSpecialization;
@@ -52,6 +53,7 @@ public class ADMod extends Mod {
         ADEnvironment.load();
         ADWeathers.load();
         ADPlanets.load(); // 8 worlds — см. ADPlanets javadoc
+        ADSectorPresets.load(); // crazy wave tunings per planet
         ADTechTree.load();
     }
 
