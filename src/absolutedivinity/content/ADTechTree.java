@@ -1,6 +1,7 @@
 package absolutedivinity.content;
 
 import absolutedivinity.content.blocks.ADCores;
+import absolutedivinity.content.blocks.ADFactionSpecialization;
 import absolutedivinity.content.blocks.distribution.ADDistribution;
 import absolutedivinity.content.blocks.distribution.VoidConduit;
 import absolutedivinity.content.blocks.effects.ADEffectBlocks;
@@ -15,19 +16,39 @@ import mindustry.content.Blocks;
 import mindustry.content.TechTree;
 import mindustry.ctype.UnlockableContent;
 import mindustry.game.Objectives.Research;
+import mindustry.game.Objectives.SectorComplete;
 import mindustry.type.ItemStack;
+import mindustry.type.SectorPreset;
 
+/**
+ * TechTree for Absolute Divinity 0.0.2 — 8 planets, 6 factions.
+ *
+ * Design borrowed from Omaloon / New Horizons:
+ * - Each faction's home planet is a "tier gate" — you must launch to it to unlock its specialty.
+ * - Cross-faction dependencies force interplanetary logistics (like NH's interplanetary resources).
+ * - Chemistry (Info/Thanatos) → Power (Order/Verdict) → Logistics (Abyss/Ares) → Turrets (Void/Elysium)
+ *   chain ensures you can't rush Annihilators without building the whole system.
+ *
+ * Root: Elysium (Void starter), branching per faction.
+ */
 public class ADTechTree {
 
     private static final ObjectMap<UnlockableContent, TechTree.TechNode> nodes = new ObjectMap<>();
 
     public static void load() {
         TechTree.TechNode root = TechTree.nodeRoot("absolute-divinity", Blocks.coreShard, true, () -> {});
+        // Attach root to Elysium (Voidstarter) — visible in planet's tech tree
         ADPlanets.elysium.techTree = root;
+        ADPlanets.verdict.techTree = root;
+        ADPlanets.boreas.techTree = root;
+        ADPlanets.dionysus.techTree = root;
+        ADPlanets.ares.techTree = root;
+        ADPlanets.thanatos.techTree = root;
+        // moons inherit parents' tree implicitly via SectorComplete
 
         nodes.put(Blocks.coreShard, root);
 
-        // Items progression
+        // ── Items progression (global, all planets) ──
         addItem(Blocks.coreShard, ADItems.ferriteCompound);
         addItem(ADItems.ferriteCompound, ADItems.reinforcedComposite);
         addItem(ADItems.reinforcedComposite, ADItems.matrix);
@@ -46,32 +67,53 @@ public class ADTechTree {
         addItem(ADItems.mythril, ADItems.blackMythril);
         addItem(ADItems.blackMythril, ADItems.divinite);
 
-        // Liquids
+        // ── Liquids (Info — Thanatos line) ──
         addBlock(ADItems.bioAlloy, ADLiquids.acid);
         addBlock(ADLiquids.acid, ADLiquids.livingSteelLiquid);
-        addBlock(ADLiquids.livingSteelLiquid, ADLiquids.neutronFluid);
+        addBlock(ADLiquids.livingSteelLiquid, ADFactionSpecialization.neutronSynthesizer);
+        addBlock(ADFactionSpecialization.neutronSynthesizer, ADLiquids.neutronFluid);
         addBlock(ADLiquids.neutronFluid, ADLiquids.steam);
+        addBlock(ADLiquids.neutronFluid, ADFactionSpecialization.mythrilForge);
 
-        // Distribution blocks
-        addItem(Blocks.coreShard, ADDistribution.gridRouter);
+        // ── Distribution — Abyss (Ares) — fastest logistics ──
+        addItem(Blocks.coreShard, ADDistribution.gridRouter); // size1 starter, planet independent
         addItem(ADDistribution.gridRouter, ADDistribution.nullNode);
         addItem(ADDistribution.nullNode, ADDistribution.orderHub);
         addItem(ADDistribution.orderHub, ADDistribution.entropyConduit);
         addItem(ADDistribution.entropyConduit, ADDistribution.riftStacker);
         addItem(ADDistribution.riftStacker, VoidConduit.voidConduit);
-
         addItem(ADDistribution.gridRouter, ADDistribution.aeonBridge);
         addItem(ADDistribution.aeonBridge, ADDistribution.nexusBridge);
+        // Abyss top logistics — needs cryoSteel from Boreas
+        addBlock(ADDistribution.riftStacker, ADFactionSpecialization.abyssVelocityConduit, ADItems.cryoSteel);
+        addBlock(ADFactionSpecialization.abyssVelocityConduit, ADFactionSpecialization.abyssQuantumBridge, ADFactionSpecialization.orderFusionReactor);
 
-        // Effect blocks
+        // ── Power — Order (Verdict) — strongest generation ──
+        addItem(Blocks.coreShard, ADFactionSpecialization.orderFusionReactor, ADFactionSpecialization.neutronSynthesizer, ADFactionSpecialization.mythrilForge);
+        addItem(ADFactionSpecialization.orderFusionReactor, ADFactionSpecialization.orderCapacitor);
+        // legacy reactors still chain for nostalgia, but gate behind order fusion
+        addBlock(ADFactionSpecialization.orderCapacitor, absolutedivinity.content.blocks.power.ADReactors.basicReactor);
+        addBlock(absolutedivinity.content.blocks.power.ADReactors.basicReactor, absolutedivinity.content.blocks.power.ADReactors.advancedReactor);
+        addBlock(absolutedivinity.content.blocks.power.ADReactors.advancedReactor, absolutedivinity.content.blocks.power.ADReactors.powerReactor);
+        addBlock(absolutedivinity.content.blocks.power.ADReactors.powerReactor, absolutedivinity.content.blocks.power.ADReactors.voidReactor);
+        addBlock(absolutedivinity.content.blocks.power.ADReactors.voidReactor, absolutedivinity.content.blocks.power.ADReactors.divinityReactor);
+
+        // ── Defense — Time (Boreas) ──
+        addItem(Blocks.coreShard, ADFactionSpecialization.chronoWall, ADItems.cryoSteel);
+        addItem(ADFactionSpecialization.chronoWall, ADFactionSpecialization.chronoWallLarge, ADItems.hardenedBioAlloy);
+        addItem(ADFactionSpecialization.chronoWallLarge, ADFactionSpecialization.temporalMender, ADLiquids.neutronFluid);
+
+        // ── Units — Chaos (Dionysus) ──
+        addItem(Blocks.coreShard, ADFactionSpecialization.chaosReconstructor, ADItems.bioAlloy, ADItems.mythril);
+
+        // ── Effect / Cores ──
         addItem(Blocks.coreShard, ADEffectBlocks.disruptor2);
         addItem(ADEffectBlocks.disruptor2, ADEffectBlocks.disruptor3);
-
-        // Cores
         addItem(Blocks.coreShard, ADCores.primordialCore);
         addItem(ADCores.primordialCore, ADCores.ascensionCore);
 
-        // Void turrets
+        // ── Faction turrets — each gated behind its home planet specialty ──
+        // Void — turret supreme — needs Order power + Info mythril
         addItem(Blocks.coreShard, VoidDart.voidDart);
         addItem(VoidDart.voidDart, VoidArc.voidArc);
         addItem(VoidArc.voidArc, VoidReaper.voidReaper);
@@ -81,9 +123,10 @@ public class ADTechTree {
         addItem(VoidHowitzer.voidHowitzer, VoidStorm.voidStorm);
         addItem(VoidStorm.voidStorm, VoidLanceBattery.voidLanceBattery);
         addItem(VoidLanceBattery.voidLanceBattery, VoidSingularity.voidSingularity);
-        addItem(VoidSingularity.voidSingularity, VoidAnnihilator.voidAnnihilator);
+        addBlock(VoidSingularity.voidSingularity, VoidAnnihilator.voidAnnihilator,
+            ADFactionSpecialization.orderFusionReactor, ADFactionSpecialization.mythrilForge, ADFactionSpecialization.abyssQuantumBridge);
 
-        // Order turrets
+        // Order — beam / lightning — balanced, but needs Info chem
         addItem(Blocks.coreShard, OrderSpark.orderSpark);
         addItem(OrderSpark.orderSpark, OrderFlak.orderFlak);
         addItem(OrderFlak.orderFlak, OrderLance.orderLance);
@@ -93,9 +136,10 @@ public class ADTechTree {
         addItem(OrderCannon.orderCannon, OrderBeam.orderBeam);
         addItem(OrderBeam.orderBeam, OrderCataclysm.orderCataclysm);
         addItem(OrderCataclysm.orderCataclysm, OrderSingularity.orderSingularity);
-        addItem(OrderSingularity.orderSingularity, OrderAnnihilator.orderAnnihilator);
+        addBlock(OrderSingularity.orderSingularity, OrderAnnihilator.orderAnnihilator,
+            ADFactionSpecialization.neutronSynthesizer, ADFactionSpecialization.abyssVelocityConduit);
 
-        // Abyss turrets
+        // Abyss — gravity wells — needs Time walls for containment
         addItem(Blocks.coreShard, AbyssTurret1.abyssTurret1);
         addItem(AbyssTurret1.abyssTurret1, AbyssTurret2.abyssTurret2);
         addItem(AbyssTurret2.abyssTurret2, AbyssTurret3.abyssTurret3);
@@ -105,9 +149,10 @@ public class ADTechTree {
         addItem(AbyssTurret6.abyssTurret6, AbyssTurret7.abyssTurret7);
         addItem(AbyssTurret7.abyssTurret7, AbyssTurret8.abyssTurret8);
         addItem(AbyssTurret8.abyssTurret8, AbyssTurret9.abyssTurret9);
-        addItem(AbyssTurret9.abyssTurret9, AbyssAnnihilator.abyssAnnihilator);
+        addBlock(AbyssTurret9.abyssTurret9, AbyssAnnihilator.abyssAnnihilator,
+            ADFactionSpecialization.chronoWallLarge, ADFactionSpecialization.orderCapacitor);
 
-        // Chaos turrets
+        // Chaos — spread / swarm — needs Abyss logistics
         addItem(Blocks.coreShard, ChaosTurret1.chaosTurret1);
         addItem(ChaosTurret1.chaosTurret1, ChaosTurret2.chaosTurret2);
         addItem(ChaosTurret2.chaosTurret2, ChaosTurret3.chaosTurret3);
@@ -117,9 +162,10 @@ public class ADTechTree {
         addItem(ChaosTurret6.chaosTurret6, ChaosTurret7.chaosTurret7);
         addItem(ChaosTurret7.chaosTurret7, ChaosTurret8.chaosTurret8);
         addItem(ChaosTurret8.chaosTurret8, ChaosTurret9.chaosTurret9);
-        addItem(ChaosTurret9.chaosTurret9, ChaosObliterator.chaosObliterator);
+        addBlock(ChaosTurret9.chaosTurret9, ChaosObliterator.chaosObliterator,
+            ADFactionSpecialization.abyssVelocityConduit, ADFactionSpecialization.chaosReconstructor);
 
-        // Time turrets
+        // Time — slow / stasis — needs Chaos units to unlock chronostorm
         addItem(Blocks.coreShard, TimeTurret1.timeTurret1);
         addItem(TimeTurret1.timeTurret1, TimeTurret2.timeTurret2);
         addItem(TimeTurret2.timeTurret2, TimeTurret3.timeTurret3);
@@ -129,9 +175,10 @@ public class ADTechTree {
         addItem(TimeTurret6.timeTurret6, TimeTurret7.timeTurret7);
         addItem(TimeTurret7.timeTurret7, TimeTurret8.timeTurret8);
         addItem(TimeTurret8.timeTurret8, TimeTurret9.timeTurret9);
-        addItem(TimeTurret9.timeTurret9, ChronoObliterator.chronoObliterator);
+        addBlock(TimeTurret9.timeTurret9, ChronoObliterator.chronoObliterator,
+            ADFactionSpecialization.temporalMender, ADFactionSpecialization.chaosReconstructor);
 
-        // Info turrets
+        // Info — data / healing — needs Thanatos acid (early) but top needs Void tech
         addItem(Blocks.coreShard, InfoTurret1.infoTurret1);
         addItem(InfoTurret1.infoTurret1, InfoTurret2.infoTurret2);
         addItem(InfoTurret2.infoTurret2, InfoTurret3.infoTurret3);
@@ -141,7 +188,8 @@ public class ADTechTree {
         addItem(InfoTurret6.infoTurret6, InfoTurret7.infoTurret7);
         addItem(InfoTurret7.infoTurret7, InfoTurret8.infoTurret8);
         addItem(InfoTurret8.infoTurret8, InfoTurret9.infoTurret9);
-        addItem(InfoTurret9.infoTurret9, InfoAnnihilator.infoAnnihilator);
+        addBlock(InfoTurret9.infoTurret9, InfoAnnihilator.infoAnnihilator,
+            VoidAnnihilator.voidAnnihilator, ADFactionSpecialization.mythrilForge);
     }
 
     private static void addBlock(UnlockableContent parent, UnlockableContent child, UnlockableContent... requirements) {
@@ -157,7 +205,7 @@ public class ADTechTree {
         }
     }
 
-    private static void addItem(UnlockableContent parent, UnlockableContent child) {
+    private static void addItem(UnlockableContent parent, UnlockableContent child, UnlockableContent... requirements) {
         TechTree.TechNode parentNode = nodes.get(parent);
         if (parentNode == null) return;
 
@@ -165,5 +213,8 @@ public class ADTechTree {
         nodes.put(child, node);
 
         node.objectives.add(new Research(parent));
+        for (UnlockableContent req : requirements) {
+            node.objectives.add(new Research(req));
+        }
     }
 }

@@ -18,7 +18,9 @@ import absolutedivinity.content.turrets.ADOrderTurrets;
 import absolutedivinity.content.ADUnits;
 import absolutedivinity.content.ADWeapons;
 import absolutedivinity.content.ADWeathers;
+import absolutedivinity.content.ADPlaceholderSprites;
 import absolutedivinity.content.blocks.ADCores;
+import absolutedivinity.content.blocks.ADFactionSpecialization;
 import absolutedivinity.content.blocks.power.ADReactors;
 import absolutedivinity.core.ADGameLogic;
 import absolutedivinity.core.ADSettings;
@@ -34,20 +36,22 @@ public class ADMod extends Mod {
         ADStatusEffects.load();
         ADLiquids.load();
         ADWeapons.load();
-        ADVoidTurrets.load();
-        ADAbyssTurrets.load();
-        ADChaosTurrets.load();
-        ADTimeTurrets.load();
-        ADInfoTurrets.load();
-        ADOrderTurrets.load();
+        // 6 faction turret lines — каждая теперь с уникальной механикой (см. ADFactionSpecialization javadoc)
+        ADVoidTurrets.load();   // Void — турели (макс. DPS)
+        ADAbyssTurrets.load();  // Abyss — логистика + грави-аномалии
+        ADChaosTurrets.load();  // Chaos — юниты + хаотичный спред
+        ADTimeTurrets.load();   // Time — контроль времени + замедление
+        ADInfoTurrets.load();   // Info — разведка + хилинг
+        ADOrderTurrets.load();  // Order — энергопушки
         ADDistribution.load();
         ADEffectBlocks.load();
         ADUnits.load();
         ADCores.load();
         ADReactors.load();
+        ADFactionSpecialization.load(); // ← новая межфракционная специализация (Order/Abyss/Time/Chaos/Info/Void)
         ADEnvironment.load();
         ADWeathers.load();
-        ADPlanets.load();
+        ADPlanets.load(); // 8 worlds — см. ADPlanets javadoc
         ADTechTree.load();
     }
 
@@ -58,6 +62,12 @@ public class ADMod extends Mod {
         if(!Vars.headless){
             Events.on(EventType.ClientLoadEvent.class, e -> {
                 ADSettings.load();
+                // программные плейсхолдер-спрайты для блоков без PNG (160.1)
+                try{
+                    ADPlaceholderSprites.generate();
+                }catch(Throwable t){
+                    arc.util.Log.err("AD placeholder gen failed", t);
+                }
             });
         }
     }

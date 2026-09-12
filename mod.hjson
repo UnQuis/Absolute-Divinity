@@ -37,9 +37,9 @@
         Lead developer's Telegram channel: https://t.me/QuasarsDomain
         '''
 
-    subtitle: "Insanity"
-    minGameVersion: 154
-    version: "0.0.1"
+    subtitle: "Insanity — 6 Factions, 8 Worlds"
+    minGameVersion: 160
+    version: "0.0.2"
     java: true
     hidden: false
 }
