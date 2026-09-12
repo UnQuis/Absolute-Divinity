@@ -87,6 +87,9 @@ public class ADPlaceholderSprites {
 
     private static Color factionColor(String name) {
         String n = name.toLowerCase();
+        if (n.contains("astralite") || n.contains("astral")) return Color.valueOf("f2f0ff").cpy();
+        if (n.contains("singularity")) return Color.valueOf("191c2b").cpy();
+        if (n.contains("quantum")) return Color.valueOf("f2f0ff").cpy().lerp(Color.valueOf("191c2b"), 0.3f);
         if (n.contains("void")) return ADColor.voidGlow.cpy();
         if (n.contains("order")) return ADColor.orderMain.cpy();
         if (n.contains("abyss")) return ADColor.abyssMain.cpy();

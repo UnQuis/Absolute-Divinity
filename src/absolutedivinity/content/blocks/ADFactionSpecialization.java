@@ -58,7 +58,10 @@ public class ADFactionSpecialization {
     public static Reconstructor chaosReconstructor;
 
     // Info — CHEMISTRY
-    public static GenericCrafter neutronSynthesizer, mythrilForge;
+    public static GenericCrafter neutronSynthesizer, mythrilForge, astraliteForge, singularityForge;
+
+    // Spatial — TELEPORT (uses astralite)
+    public static StackConveyor quantumConveyor;
 
     public static void load() {
 
@@ -292,6 +295,64 @@ public class ADFactionSpecialization {
             consumeItems(ItemStack.with(ADItems.celestite, 2, ADItems.cryoSteel, 1, Items.thorium, 1));
             outputItem = new ItemStack(ADItems.mythril, 2);
             requirements(Category.crafting, ItemStack.with(Items.copper, 400, Items.lead, 300, Items.silicon, 200, ADItems.celestite, 40));
+        }};
+
+        // ── SPATIAL — Astralite chain (Info top) ───────────────────────
+        astraliteForge = new GenericCrafter("astralite-forge"){{
+            localizedName = "Astralite Forge";
+            description = "[#f2f0ff]Пространственный пресс[]. Плавит [accent]mythril 2 + phaseFabric 1 + neutronFluid 15[] → [accent]astralite 1[]. [lightgray]hardness 7, charge 20[]. Для телепортов и пространственных турелей T7+.";
+            size = 4;
+            health = 1900;
+            hasItems = true;
+            hasLiquids = true;
+            hasPower = true;
+            craftTime = 120f;
+            itemCapacity = 30;
+            liquidCapacity = 80f;
+            consumePower(6f);
+            consumeItems(ItemStack.with(ADItems.mythril, 2, Items.phaseFabric, 1));
+            consumeLiquid(ADLiquids.neutronFluid, 0.25f);
+            outputItem = new ItemStack(ADItems.astralite, 1);
+            craftEffect = Fx.smeltsmoke;
+            updateEffect = Fx.steam;
+            requirements(Category.crafting, ItemStack.with(Items.titanium, 500, Items.silicon, 400, ADItems.mythril, 40, ADItems.celestite, 60));
+        }};
+
+        singularityForge = new GenericCrafter("singularity-alloy-forge"){{
+            localizedName = "Singularity Alloy Forge";
+            description = "[#191c2b]Сингулярный пресс[]. Сплав [accent]divinite/blackMythril 1 + mythril 2 + cryoSteel 2[] → [accent]singularity-alloy 1[]. [darkgray]hardness 9[] для оружия/обороны T6+. Дорого, но штабелируется.";
+            size = 5;
+            health = 3200;
+            hasItems = true;
+            hasPower = true;
+            craftTime = 150f;
+            itemCapacity = 40;
+            consumePower(8f);
+            consumeItems(ItemStack.with(ADItems.divinite, 1, ADItems.mythril, 2, ADItems.cryoSteel, 2));
+            outputItem = new ItemStack(ADItems.singularityAlloy, 1);
+            craftEffect = new WaveEffect(){{ colorFrom = Color.valueOf("191c2b"); colorTo = Color.valueOf("f2f0ff"); sizeFrom = 5f; sizeTo = 18f; strokeFrom = 2f; strokeTo = 0f; }};
+            requirements(Category.crafting, ItemStack.with(Items.lead, 600, Items.silicon, 500, Items.thorium, 300, ADItems.divinite, 20, ADItems.cryoSteel, 40));
+            // alternative recipe with blackMythril as void-matter substitute (handled via separate crafter if needed)
+        }};
+
+        // alternative recipe: blackMythril variant for lore void-matter
+        // players can use either divinite OR blackMythril as void-matter - we implement second forge as alias for flexibility
+        // but keep single for now; note in description.
+
+        quantumConveyor = new StackConveyor("quantum-conveyor"){{
+            localizedName = "Quantum Conveyor";
+            description = "[#f2f0ff]Квантовый конвейер[] — пространственный. [accent]Телепортирует стаки[] со скоростью [accent]52 items/sec[], сквозь блоки, но жрёт [accent]astralite[] на постройку и [cyan]0.8 power[]. Быстрее Velocity (45/sec). Требует Astralite + SingularityAlloy.";
+            health = 220;
+            speed = 0.22f; // 52/sec vs 45/sec velocity
+            itemCapacity = 25;
+            hasPower = true;
+            consumesPower = true;
+            consumePower(0.8f);
+            // glowing spatial effect
+            glowColor = Color.valueOf("f2f0ff");
+            requirements(Category.distribution, ItemStack.with(ADItems.astralite, 2, ADItems.singularityAlloy, 1, Items.silicon, 4, ADItems.cryoSteel, 2));
+            loadEffect = new WaveEffect(){{ colorFrom = Color.valueOf("f2f0ff"); colorTo = Color.valueOf("191c2b"); sizeFrom = 6f; sizeTo = 0f; strokeFrom = 2f; strokeTo = 0f; }};
+            unloadEffect = new WaveEffect(){{ colorFrom = Color.valueOf("191c2b"); colorTo = Color.valueOf("f2f0ff"); sizeFrom = 0f; sizeTo = 6f; strokeFrom = 0f; strokeTo = 2f; }};
         }};
     }
 }

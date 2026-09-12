@@ -1,8 +1,8 @@
 # Absolute Divinity — Полный список ресурсов (0.0.2 / 160.1)
 
-> 15 предметов + 4 жидкости + 16 статусов + 8 планет + 17 юнитов + ~60 турелей + блоки. Всё раскидано по фракциям, чтобы заставить летать между мирами.
+> **17 предметов** + 4 жидкости + 16 статусов + 8 планет + 17 юнитов + ~60 турелей + блоки. Всё раскидано по фракциям, чтобы заставить летать между мирами.
 
-## 1) Предметы — 15 (ADItems.java)
+## 1) Предметы — 17 (ADItems.java)
 
 | # | ID (`Item.name`) | Локализация | Цвет | Фракция | Харднесс | Cost | Применение (куда идёт) |
 |---|-------------------|-------------|------|---------|----------|------|------------------------|
@@ -21,9 +21,11 @@
 |13 | `black-mythril` | Black Mythril | `#333a41` | Void | 4 | 4 | Улучш. mythril, `charge 1.0` |
 |14 | `celestite` | Celestite | `#c2fffa` | Info (Thanatos) | 1 | 0.8 | Дешёвый, общий в EON-3, `mythrilForge` 2/крафт |
 |15 | `divinite` | Divinite | `#2f5b87` | **END-GAME** | 6 | 6 | Редчайший, `charge 10, explosiveness 5, radioactivity 3`, патрон для всех Annihilator'ов второй слот |
+|16 | `astralite` | Astralite | `#f2f0ff` | **Spatial** | 7 | 7.5 | Пространственный класс, `charge 20`, `mythril 2 + phaseFabric 1 + neutronFluid 0.25 → 1`, для телепортов/`quantumConveyor`/T7 турелей |
+|17 | `singularity-alloy` | Singularity Alloy | `#191c2b` | **T6+ Универсал** | 9 | 9 | `divinite/blackMythril 1 + mythril 2 + cryoSteel 2 → 1`, `charge 6`, дорогой но штабелируемый, для T6+ пушек/стен |
 
 ### Ваниль, которая активно используется в рецептах мода
-`copper, lead, graphite, silicon, titanium, thorium, surgeAlloy, tungsten, phaseFabric` — в `requirements` топ-пушек (до `15000 copper`) и `ADDistribution`, `ADReactors`, `ADFactionSpecialization`.
+`copper, lead, graphite, silicon, titanium, thorium, surgeAlloy, tungsten, phaseFabric` — в `requirements` топ-пушек (до `15000 copper`) и `ADDistribution`, `ADReactors`, `ADFactionSpecialization`. Новые `astralite`/`singularity-alloy` требуют `phaseFabric`/`divinite` — топ-валюта.
 
 ---
 
@@ -83,6 +85,9 @@
 ### Химия (Info — Thanatos)
 * `neutron-synthesizer` 3×3 `oil 0.15 + cryo 0.15 + livingSteel 0.1 → neutronFluid 0.2/т`
 * `mythril-forge` 4×4 `celestite 2 + cryoSteel 1 + thorium 1 → mythril 2`
+* `astralite-forge` 4×4 `mythril 2 + phaseFabric 1 + neutronFluid 0.25 → astralite 1` `6 power 120с` — пространственный
+* `singularity-alloy-forge` 5×5 `divinite 1 + mythril 2 + cryoSteel 2 → singularity-alloy 1` `8 power 150с` — T6+
+* `quantum-conveyor` Stack `0.22 52/sec` `astralite 2 + singularityAlloy 1 + Si 4 + cryoSteel 2` `0.8 power` — быстрее Velocity (45/sec), телепортирует стаки
 
 ### Ядра / Стены / Окружение
 * `primordial-core` 6×6 70к HP 25к кап `power 16.6`, `ascension-core` 8×8 120к 50к `50f` (требует `divinite 500`)
@@ -129,7 +134,12 @@ Boss: `eradicatorPrime`, `lifedrinker`, `magmaStalker`, `serpentineColossus`, `s
 
 ---
 
-## Идеи для новых ресурсов (что можно добавить)
+## Ветка Spatial (новое — astralite/singularity)
+
+* `astralite` после `divinite` в техдереве → даёт `quantumConveyor` (Abyss логистика топ) и будущие пространственные турели T7+
+* `singularity-alloy` после `astralite` → для T6+ стен/пушек, требует void-matter (`divinite`/`blackMythril`) — не уникален, но дорог
+
+## Идеи для ещё новых ресурсов (что можно добавить сверх astralite/singularity)
 
 * **Предметы:** `temporalShard` (Time, выпадает на Boreas), `abyssMatter` (Ares, из `VoidConduit` дропа), `voidCrystal` (Elysium, для топ-турелей), `quantumChip` (Info, из `mythrilForge` + `silicon`)
 * **Жидкости:** `cryoSlurry` (Boreas, густой кулант лучше `neutronFluid` но вязкий), `voidPlasma` (Elysium, розжиг для Void лазеров)

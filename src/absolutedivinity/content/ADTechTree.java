@@ -66,6 +66,8 @@ public class ADTechTree {
         addItem(ADItems.celestite, ADItems.mythril);
         addItem(ADItems.mythril, ADItems.blackMythril);
         addItem(ADItems.blackMythril, ADItems.divinite);
+        addItem(ADItems.divinite, ADItems.astralite);
+        addItem(ADItems.astralite, ADItems.singularityAlloy);
 
         // ── Liquids (Info — Thanatos line) ──
         addBlock(ADItems.bioAlloy, ADLiquids.acid);
@@ -74,6 +76,10 @@ public class ADTechTree {
         addBlock(ADFactionSpecialization.neutronSynthesizer, ADLiquids.neutronFluid);
         addBlock(ADLiquids.neutronFluid, ADLiquids.steam);
         addBlock(ADLiquids.neutronFluid, ADFactionSpecialization.mythrilForge);
+        addBlock(ADLiquids.neutronFluid, ADFactionSpecialization.astraliteForge, ADItems.mythril);
+        addItem(ADFactionSpecialization.astraliteForge, ADItems.astralite);
+        addBlock(ADFactionSpecialization.astraliteForge, ADFactionSpecialization.singularityForge, ADItems.singularityAlloy);
+        addItem(ADFactionSpecialization.singularityForge, ADItems.singularityAlloy);
 
         // ── Distribution — Abyss (Ares) — fastest logistics ──
         addItem(Blocks.coreShard, ADDistribution.gridRouter); // size1 starter, planet independent
@@ -84,9 +90,10 @@ public class ADTechTree {
         addItem(ADDistribution.riftStacker, VoidConduit.voidConduit);
         addItem(ADDistribution.gridRouter, ADDistribution.aeonBridge);
         addItem(ADDistribution.aeonBridge, ADDistribution.nexusBridge);
-        // Abyss top logistics — needs cryoSteel from Boreas
+        // Abyss top logistics — needs cryoSteel from Boreas, then astralite for quantum
         addBlock(ADDistribution.riftStacker, ADFactionSpecialization.abyssVelocityConduit, ADItems.cryoSteel);
         addBlock(ADFactionSpecialization.abyssVelocityConduit, ADFactionSpecialization.abyssQuantumBridge, ADFactionSpecialization.orderFusionReactor);
+        addBlock(ADFactionSpecialization.abyssQuantumBridge, ADFactionSpecialization.quantumConveyor, ADItems.astralite, ADItems.singularityAlloy);
 
         // ── Power — Order (Verdict) — strongest generation ──
         addItem(Blocks.coreShard, ADFactionSpecialization.orderFusionReactor, ADFactionSpecialization.neutronSynthesizer, ADFactionSpecialization.mythrilForge);

@@ -20,7 +20,9 @@ public class ADItems {
         mythril,
         celestite,
         divinite,
-        blackMythril;
+        blackMythril,
+        astralite,
+        singularityAlloy;
 
     public static void load() {
 
@@ -180,6 +182,32 @@ public class ADItems {
             explosiveness = 5f;
             radioactivity = 3f;
             charge = 10f;
+        }};
+
+        astralite = new Item("astralite", Color.valueOf("f2f0ff")){{
+            localizedName = "Astralite";
+            description = "Материал пространственного класса. Ткёт пространство: для продвинутых телепортов, пространственных турелей и [accent]quantumConveyor[].";
+            details = "Синтезируется только в невесомости: mythril + phaseFabric + neutronFluid в поле искривления. При ударе издаёт звон, будто бьют по стеклу вселенной. Осторожно: нестабилен без CryoSteel матрицы.";
+            hardness = 7;
+            charge = 20f;
+            cost = 7.5f;
+            radioactivity = 0.9f;
+            explosiveness = 0.4f;
+            flammability = 0f;
+            frames = 12;
+            frameTime = 6f;
+        }};
+
+        singularityAlloy = new Item("singularity-alloy", Color.valueOf("191c2b")){{
+            localizedName = "Singularity Alloy";
+            description = "Материал для оружия/обороны T6+. Сплав void-matter + mythril + cryoSteel. Чрезвычайно дорогой, но не уникальный — можно штамповать тоннами, если хватит divinite.";
+            details = "Void-matter (концентрат divinite/blackMythril) впрессован в cryoSteel каркас и опаян mythril. На выходе — чёрная плита, поглощающая свет. T6+ турели и стены без него — фольга.";
+            hardness = 9;
+            cost = 9f;
+            charge = 6f;
+            radioactivity = 2.2f;
+            explosiveness = 1.1f;
+            flammability = 0f;
         }};
     }
 }
