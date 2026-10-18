@@ -16,11 +16,11 @@ import mindustry.ui.Fonts;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 
-public class Disruptor extends Block {
+public class EarthBorer extends Block {
     public float timerBreak;
     public int maxWallSize;
 
-    public Disruptor(String name) {
+    public EarthBorer(String name) {
         super(name);
         update = true;
         solid = true;
@@ -45,9 +45,8 @@ public class Disruptor extends Block {
         Drawf.dashRect(valid ? Pal.accent : Pal.remove, rect);
     }
 
-    public class DisruptorBuild extends Building {
+    public class EarthBorerBuild extends Building {
         public float timer = 0;
-        public boolean scanning = false;
 
         @Override
         public void updateTile() {

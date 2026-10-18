@@ -24,6 +24,11 @@
       "type": "local",
       "command": ["npx", "-y", "@cyanheads/git-mcp-server"],
       "enabled": true
+    },
+    "ripgrep": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-ripgrep"],
+      "enabled": true
     }
   }
 }

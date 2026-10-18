@@ -64,8 +64,8 @@ public class ADTechTree {
         addItem(ADDistribution.aeonBridge, ADDistribution.nexusBridge);
 
         // Effect blocks
-        addItem(Blocks.coreShard, ADEffectBlocks.disruptor2);
-        addItem(ADEffectBlocks.disruptor2, ADEffectBlocks.disruptor3);
+        addItem(Blocks.coreShard, ADEffectBlocks.earthBorerMk1);
+        addItem(ADEffectBlocks.earthBorerMk1, ADEffectBlocks.earthBorerMk2);
 
         // Cores
         addItem(Blocks.coreShard, ADCores.primordialCore);
@@ -79,43 +79,34 @@ public class ADTechTree {
         addItem(VoidFrag.voidFrag, VoidLance.voidLance);
         addItem(VoidLance.voidLance, VoidHowitzer.voidHowitzer);
         addItem(VoidHowitzer.voidHowitzer, VoidStorm.voidStorm);
-        addItem(VoidStorm.voidStorm, VoidLanceBattery.voidLanceBattery);
-        addItem(VoidLanceBattery.voidLanceBattery, VoidSingularity.voidSingularity);
+        addItem(VoidStorm.voidStorm, VoidSingularity.voidSingularity);
         addItem(VoidSingularity.voidSingularity, VoidAnnihilator.voidAnnihilator);
 
         // Order turrets
         addItem(Blocks.coreShard, OrderSpark.orderSpark);
-        addItem(OrderSpark.orderSpark, OrderFlak.orderFlak);
-        addItem(OrderFlak.orderFlak, OrderLance.orderLance);
+        addItem(OrderSpark.orderSpark, OrderLance.orderLance);
         addItem(OrderLance.orderLance, OrderMortar.orderMortar);
         addItem(OrderMortar.orderMortar, OrderStorm.orderStorm);
         addItem(OrderStorm.orderStorm, OrderCannon.orderCannon);
         addItem(OrderCannon.orderCannon, OrderBeam.orderBeam);
-        addItem(OrderBeam.orderBeam, OrderCataclysm.orderCataclysm);
-        addItem(OrderCataclysm.orderCataclysm, OrderSingularity.orderSingularity);
+        addItem(OrderBeam.orderBeam, OrderSingularity.orderSingularity);
         addItem(OrderSingularity.orderSingularity, OrderAnnihilator.orderAnnihilator);
 
         // Abyss turrets
         addItem(Blocks.coreShard, AbyssTurret1.abyssTurret1);
         addItem(AbyssTurret1.abyssTurret1, AbyssTurret2.abyssTurret2);
         addItem(AbyssTurret2.abyssTurret2, AbyssTurret3.abyssTurret3);
-        addItem(AbyssTurret3.abyssTurret3, AbyssTurret4.abyssTurret4);
-        addItem(AbyssTurret4.abyssTurret4, AbyssTurret5.abyssTurret5);
-        addItem(AbyssTurret5.abyssTurret5, AbyssTurret6.abyssTurret6);
-        addItem(AbyssTurret6.abyssTurret6, AbyssTurret7.abyssTurret7);
-        addItem(AbyssTurret7.abyssTurret7, AbyssTurret8.abyssTurret8);
-        addItem(AbyssTurret8.abyssTurret8, AbyssTurret9.abyssTurret9);
+        addItem(AbyssTurret3.abyssTurret3, AbyssTurret5.abyssTurret5);
+        addItem(AbyssTurret5.abyssTurret5, AbyssTurret7.abyssTurret7);
+        addItem(AbyssTurret7.abyssTurret7, AbyssTurret9.abyssTurret9);
         addItem(AbyssTurret9.abyssTurret9, AbyssAnnihilator.abyssAnnihilator);
 
         // Chaos turrets
         addItem(Blocks.coreShard, ChaosTurret1.chaosTurret1);
-        addItem(ChaosTurret1.chaosTurret1, ChaosTurret2.chaosTurret2);
-        addItem(ChaosTurret2.chaosTurret2, ChaosTurret3.chaosTurret3);
-        addItem(ChaosTurret3.chaosTurret3, ChaosTurret4.chaosTurret4);
-        addItem(ChaosTurret4.chaosTurret4, ChaosTurret5.chaosTurret5);
+        addItem(ChaosTurret1.chaosTurret1, ChaosTurret3.chaosTurret3);
+        addItem(ChaosTurret3.chaosTurret3, ChaosTurret5.chaosTurret5);
         addItem(ChaosTurret5.chaosTurret5, ChaosTurret6.chaosTurret6);
-        addItem(ChaosTurret6.chaosTurret6, ChaosTurret7.chaosTurret7);
-        addItem(ChaosTurret7.chaosTurret7, ChaosTurret8.chaosTurret8);
+        addItem(ChaosTurret6.chaosTurret6, ChaosTurret8.chaosTurret8);
         addItem(ChaosTurret8.chaosTurret8, ChaosTurret9.chaosTurret9);
         addItem(ChaosTurret9.chaosTurret9, ChaosObliterator.chaosObliterator);
 
@@ -123,24 +114,18 @@ public class ADTechTree {
         addItem(Blocks.coreShard, TimeTurret1.timeTurret1);
         addItem(TimeTurret1.timeTurret1, TimeTurret2.timeTurret2);
         addItem(TimeTurret2.timeTurret2, TimeTurret3.timeTurret3);
-        addItem(TimeTurret3.timeTurret3, TimeTurret4.timeTurret4);
-        addItem(TimeTurret4.timeTurret4, TimeTurret5.timeTurret5);
-        addItem(TimeTurret5.timeTurret5, TimeTurret6.timeTurret6);
-        addItem(TimeTurret6.timeTurret6, TimeTurret7.timeTurret7);
+        addItem(TimeTurret3.timeTurret3, TimeTurret5.timeTurret5);
+        addItem(TimeTurret5.timeTurret5, TimeTurret7.timeTurret7);
         addItem(TimeTurret7.timeTurret7, TimeTurret8.timeTurret8);
-        addItem(TimeTurret8.timeTurret8, TimeTurret9.timeTurret9);
-        addItem(TimeTurret9.timeTurret9, ChronoObliterator.chronoObliterator);
+        addItem(TimeTurret8.timeTurret8, ChronoObliterator.chronoObliterator);
 
         // Info turrets
         addItem(Blocks.coreShard, InfoTurret1.infoTurret1);
         addItem(InfoTurret1.infoTurret1, InfoTurret2.infoTurret2);
-        addItem(InfoTurret2.infoTurret2, InfoTurret3.infoTurret3);
-        addItem(InfoTurret3.infoTurret3, InfoTurret4.infoTurret4);
+        addItem(InfoTurret2.infoTurret2, InfoTurret4.infoTurret4);
         addItem(InfoTurret4.infoTurret4, InfoTurret5.infoTurret5);
-        addItem(InfoTurret5.infoTurret5, InfoTurret6.infoTurret6);
-        addItem(InfoTurret6.infoTurret6, InfoTurret7.infoTurret7);
-        addItem(InfoTurret7.infoTurret7, InfoTurret8.infoTurret8);
-        addItem(InfoTurret8.infoTurret8, InfoTurret9.infoTurret9);
+        addItem(InfoTurret5.infoTurret5, InfoTurret7.infoTurret7);
+        addItem(InfoTurret7.infoTurret7, InfoTurret9.infoTurret9);
         addItem(InfoTurret9.infoTurret9, InfoAnnihilator.infoAnnihilator);
     }
 

@@ -78,8 +78,7 @@ public class ADPlanetGenerator extends PlanetGenerator {
     @Override
     public float getHeight(Vec3 position) {
         float height = getRawHeight(position);
-        float clamped = Math.max(height, waterOffset);
-        return Math.max(radMin, Math.min(radMax, min + clamped));
+        return Mathf.clamp((height - waterOffset) / (thresh + 1f), 0f, 1f);
     }
 
     @Override

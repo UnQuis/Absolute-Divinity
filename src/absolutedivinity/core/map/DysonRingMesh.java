@@ -26,8 +26,8 @@ public class DysonRingMesh extends PlanetMesh {
         rand.setSeed(seed);
         flipValue = rand.random(-180, 180);
         flipAngle.setToRandomDirection(rand);
-        flipSpeed = rand.random(0.3f, 0.7f);
-        rotateSpeed = rand.random(1f, 3f);
+        flipSpeed = rand.random(0.08f, 0.2f);
+        rotateSpeed = rand.random(0.15f, 0.4f);
     }
 
     public DysonRingMesh(){}

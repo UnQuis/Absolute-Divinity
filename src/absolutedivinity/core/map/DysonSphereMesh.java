@@ -30,7 +30,7 @@ public class DysonSphereMesh extends PlanetMesh {
         }
     }
 
-    public float speed = 0.32f;
+    public float speed = 0.008f;
 
     public DysonSphereMesh(Planet planet, float radius){
         super(planet, MeshBuilder.buildHex(new HexMesher(){

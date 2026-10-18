@@ -11,7 +11,6 @@ import mindustry.graphics.Pal;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.MultiMesh;
 import mindustry.graphics.g3d.NoiseMesh;
-import mindustry.maps.planet.SerpuloPlanetGenerator;
 import mindustry.type.ItemStack;
 import mindustry.type.Planet;
 import absolutedivinity.core.map.DysonRingMesh;
@@ -22,7 +21,11 @@ public class ADPlanets {
         elysium,
         nyx,
         thanatos,
-        verdict;
+        verdict,
+        boreasIV,
+        dionysus,
+        ares,
+        argon;
 
     public static void load() {
         elysium = new Planet("elysium", Planets.sun, 1.2f, 3){{
@@ -308,6 +311,229 @@ public class ADPlanets {
                 //waterColor = Color.valueOf("202025");
                 //landColor = Color.valueOf("202025");
             }};
+        }};
+
+        boreasIV = new Planet("boreas-iv", Planets.sun, 0.8f, 3){{
+            localizedName = "Boreas IV";
+            description = "A frozen ice world at the edge of the system. Its surface is locked in eternal winter, with cryogenic storms that never cease.";
+            visible = true;
+            accessible = true;
+            alwaysUnlocked = true;
+            allowSectorInvasion = true;
+            allowLaunchSchematics = true;
+            allowLaunchLoadout = true;
+            drawOrbit = true;
+            updateLighting = true;
+            bloom = false;
+            hasAtmosphere = true;
+            clearSectorOnLose = true;
+            allowWaves = true;
+            prebuildBase = false;
+            allowLaunchToNumbered = false;
+
+            defaultCore = Blocks.coreNucleus;
+            solarSystem = Planets.sun.solarSystem;
+            startSector = 0;
+            orbitSpacing = 4;
+            minZoom = 1.8f;
+            orbitRadius = 44;
+            sectorSeed = 78901;
+            atmosphereRadIn = 0.1f;
+            atmosphereRadOut = 0.5f;
+            atmosphereColor = Color.valueOf("a8d8ea");
+            iconColor = Color.valueOf("8fc5e8");
+            landCloudColor = atmosphereColor;
+
+            meshLoader = () -> new MultiMesh(
+                new NoiseMesh(this, 6, 6, 0.9f, 4, 0.8f, 0.8f, 0.8f, Color.valueOf("e8f4f8"), Color.valueOf("b0d0e0"), 4, 0.5f, 0.7f, 0.35f),
+                new NoiseMesh(this, 6, 4, 0.4f, 8, 1.5f, 0.2f, 0.6f, Color.valueOf("d0e8f0"), Color.valueOf("90b8d0"), 2, 0.3f, 2f, 0.75f)
+            );
+
+            ruleSetter = r -> {
+                r.waves = true;
+                r.waveTeam = Team.crux;
+                r.placeRangeCheck = false;
+                r.showSpawns = true;
+                r.waveSpacing = 60 * Time.toSeconds;
+                r.initialWaveSpacing = 5f * Time.toMinutes;
+                r.hideBannedBlocks = true;
+                r.loadout = ItemStack.list(ADItems.blackMythril, 500, ADItems.cryoSteel, 500, Items.titanium, 1000, Items.silicon, 1000);
+
+                Rules.TeamRule teamRule = r.teams.get(r.defaultTeam);
+                teamRule.rtsAi = true;
+                teamRule.unitBuildSpeedMultiplier = 3f;
+                teamRule.buildSpeedMultiplier = 1.5f;
+            };
+
+            generator = new ADPlanetGenerator(){{
+                octaves = 5;
+                persistence = 0.6f;
+                scale = 28f;
+                mag = 1.8f;
+                thresh = 1.2f;
+                min = 80f;
+                max = 120f;
+                radMin = 350f;
+                radMax = 650f;
+                waterOffset = 0.7f;
+            }};
+        }};
+
+        dionysus = new Planet("dionysus", Planets.sun, 0.9f, 3){{
+            localizedName = "Dionysus";
+            description = "A volcanic forge-world, its surface churned by tectonic fury. Rivers of molten metal scar the landscape.";
+            visible = true;
+            accessible = true;
+            alwaysUnlocked = true;
+            allowSectorInvasion = true;
+            allowLaunchSchematics = true;
+            allowLaunchLoadout = true;
+            drawOrbit = true;
+            updateLighting = true;
+            bloom = false;
+            hasAtmosphere = true;
+            clearSectorOnLose = true;
+            allowWaves = true;
+            prebuildBase = false;
+            allowLaunchToNumbered = false;
+
+            defaultCore = Blocks.coreNucleus;
+            solarSystem = Planets.sun.solarSystem;
+            startSector = 0;
+            orbitSpacing = 3;
+            minZoom = 1.5f;
+            orbitRadius = 16;
+            sectorSeed = 23456;
+            atmosphereRadIn = 0.15f;
+            atmosphereRadOut = 0.5f;
+            atmosphereColor = Color.valueOf("e06030");
+            iconColor = Color.valueOf("d07040");
+            landCloudColor = atmosphereColor;
+
+            meshLoader = () -> new HexMesh(this, 6);
+
+            ruleSetter = r -> {
+                r.waves = true;
+                r.waveTeam = Team.crux;
+                r.placeRangeCheck = false;
+                r.showSpawns = true;
+                r.waveSpacing = 60 * Time.toSeconds;
+                r.initialWaveSpacing = 5f * Time.toMinutes;
+                r.hideBannedBlocks = true;
+                r.loadout = ItemStack.list(Items.titanium, 1000, Items.tungsten, 1000, Items.silicon, 1000);
+
+                Rules.TeamRule teamRule = r.teams.get(r.defaultTeam);
+                teamRule.rtsAi = true;
+                teamRule.unitBuildSpeedMultiplier = 5f;
+                teamRule.buildSpeedMultiplier = 1.5f;
+            };
+
+            generator = new ADPlanetGenerator(){{
+                octaves = 4;
+                persistence = 0.7f;
+                scale = 22f;
+                mag = 2f;
+                thresh = 0.9f;
+                min = 80f;
+                max = 120f;
+                radMin = 300f;
+                radMax = 600f;
+                waterOffset = 0.5f;
+            }};
+        }};
+
+        ares = new Planet("ares", Planets.sun, 1.3f, 3){{
+            localizedName = "Ares";
+            description = "A barren war-torn world, scarred by countless battles. Its red plains stretch endlessly under a heavy, dust-choked sky.";
+            visible = true;
+            accessible = true;
+            alwaysUnlocked = true;
+            allowSectorInvasion = true;
+            allowLaunchSchematics = true;
+            allowLaunchLoadout = true;
+            drawOrbit = true;
+            updateLighting = true;
+            bloom = false;
+            hasAtmosphere = true;
+            clearSectorOnLose = true;
+            allowWaves = true;
+            prebuildBase = false;
+            allowLaunchToNumbered = false;
+
+            defaultCore = Blocks.coreNucleus;
+            solarSystem = Planets.sun.solarSystem;
+            startSector = 0;
+            orbitSpacing = 4;
+            minZoom = 1.5f;
+            orbitRadius = 36;
+            sectorSeed = 56789;
+            atmosphereRadIn = 0.1f;
+            atmosphereRadOut = 0.4f;
+            atmosphereColor = Color.valueOf("c04030");
+            iconColor = Color.valueOf("b05040");
+            landCloudColor = atmosphereColor;
+
+            meshLoader = () -> new HexMesh(this, 6);
+
+            ruleSetter = r -> {
+                r.waves = true;
+                r.waveTeam = Team.crux;
+                r.placeRangeCheck = false;
+                r.showSpawns = true;
+                r.waveSpacing = 60 * Time.toSeconds;
+                r.initialWaveSpacing = 5f * Time.toMinutes;
+                r.hideBannedBlocks = true;
+                r.loadout = ItemStack.list(Items.titanium, 1000, Items.tungsten, 1000, Items.silicon, 1000);
+
+                Rules.TeamRule teamRule = r.teams.get(r.defaultTeam);
+                teamRule.rtsAi = true;
+                teamRule.unitBuildSpeedMultiplier = 5f;
+                teamRule.buildSpeedMultiplier = 1.5f;
+            };
+
+            generator = new ADPlanetGenerator(){{
+                octaves = 4;
+                persistence = 0.7f;
+                scale = 26f;
+                mag = 1.6f;
+                thresh = 1.1f;
+                min = 90f;
+                max = 110f;
+                radMin = 320f;
+                radMax = 680f;
+                waterOffset = 0.6f;
+            }};
+        }};
+
+        argon = new Planet("argon", boreasIV, 0.25f, 2){{
+            localizedName = "Argon";
+            description = "A tiny icy moon locked in Boreas IV's orbit. Its surface is a featureless expanse of frozen volatiles.";
+            visible = true;
+            accessible = false;
+            alwaysUnlocked = true;
+            drawOrbit = true;
+            updateLighting = true;
+            bloom = false;
+            hasAtmosphere = false;
+            clearSectorOnLose = true;
+            allowWaves = true;
+            prebuildBase = false;
+            allowLaunchToNumbered = false;
+
+            defaultCore = Blocks.coreShard;
+            solarSystem = Planets.sun.solarSystem;
+            startSector = 0;
+            orbitSpacing = 2;
+            minZoom = 3f;
+            maxZoom = 3f;
+            orbitRadius = 6;
+            sectorSeed = 89012;
+            atmosphereRadIn = 0;
+            atmosphereRadOut = 0.2f;
+            atmosphereColor = Color.valueOf("c0d8e8");
+            iconColor = Color.valueOf("a0b8c8");
+
+            meshLoader = () -> new NoiseMesh(this, 6, 6, 0.2f, 1, 1f, 1f, 1f, Color.valueOf("e0e8f0"), Color.valueOf("b0c8d8"), 3, 0.4f, 0.8f, 0.35f);
         }};
     }
 }

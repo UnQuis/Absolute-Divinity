@@ -1,10 +1,14 @@
 package absolutedivinity.content.blocks.turrets.time;
 
 import absolutedivinity.content.ADTurretEffects;
+import absolutedivinity.content.ADStatusEffects;
 import absolutedivinity.content.ADColor;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.ArtilleryBulletType;
+import mindustry.gen.Bullet;
+import mindustry.gen.Hitboxc;
+import mindustry.gen.Unit;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
@@ -35,21 +39,31 @@ public class TimeTurret7 {
                 Items.titanium, 70
             ));
             category = Category.turret;
-            ammo(Items.titanium, new ArtilleryBulletType(5f, 80f, "shell") {{
-                hitEffect = ADTurretEffects.hitBig(ADColor.timeMain);
-                despawnEffect = ADTurretEffects.blastEffect(ADColor.timeMain, 50f);
-                width = 12f;
-                height = 12f;
-                lifetime = 62f;
-                hitShake = 7f;
-                splashDamageRadius = 45f;
-                splashDamage = 45f;
-                knockback = 4f;
-                frontColor = ADColor.timeLight;
-                backColor = ADColor.timeMain;
-                status = StatusEffects.freezing;
-                statusDuration = 180f;
-            }});
+            ammo(Items.surgeAlloy, new ArtilleryBulletType(5f, 80f, "shell") {
+                {
+                    hitEffect = ADTurretEffects.hitBig(ADColor.timeMain);
+                    despawnEffect = ADTurretEffects.blastEffect(ADColor.timeMain, 50f);
+                    width = 12f;
+                    height = 12f;
+                    lifetime = 62f;
+                    hitShake = 7f;
+                    splashDamageRadius = 45f;
+                    splashDamage = 45f;
+                    knockback = 4f;
+                    frontColor = ADColor.timeLight;
+                    backColor = ADColor.timeMain;
+                    status = StatusEffects.freezing;
+                    statusDuration = 180f;
+                }
+
+                @Override
+                public void hitEntity(Bullet b, Hitboxc entity, float health) {
+                    super.hitEntity(b, entity, health);
+                    if(entity instanceof Unit) {
+                        ((Unit) entity).apply(ADStatusEffects.zeroKelvinLock, 240f);
+                    }
+                }
+            });
         }};
     }}
 }

@@ -1,41 +1,40 @@
 package absolutedivinity.content.blocks.effects;
 
-import mindustry.content.Items;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
+import absolutedivinity.content.ADItems;
 
 public class ADEffectBlocks {
-    public static Disruptor disruptor2, disruptor3;
+    public static EarthBorer earthBorerMk1, earthBorerMk2;
 
     public static void load() {
-        disruptor2 = new Disruptor("disruptor-2") {{
-            localizedName = "Disruptor";
-            description = "Destroys solid unbreakable walls in front of it. Afterwards it is destroyed as well.";
+        earthBorerMk1 = new EarthBorer("earth-borer-mk1") {{
+            localizedName = "Earth Borer Mk1";
+            description = "Bores through solid unbreakable terrain in front of it using high-frequency drills. The unit is consumed in the process.";
             size = 2;
             timerBreak = 480f;
             maxWallSize = 3;
             health = 800;
             requirements(Category.effect, ItemStack.with(
-                Items.copper, 200,
-                Items.lead, 150,
-                Items.silicon, 100,
-                Items.titanium, 80
+                ADItems.ferriteCompound, 200,
+                ADItems.reinforcedComposite, 150,
+                ADItems.matrix, 100
             ));
         }};
 
-        disruptor3 = new Disruptor("disruptor-3") {{
-            localizedName = "Disruptor III";
-            description = "Destroys solid unbreakable walls in front of it. Larger version with extended range.";
+        earthBorerMk2 = new EarthBorer("earth-borer-mk2") {{
+            localizedName = "Earth Borer Mk2";
+            description = "An advanced boring machine capable of drilling through the toughest unbreakable formations. Larger drills with extended reach.";
             size = 3;
             timerBreak = 720f;
             maxWallSize = 5;
             health = 1600;
             requirements(Category.effect, ItemStack.with(
-                Items.copper, 500,
-                Items.lead, 400,
-                Items.silicon, 300,
-                Items.titanium, 200,
-                Items.thorium, 100
+                ADItems.ferriteCompound, 500,
+                ADItems.reinforcedComposite, 400,
+                ADItems.matrix, 300,
+                ADItems.cryoSteel, 200,
+                ADItems.blackMythril, 100
             ));
         }};
     }
